@@ -15,6 +15,7 @@ import Chart1 from '../../../components/chart1'
 import Chart2 from '../../../components/chart2'
 import Chart3 from '../../../components/chart3';
 import Chart4 from '../../../components/chart4';
+import Chart5 from '../../../components/chart5';
 
 class Profile extends Component {
     constructor(props) {
@@ -118,7 +119,7 @@ class Profile extends Component {
                             <Dashboard projectID={this.state.selectedProject}>
                                 <Row>
                                     <Col className='xl6'>
-                                        
+                                        <Chart5/>
                                     </Col>
 
                                     <Col className='xl6'>

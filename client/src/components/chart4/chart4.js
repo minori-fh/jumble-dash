@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 var Chart = require("chart.js")
 
-class Chart1 extends Component {
+
+// const Chart1 = (props) => (
+//   <div>
+//     <div className="Open Tasks">
+//       <p>Open Tasks</p>
+//     </div>
+//     <div className="Closed Tasks">
+//       <p>Closed Tasks</p>
+//     </div>
+//     <div className="Budget">
+//       <p>Budget</p>
+//     </div>
+//   </div>
+// );
+class Chart4 extends Component {
 
   constructor(props) {
     super(props);
@@ -31,4 +45,4 @@ class Chart1 extends Component {
 
 };
 
-export default Chart1;
+export default Chart4;
