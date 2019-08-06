@@ -1,0 +1,21 @@
+#inputName{
+    height:30px;
+    width:200px;
+    font-size: 18px;
+    margin-right:30px;
+}
+
+#inputBudget{
+    height:30px;
+    width:200px;
+    font-size: 18px
+}
+
+#submitNewProject{
+    margin-left:30px;
+    height:30px;
+    width:100px;
+    font-size: 18px
+}
+
+

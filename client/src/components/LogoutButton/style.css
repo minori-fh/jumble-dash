@@ -1,0 +1,10 @@
+
+.logout {
+    background-color: transparent !important; 
+    color: white; 
+    border: none; 
+    position: fixed; 
+    bottom: 4%; 
+    left: 2%; 
+    font-size: 14px; 
+}
