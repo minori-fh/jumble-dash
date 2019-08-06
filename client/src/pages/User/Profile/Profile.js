@@ -1,10 +1,9 @@
-
 import React, { Component } from 'react';
 import Actions from "../../../utils/API";
 import Dashboard from '../../../components/Dashboard';
-import { Col, Row } from "../../../components/Grid"
-import Navbar from "../../../components/Navbar"
-import Sidenav from "../../../components/Sidenav"
+import { Col, Row } from "../../../components/Grid";
+import Navbar from "../../../components/Navbar";
+import Sidenav from "../../../components/Sidenav";
 import CreateProject from '../../../components/CreateProject';
 import ProjectButton from '../../../components/ProjectButton';
 import NewProjectForm from '../../../components/NewProjectForm';
@@ -14,6 +13,8 @@ import "./Profile.css";
 
 import Chart1 from '../../../components/chart1'
 import Chart2 from '../../../components/chart2'
+import Chart3 from '../../../components/chart3';
+import Chart4 from '../../../components/chart4';
 
 class Profile extends Component {
     constructor(props) {
@@ -32,7 +33,8 @@ class Profile extends Component {
             budgetSecurity: "",
             tasks: [],
             assignees: [],
-            projects: []
+            projects: [],
+            chartSwitch: false
         }
     }
 
@@ -41,6 +43,8 @@ class Profile extends Component {
             this.setState({ projects: res.data })
         });
     }
+
+  
 
     handlelogout() {
         Actions.handlelogout()
@@ -59,10 +63,8 @@ class Profile extends Component {
 
     loadProject = id => {
 
-        const found = this.state.projects.find((project) => project.id === id)
-
         this.setState({
-            selectedProject: found.id
+            selectedProject: id
         });
     }
 
@@ -73,8 +75,21 @@ class Profile extends Component {
             })
         }
         else {
+            ProjectAPI.findProjects().then((res) => {
+                this.setState({ projects: res.data, edit: false})
+            });
+        }
+    }
+
+    handleChartSwitch = () => {
+        if (this.state.chartSwitch === false) {
             this.setState({
-                edit: false
+                chartSwitch: true
+            })
+        }
+        else {
+            this.setState({
+                chartSwitch: false
             })
         }
     }
@@ -89,9 +104,9 @@ class Profile extends Component {
                     <Col className="xl2 l3">
                         <Sidenav>
                             <div className="centerButtons">
-                                {this.state.projects.map(project => (
-                                    <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
-                                ))}
+                                    {this.state.projects.map(project => (
+                                        <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id}  />
+                                    ))}
                                 <CreateProject edit={this.handleEdit} />
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
@@ -101,8 +116,10 @@ class Profile extends Component {
                         {
                             !this.state.edit ?
                             <Dashboard projectID={this.state.selectedProject}>
-                                <Chart1/>
+                                {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
+                                <button onClick={this.handleChartSwitch} >Switch</button>
                                 <Chart2/>
+                                <Chart3/>
                             </Dashboard>
                                 : <NewProjectForm edit={this.handleEdit} />
                         }

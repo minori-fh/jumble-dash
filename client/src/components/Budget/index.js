@@ -34,6 +34,26 @@ class Budget extends Component {
             .catch(err => console.log(err.message));
     }
 
+    componentDidUpdate(prevProps) {
+
+        if (this.props.projectID !== prevProps.projectID) {
+            BudgetAPI.getBudget(this.props.projectID).then(res => {
+                console.log(res.data)
+                this.setState({
+                    budgetTotal: res.data.total,
+                    budgetDesign: res.data.Design,
+                    budgetEngineering: res.data.Engineering,
+                    budgetFinance: res.data.Finance,
+                    budgetHR: res.data.HR,
+                    budgetMarketing: res.data.Marketing,
+                    budgetSales: res.data.Sales,
+                    budgetSecurity: res.data.Security
+                })
+            })
+                .catch(err => console.log(err.message));
+        }
+    }
+
     render() {
         return (
             <div>

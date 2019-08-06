@@ -11,12 +11,25 @@ class Assignees extends Component {
 
     componentDidMount() {
         AssigneeAPI.getAssignees(this.props.projectID).then(res => {
-            console.log(res.data),
+            console.log(res.data)
                 this.setState({
                     assignees: res.data
                 })
         })
             .catch(err => console.log(err.message));
+    }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.props.projectID !== prevProps.projectID) {
+            AssigneeAPI.getAssignees(this.props.projectID).then(res => {
+                console.log(res.data)
+                    this.setState({
+                        assignees: res.data
+                    })
+            })
+                .catch(err => console.log(err.message));
+          }        
     }
 
     render() {

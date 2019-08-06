@@ -17,8 +17,7 @@ class Chart2 extends Component {
                   {
                     type: "time",
                     time: {
-                      unit: 'week',
-                      isoWeekday: false
+                      unit: 'day'
                     }
                   }
                 ],
@@ -33,7 +32,8 @@ class Chart2 extends Component {
               }
             },
             data: {
-              labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              // labels here need to take in days in specific format
+              labels: ["August 6, 2019", "August 7, 2019", "August 8, 2019", "August 9, 2019", "August 10, 2019"],
               datasets: [{
                 label: ["Progress (%)"],
                 data: [90, 80, 50, 46, 90],

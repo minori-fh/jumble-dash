@@ -8,6 +8,7 @@ function Sidenav(props) {
         <div>
             <nav className="navBar">
                 {props.children}
+              
             </nav>
         </div>
     )

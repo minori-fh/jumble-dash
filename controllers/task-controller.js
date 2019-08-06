@@ -17,7 +17,7 @@ module.exports = {
             deadline: req.body.deadline,
             ProjectId: req.body.ProjectId
         }).then(function (newTask) {
-            console.log(newTask)
+            res.json(newTask);
         })
     },
     update: function (req, res) {

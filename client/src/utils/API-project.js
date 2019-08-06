@@ -8,6 +8,7 @@ export default {
     return axios.post("/api/project", body);
   },
   getProject: function(id) {
+    console.log("this is the id!!!!!!!",id)
     return axios.get("/api/project/" + id);
   },
   updateProject: function(id, body) {
