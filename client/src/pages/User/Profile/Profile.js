@@ -116,10 +116,30 @@ class Profile extends Component {
                         {
                             !this.state.edit ?
                             <Dashboard projectID={this.state.selectedProject}>
-                                {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
-                                <button onClick={this.handleChartSwitch} >Switch</button>
-                                <Chart2/>
-                                <Chart3/>
+                                <Row>
+                                    <Col className='xl6'>
+                                        
+                                    </Col>
+
+                                    <Col className='xl6'>
+                                        {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
+                                        <button onClick={this.handleChartSwitch} >Switch</button>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col className='xl6'>
+                                        <Chart2/>
+                                    </Col>
+
+                                    <Col className='xl6'>
+                                        <Chart3/>
+                                    </Col>
+                                </Row>
+                                {/* {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
+                                <button onClick={this.handleChartSwitch} >Switch</button> */}
+                                {/* <Chart2/>
+                                <Chart3/> */}
                             </Dashboard>
                                 : <NewProjectForm edit={this.handleEdit} />
                         }
