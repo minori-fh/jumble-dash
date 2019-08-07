@@ -15,6 +15,10 @@ module.exports = {
         db.Task.create({
             task: req.body.task,
             deadline: req.body.deadline,
+            assignee1: req.body.assignee1,
+            assignee2: req.body.assignee2,
+            assignee3: req.body.assignee3,
+            assignee4: req.body.assignee4,
             ProjectId: req.body.ProjectId
         }).then(function (newTask) {
             res.json(newTask);
