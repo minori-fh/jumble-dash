@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Row } from "../Grid";
 import Tasks from "../Tasks";
 import Budget from "../Budget";
-import Assignees from "../Assignees";
 
 function Dashboard(props) {
     return (
