@@ -11,7 +11,7 @@ function Dashboard(props) {
                 props.projectID !== -1 ?
                     <Row>
                         <Col className="xl6 l6">
-                            <Budget projectID={props.projectID} />
+                            <Budget projectID={props.projectID} status = {props.status} chartSwitch = {props.chartSwitch}/>
                         </Col>
 
                         <Col className="xl6 l6">

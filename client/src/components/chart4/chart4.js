@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 var Chart = require("chart.js")
 
-class Chart1 extends Component {
+class Chart4 extends Component {
 
   constructor(props) {
     super(props);
@@ -12,10 +12,10 @@ class Chart1 extends Component {
     this.chart4 = new Chart(this.chart4Ref.current, {
       type: 'polarArea',
       data: {
-        labels: ['Red', 'Yellow', 'Blue'],
+        labels: this.props.depts,
         datasets: [{
-          data: [10, 20, 30],
-          backgroundColor: ['red', 'yellow', 'blue']
+          data: [this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7],
+          backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
         }]
       }
     });
@@ -31,4 +31,4 @@ class Chart1 extends Component {
 
 };
 
-export default Chart1;
+export default Chart4;

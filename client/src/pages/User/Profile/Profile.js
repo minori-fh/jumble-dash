@@ -23,18 +23,7 @@ class Profile extends Component {
             userAccount: false,
             edit: false,
             selectedProject: -1,
-            budgetTotal: "",
-            budgetDesign: "",
-            budgetEngineering: "",
-            budgetFinance: "",
-            budgetHR: "",
-            budgetMarketing: "",
-            budgetSales: "",
-            budgetSecurity: "",
-            tasks: [],
-            assignees: [],
-            projects: [],
-            chartSwitch: false
+            projects: []
         }
     }
 
@@ -82,19 +71,6 @@ class Profile extends Component {
         }
     }
 
-    handleChartSwitch = () => {
-        if (this.state.chartSwitch === false) {
-            this.setState({
-                chartSwitch: true
-            })
-        }
-        else {
-            this.setState({
-                chartSwitch: false
-            })
-        }
-    }
-
     render() {
         return (
             <div>
@@ -118,7 +94,7 @@ class Profile extends Component {
                             !this.state.edit ?
                                 <Dashboard projectID={this.state.selectedProject}>
                                     {/* {!this.state.chartSwitch ? <Chart1 projectId={this.state.selectedProject} /> : <Chart4 />} */}
-                                    <button onClick={this.handleChartSwitch} >Switch</button>
+                                    {/* <button onClick={this.handleChartSwitch} >Switch</button> */}
                                     <Chart2 data={this.state.projects} />
                                     <Chart3 />
                                 </Dashboard>
