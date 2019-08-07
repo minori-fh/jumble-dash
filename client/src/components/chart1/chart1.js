@@ -4,13 +4,11 @@ var Chart = require("chart.js")
 class Chart1 extends Component {
 
   constructor(props) {
+    super(props)
     this.chart1Ref = React.createRef();
     this.state = {
       budget: props.budget
     }
-
-    // console.log(props)
-    // console.log(this.state.props.budget)
   };
 
   componentDidMount() {
@@ -20,7 +18,7 @@ class Chart1 extends Component {
       data: {
         labels: ["Total Budget"],
         datasets: [{
-          data: [this.state.budget || 100],
+          data: [100],
           backgroundColor: ['red', 'yellow', 'blue']
         }]
       }
