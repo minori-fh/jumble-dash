@@ -20,10 +20,11 @@ class Tasks extends Component {
 
     componentDidMount(id) {
         TaskAPI.getIncompleteTasks(id).then(res => {
-            console.log("this should be incomplete tasks", res.data)
+            console.log("SHOOHOHOHOHOHOHOSHOSHO",res.data)
             this.setState({
                 tasks: res.data
             })
+            console.log(res.data)
         })
 
             .catch(err => console.log(err.message));
@@ -63,13 +64,20 @@ class Tasks extends Component {
 
     componentDidUpdate(prevProps) {
 
+        console.log(this.state.tasks.length)
+        console.log()
+
+       
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-                console.log(res.data)
+                
                 this.setState({
                     tasks: res.data
                 })
+
+                
             })
+           
                 .catch(err => console.log(err.message));
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
@@ -153,16 +161,21 @@ class Tasks extends Component {
         TaskAPI.updateTask(id, com).then(res => {
             console.log("UPDATED TASK", res.data)
             let tasksList = this.state.tasks;
+            console.log("tasksList: " + tasksList)
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     //remove it 
                     tasksList.splice(i, 1);
                 }
             }
+            console.log(tasksList)
             this.setState({
                 tasks: tasksList
             })
+      
+           
         })
+   
     }
 
     render() {
