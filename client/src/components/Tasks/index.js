@@ -106,6 +106,15 @@ class Tasks extends Component {
         }
     }
 
+    handleInputChange = event => {
+        
+        const {name, value} = event.target;
+
+        this.setState({
+            [name]: value
+        })
+    }
+
     addTask = event => {
         event.preventDefault();
 
@@ -167,7 +176,7 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    {this.state.tasks.map((task) => (
+                    {this.state.tasks.map((task,i) => (
                         <div key={task.id}>
                             <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
                             <Task task={task.task} assignee1={task.assignee1}
