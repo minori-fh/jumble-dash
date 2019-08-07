@@ -18,6 +18,10 @@
 
 #main-left-col{
     background-color: rgb(5, 5, 41); 
+    background-image: url("loginbkgrnd.png");
+    background-repeat: no-repeat; 
+    background-size: cover
+
 }
 
 .App-logo{

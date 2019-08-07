@@ -57,8 +57,13 @@ class Tasks extends Component {
                 tasks: tasksList,
                 newTask: ""
             })
+
+            TaskAPI.getTasks(task.ProjectId).then(res => {
+                console.log(res)
+                console.log(res.data.length)
+            })
         })
-            .catch(err => console.log(err.message));
+        .catch(err => console.log(err.message));
     }
 
     render() {

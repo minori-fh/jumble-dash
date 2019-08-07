@@ -46,8 +46,6 @@ class Profile extends Component {
         });
     }
 
-  
-
     handlelogout() {
         Actions.handlelogout()
             .then(data => { return data.json() })
@@ -134,7 +132,7 @@ class Profile extends Component {
                             <Dashboard projectID={this.state.selectedProject}>
                                 <Row>
                                     <Col className='xl6'>
-                                        <Chart5 budget={this.state.budgetTotal}/>
+                                        <Chart5 budget={this.state.budgetTotal} tasksTotal={this.state.tasks.length}/>
                                     </Col>
 
                                     <Col className='xl6'>

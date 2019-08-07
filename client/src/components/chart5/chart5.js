@@ -9,10 +9,10 @@ function Chart5(props){
     return(
         <div>
             <div className="Open Tasks">
-            <p>Open Tasks: </p>
+            <p>Open Tasks: {props.tasksTotal}</p>
             </div>
             <div className="Closed Tasks">
-            <p>Closed Tasks: </p>
+            <p>Closed Tasks: {props.tasksTotal}</p>
             </div>
             <div className="Budget">
             <p>Budget: {props.budget}</p>

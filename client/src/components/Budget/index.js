@@ -57,7 +57,7 @@ class Budget extends Component {
     render() {
         return (
             <div>
-                <p>{this.state.budgetTotal}</p>
+                <p></p>
             </div>
         );
     }
