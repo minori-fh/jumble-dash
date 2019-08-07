@@ -30,7 +30,6 @@ class Chart1 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
     if (this.props.total !== prevProps.total) {
       this.chart1 = new Chart(this.chart1Ref.current, {
         type: 'doughnut',
