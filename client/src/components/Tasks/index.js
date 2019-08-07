@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
+import Task from '../Task';
 
 class Tasks extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class Tasks extends Component {
         }
 
         TaskAPI.createTask(task).then(res => {
-            console.log("NEWTASK",res.data)
+            console.log("NEWTASK", res.data)
             let tasksList = this.state.tasks
             tasksList.push(res.data)
             this.setState({
@@ -64,8 +65,11 @@ class Tasks extends Component {
     render() {
         return (
             <div>
-                {this.state.tasks.map((task, i) => (
-                    <p key={i}>{task.task}</p>
+                {this.state.tasks.map((task) => (
+                    <div>
+                        <Task key={task.updatedAt} task={task.task} assignee1={task.assignee1} 
+                        assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
+                    </div>
                 ))}
                 <form>
                     <input required

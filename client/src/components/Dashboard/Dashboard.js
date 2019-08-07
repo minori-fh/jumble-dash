@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Row } from "../Grid";
 import Tasks from "../Tasks";
 import Budget from "../Budget";
-import Assignees from "../Assignees";
 
 function Dashboard(props) {
     return (
@@ -10,16 +9,12 @@ function Dashboard(props) {
             {
                 props.projectID !== -1 ?
                     <Row>
-                        <Col className="xl2 l3">
+                        <Col className="xl4 l3">
                             <Budget projectID={props.projectID} />
                         </Col>
 
-                        <Col className="xl2 l3">
+                        <Col className="xl4 l3">
                             <Tasks projectID={props.projectID} />
-                        </Col>
-
-                        <Col className="xl2 l3">
-                            <Assignees projectID={props.projectID} />
                         </Col>
                     </Row>
                     : <Row>OK</Row>

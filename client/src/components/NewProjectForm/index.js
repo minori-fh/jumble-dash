@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import "./style.css";
 import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
-import APITask from "../../utils/API-task"
-import APIAssignee from "../../utils/API-assignee"
-import TaskForm from "../TaskForm"
+import APITask from "../../utils/API-task";
+import TaskForm from "../TaskForm";
 import Dashboard from '../Dashboard';
 
 class NewProjectForm extends Component {
@@ -15,7 +14,10 @@ class NewProjectForm extends Component {
         budget: "",
         projectID: 0,
         task: "",
-        assignee: ""
+        assignee1: "",
+        assignee2: "",
+        assignee3: "",
+        assignee4: ""
     }
 
     handleInputChange = event => {
@@ -69,6 +71,10 @@ class NewProjectForm extends Component {
 
         let info = {
             task: this.state.task,
+            assignee1: this.state.assignee1,
+            assignee2: this.state.assignee2,
+            assignee3: this.state.assignee3,
+            assignee4: this.state.assignee4,
             ProjectId: this.state.projectID
         }
 
@@ -78,15 +84,6 @@ class NewProjectForm extends Component {
             })
             .catch(err => console.log(err.message));
 
-        let person = {
-            name: this.state.assignee,
-            ProjectId: this.state.projectID
-        }
-
-        APIAssignee.createAssignee(person)
-            .then(res => {
-            })
-            .catch(err => console.log(err.message));
         this.dashboard(this.props)
 
     }
@@ -106,10 +103,6 @@ class NewProjectForm extends Component {
             .then(result => {
                 console.log("this is the result on the of pulling the saved Task", result)
             })
-        APIAssignee.getAssignees(this.state.projectID)
-            .then(result => {
-                console.log("this is the result on the of pulling the saved Assignee", result)
-            })
     }
 
     formRender() {
@@ -117,7 +110,6 @@ class NewProjectForm extends Component {
             return (
                 <div>
                     <form id="styling">
-                        <p id="typedTitle">{this.state.title}</p>
                         <input required
                             id="inputName"
                             type="text"
@@ -135,7 +127,6 @@ class NewProjectForm extends Component {
             return (
                 <div>
                     <form id="styling">
-                        <p id="typedBudget">{this.state.budget}</p>
                         <input required
                             id="inputBudget"
                             type="text"
@@ -151,12 +142,33 @@ class NewProjectForm extends Component {
                             onChange={this.handleInputChange}
                             name="task"
                         />
-                        <input required
+                        <input
                             type="text"
-                            value={this.state.assignee}
-                            placeholder="Assignee"
+                            value={this.state.assignee1}
+                            placeholder="Assignee #1 (Required)"
                             onChange={this.handleInputChange}
-                            name="assignee"
+                            name="assignee1"
+                        />
+                        <input
+                            type="text"
+                            value={this.state.assignee2}
+                            placeholder="Assignee #2 (Optional)"
+                            onChange={this.handleInputChange}
+                            name="assignee2"
+                        />
+                        <input
+                            type="text"
+                            value={this.state.assignee3}
+                            placeholder="Assignee #3 (Optional)"
+                            onChange={this.handleInputChange}
+                            name="assignee3"
+                        />
+                        <input
+                            type="text"
+                            value={this.state.assignee4}
+                            placeholder="Assignee #4 (Optional)"
+                            onChange={this.handleInputChange}
+                            name="assignee4"
                         />
                         <button id="submit" onClick={this.saveBudgetTask} >Submit</button>
                     </form>
