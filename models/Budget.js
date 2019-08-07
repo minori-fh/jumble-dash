@@ -8,31 +8,31 @@ module.exports = (sequelize, DataTypes) => {
         },
         Marketing: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         HR: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         Design: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         Engineering: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         Sales: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         Finance: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         },
         Security: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            defaultValue: 0
         }
     }, {
             timestamps: false

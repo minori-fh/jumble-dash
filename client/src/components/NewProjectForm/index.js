@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./style.css";
+import { Col, Row } from "../Grid";
 import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
@@ -12,6 +13,13 @@ class NewProjectForm extends Component {
         title: "",
         savedTitle: false,
         budget: "",
+        budgetMarketing: "",
+        budgetHR: "",
+        budgetSecurity: "",
+        budgetDesign: "",
+        budgetFinance: "",
+        budgetEngineering: "",
+        budgetSales: "",
         projectID: 0,
         task: "",
         assignee1: "",
@@ -61,6 +69,13 @@ class NewProjectForm extends Component {
         event.preventDefault();
         const body = {
             total: this.state.budget,
+            Marketing: this.state.budgetMarketing,
+            HR: this.state.budgetHR,
+            Design: this.state.budgetDesign,
+            Engineering: this.state.budgetEngineering,
+            Sales: this.state.budgetSales,
+            Finance: this.state.budgetFinance,
+            Security: this.state.budgetSecurity,
             ProjectId: this.state.projectID
         }
         APIBudget.createBudget(body)
@@ -77,6 +92,9 @@ class NewProjectForm extends Component {
             assignee4: this.state.assignee4,
             ProjectId: this.state.projectID
         }
+
+        console.log("---------------------------------------------------------------")
+        console.log(info);
 
         APITask.createTask(info)
             .then(res => {
@@ -127,49 +145,110 @@ class NewProjectForm extends Component {
             return (
                 <div>
                     <form id="styling">
-                        <input required
-                            id="inputBudget"
-                            type="text"
-                            value={this.state.budget}
-                            placeholder="Budget"
-                            onChange={this.handleInputChange}
-                            name="budget"
-                        />
-                        <input required
-                            type="text"
-                            value={this.state.task}
-                            placeholder="Task"
-                            onChange={this.handleInputChange}
-                            name="task"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.assignee1}
-                            placeholder="Assignee #1 (Required)"
-                            onChange={this.handleInputChange}
-                            name="assignee1"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.assignee2}
-                            placeholder="Assignee #2 (Optional)"
-                            onChange={this.handleInputChange}
-                            name="assignee2"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.assignee3}
-                            placeholder="Assignee #3 (Optional)"
-                            onChange={this.handleInputChange}
-                            name="assignee3"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.assignee4}
-                            placeholder="Assignee #4 (Optional)"
-                            onChange={this.handleInputChange}
-                            name="assignee4"
-                        />
+                        <Row>
+                            <input required
+                                id="inputBudget"
+                                type="text"
+                                value={this.state.budget}
+                                placeholder="Budget"
+                                onChange={this.handleInputChange}
+                                name="budget"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetDesign}
+                                placeholder="Design"
+                                onChange={this.handleInputChange}
+                                name="budgetDesign"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetEngineering}
+                                placeholder="Engineering"
+                                onChange={this.handleInputChange}
+                                name="budgetEngineering"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetFinance}
+                                placeholder="Finance"
+                                onChange={this.handleInputChange}
+                                name="budgetFinance"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetHR}
+                                placeholder="HR"
+                                onChange={this.handleInputChange}
+                                name="budgetHR"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetMarketing}
+                                placeholder="Marketing"
+                                onChange={this.handleInputChange}
+                                name="budgetMarketing"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetSales}
+                                placeholder="Sales"
+                                onChange={this.handleInputChange}
+                                name="budgetSales"
+                            />
+                            <input
+                                type="text"
+                                value={this.state.budgetSecurity}
+                                placeholder="Security"
+                                onChange={this.handleInputChange}
+                                name="budgetSecurity"
+                            />
+                        </Row>
+                        <Row>
+                            <input required
+                                type="text"
+                                value={this.state.task}
+                                placeholder="Task"
+                                onChange={this.handleInputChange}
+                                name="task"
+                            />
+                        </Row>
+                        <Row>
+                            <input required
+                                type="text"
+                                value={this.state.assignee1}
+                                placeholder="Assignee #1 (Required)"
+                                onChange={this.handleInputChange}
+                                name="assignee1"
+                            />
+                        </Row>
+                        <Row>
+                            <input
+                                type="text"
+                                value={this.state.assignee2}
+                                placeholder="Assignee #2 (Optional)"
+                                onChange={this.handleInputChange}
+                                name="assignee2"
+                            />
+                        </Row>
+                        <Row>
+                            <input
+                                type="text"
+                                value={this.state.assignee3}
+                                placeholder="Assignee #3 (Optional)"
+                                onChange={this.handleInputChange}
+                                name="assignee3"
+                            />
+                        </Row>
+                        <Row>
+                            <input
+                                type="text"
+                                value={this.state.assignee4}
+                                placeholder="Assignee #4 (Optional)"
+                                onChange={this.handleInputChange}
+                                name="assignee4"
+                            />
+                        </Row>
                         <button id="submit" onClick={this.saveBudgetTask} >Submit</button>
                     </form>
                 </div>
