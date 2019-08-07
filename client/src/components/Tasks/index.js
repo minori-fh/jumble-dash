@@ -66,8 +66,8 @@ class Tasks extends Component {
         return (
             <div>
                 {this.state.tasks.map((task) => (
-                    <div>
-                        <Task key={task.updatedAt} task={task.task} assignee1={task.assignee1} 
+                    <div key={task.id}>
+                        <Task task={task.task} assignee1={task.assignee1} 
                         assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
                     </div>
                 ))}
