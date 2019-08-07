@@ -8,6 +8,7 @@ import CreateProject from '../../../components/CreateProject';
 import ProjectButton from '../../../components/ProjectButton';
 import NewProjectForm from '../../../components/NewProjectForm';
 import ProjectAPI from '../../../utils/API-project';
+import BudgetAPI from '../../../utils/API-budget';
 import LogoutButton from '../../../components/LogoutButton';
 import "./Profile.css";
 
@@ -64,9 +65,23 @@ class Profile extends Component {
 
     loadProject = id => {
 
-        this.setState({
-            selectedProject: id
+        console.log(id)
+
+        BudgetAPI.getBudget(id).then((res) => {
+            console.log(res)
+            console.log(res.data.total)
+            // budgetTotal = res.data.total
+
+            this.setState({
+                selectedProject: id,
+                budgetTotal: res.data.total
+            });
         });
+
+        // this.setState({
+        //     selectedProject: id,
+        //     budgetTotal: res.data.total
+        // });
     }
 
     handleEdit = () => {
@@ -123,7 +138,7 @@ class Profile extends Component {
                                     </Col>
 
                                     <Col className='xl6'>
-                                        {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
+                                        {!this.state.chartSwitch ? <Chart1 budget={this.state.budgetTotal}/> : <Chart4/>}
                                         <button onClick={this.handleChartSwitch} >Switch</button>
                                     </Col>
                                 </Row>

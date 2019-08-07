@@ -3,10 +3,14 @@ import React, { Component } from 'react';
 
 function Chart5(props){
 
+    console.log(props)
+    console.log(props.budget)
+
     return(
         <div>
             <div className="projectName">
-            <p>{props.name}</p>
+            Hello World
+            <p>{props.budget}</p>
             </div>
             <div className="Open Tasks">
             <p>Open Tasks: </p>
