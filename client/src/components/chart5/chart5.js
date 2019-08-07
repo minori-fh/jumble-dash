@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 // var Chart = require("chart.js")
 
 function Chart5(props){
+
     return(
         <div>
+            <div className="projectName">
+            <p>{props.name}</p>
+            </div>
             <div className="Open Tasks">
             <p>Open Tasks: </p>
             </div>

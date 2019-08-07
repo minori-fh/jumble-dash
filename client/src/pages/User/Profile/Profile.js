@@ -119,7 +119,7 @@ class Profile extends Component {
                             <Dashboard projectID={this.state.selectedProject}>
                                 <Row>
                                     <Col className='xl6'>
-                                        <Chart5/>
+                                        <Chart5 budget={this.state.budgetTotal}/>
                                     </Col>
 
                                     <Col className='xl6'>

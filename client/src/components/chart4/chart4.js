@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 var Chart = require("chart.js")
 
-
-// const Chart1 = (props) => (
-//   <div>
-//     <div className="Open Tasks">
-//       <p>Open Tasks</p>
-//     </div>
-//     <div className="Closed Tasks">
-//       <p>Closed Tasks</p>
-//     </div>
-//     <div className="Budget">
-//       <p>Budget</p>
-//     </div>
-//   </div>
-// );
 class Chart4 extends Component {
 
   constructor(props) {
