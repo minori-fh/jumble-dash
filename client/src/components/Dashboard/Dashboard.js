@@ -10,16 +10,12 @@ function Dashboard(props) {
             {
                 props.projectID !== -1 ?
                     <Row>
-                        <Col className="xl2 l3">
+                        <Col className="xl6 l6">
                             <Budget projectID={props.projectID} />
                         </Col>
 
-                        <Col className="xl2 l3">
+                        <Col className="xl6 l6">
                             <Tasks projectID={props.projectID} />
-                        </Col>
-
-                        <Col className="xl2 l3">
-                            <Assignees projectID={props.projectID} />
                         </Col>
                     </Row>
                     : <Row>OK</Row>

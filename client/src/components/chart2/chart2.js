@@ -8,7 +8,7 @@ class Chart2 extends Component {
         this.chart2Ref = React.createRef(); 
     }
 
-    componentDidMount() {
+    componentDidMount(props) {
         this.chart2 = new Chart(this.chart2Ref.current, {
             type: 'line',
             options: {
@@ -36,7 +36,7 @@ class Chart2 extends Component {
               labels: ["August 6, 2019", "August 7, 2019", "August 8, 2019", "August 9, 2019", "August 10, 2019"],
               datasets: [{
                 label: ["Progress (%)"],
-                data: [90, 80, 50, 46, 90],
+                data: [10,20,30,40],
                 fill: 'none',
                 backgroundColor: "#3E517A",
                 pointRadius: 2,

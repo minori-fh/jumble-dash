@@ -40,11 +40,12 @@ class Profile extends Component {
 
     componentDidMount() {
         ProjectAPI.findProjects().then((res) => {
+            console.log("this is res dot data!!!!!!!!!!!!!!!", res.data)
             this.setState({ projects: res.data })
         });
     }
 
-  
+
 
     handlelogout() {
         Actions.handlelogout()
@@ -76,7 +77,7 @@ class Profile extends Component {
         }
         else {
             ProjectAPI.findProjects().then((res) => {
-                this.setState({ projects: res.data, edit: false})
+                this.setState({ projects: res.data, edit: false })
             });
         }
     }
@@ -104,9 +105,9 @@ class Profile extends Component {
                     <Col className="xl2 l3">
                         <Sidenav>
                             <div className="centerButtons">
-                                    {this.state.projects.map(project => (
-                                        <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id}  />
-                                    ))}
+                                {this.state.projects.map(project => (
+                                    <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
+                                ))}
                                 <CreateProject edit={this.handleEdit} />
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
@@ -115,12 +116,12 @@ class Profile extends Component {
                     <Col className="xl10 l9">
                         {
                             !this.state.edit ?
-                            <Dashboard projectID={this.state.selectedProject}>
-                                {!this.state.chartSwitch ? <Chart1 /> : <Chart4/>}
-                                <button onClick={this.handleChartSwitch} >Switch</button>
-                                <Chart2/>
-                                <Chart3/>
-                            </Dashboard>
+                                <Dashboard projectID={this.state.selectedProject}>
+                                    {/* {!this.state.chartSwitch ? <Chart1 projectId={this.state.selectedProject} /> : <Chart4 />} */}
+                                    <button onClick={this.handleChartSwitch} >Switch</button>
+                                    <Chart2 data={this.state.projects} />
+                                    <Chart3 />
+                                </Dashboard>
                                 : <NewProjectForm edit={this.handleEdit} />
                         }
                     </Col>
