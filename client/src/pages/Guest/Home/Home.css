@@ -17,12 +17,33 @@
 }
 
 #main-left-col{
+    height: 100vh; 
+    /* background-color: rgb(5, 5, 41); 
+    background-image: url("loginbkgrnd.png");
+    background-repeat: no-repeat; 
+    background-size: cover */
+}
+
+#main-left-div{
     background-color: rgb(5, 5, 41); 
     background-image: url("loginbkgrnd.png");
     background-repeat: no-repeat; 
-    background-size: cover
-
+    background-size: cover;
+    height: 100%; 
+    width: 100%; 
 }
+
+#main-left-div.isAuthenticated{
+    transition: transform 1s ease; 
+    transform: translateX(50vw); 
+    /* transition: width 1s ease;  */
+    /* width: 200%; */
+    /* -webkit-transition: width 2s; 
+    transition: width 2s; */
+    /* transform: translateX(-50%);  */
+    /* transform: scale(2, 1); */
+}
+
 
 .App-logo{
     width: 200px !important; 

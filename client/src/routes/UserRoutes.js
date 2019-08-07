@@ -7,8 +7,9 @@ class UserRoutes extends Component {
     render(){
         return(
           <Switch>
-            {/* <Route exact path="/" component={Profile} /> */}
+            <Route exact path="/" component={Profile} />
             <Route exact path="/home" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
             <Route path="*" component={Profile} />
           </Switch>
         );

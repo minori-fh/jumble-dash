@@ -9,6 +9,7 @@ import LoginButton from '../../../components/LoginButton'
 import { Row, Col } from "../../../components/Grid";
 
 import logo from '../../../../src/jumble.gif';
+import { slideOutLeft } from 'react-animations'
 
 class Home extends Component {
     constructor(props){
@@ -21,7 +22,8 @@ class Home extends Component {
             errorMsg: "",
             errClassName: "",
             email: "",
-            local_pw: ""
+            local_pw: "",
+            slideOutLeft: false
         }
     }
 
@@ -53,6 +55,12 @@ class Home extends Component {
         }
     }
 
+    slideLeft = () => {
+        console.log("animation!!")
+        const left = document.getElementById("main-left-div")
+        left.classList.toggle("isAuthenticated")
+    }
+
     validateRes = (response) => {
         if(response.success){
             this.setState({
@@ -61,7 +69,9 @@ class Home extends Component {
                 errClassName: ""
             });
 
-            window.location.href = "/"
+            this.slideLeft()
+            setTimeout(function(){window.location.href="/"} , 2000); 
+    
         }
         else {
             this.setState({
@@ -111,7 +121,10 @@ class Home extends Component {
     renderAuthForm = () => {
         return(
             <Row id='home-form-grid'>
-                <Col className='xl6' id='main-left-col'>
+                <Col className='xl6 main-left-col' id='main-left-col'>
+                    <div className = 'main-left-div' id='main-left-div'>
+
+                    </div>
                 </Col>
                 <Col id="home-form-col" className='xl6'>
                     <header>
@@ -189,27 +202,27 @@ class Home extends Component {
         )
     }
 
-    renderLoading = () => {
-        if(this.state.new) {
-            return(
-                <div>
-                    <h2>Creating your shiney new account!</h2>
-                    <p>Please wait...</p>
-                </div>
-            ) 
+    // renderLoading = () => {
+    //     if(this.state.new) {
+    //         return(
+    //             <div>
+    //                 <h2>Creating your shiney new account!</h2>
+    //                 <p>Please wait...</p>
+    //             </div>
+    //         ) 
             
-        } else {
-           return( <div>
-                <h2>Loading your Profile!</h2>
-                <p>Please wait...</p>
-            </div>)
-        }
-    }
+    //     } else {
+    //        return( <div>
+    //             <h2>Loading your Profile!</h2>
+    //             <p>Please wait...</p>
+    //         </div>)
+    //     }
+    // }
 
     render(){
         return(
             <Panel>
-                {(this.state.loading)? this.renderLoading() : this.renderAuthForm()}
+                {(this.state.loading)? this.renderAuthForm() : this.renderAuthForm()}
             </Panel>
         )
     }

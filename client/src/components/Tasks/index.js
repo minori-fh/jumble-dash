@@ -66,11 +66,30 @@ class Tasks extends Component {
         .catch(err => console.log(err.message));
     }
 
+    completeTask = () => {
+        // console.log(this.tasks)
+
+        TaskAPI.getTasks(this.props.taskID).then(res => {
+            console.log(res.data)
+            this.setState({
+                tasks: res.data
+            })
+        })
+        
+        this.setState({
+            complete:true
+        })
+    }
+ 
+
     render() {
         return (
             <div>
                 {this.state.tasks.map((task, i) => (
-                    <p key={i}>{task.task}</p>
+                    <div>
+                        <p key={i}>{task.task}</p>
+                        <button onClick={this.completeTask}>hello</button>
+                    </div>
                 ))}
                 <form>
                     <input required
