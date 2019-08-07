@@ -18,13 +18,14 @@ class Tasks extends Component {
         }
     }
 
-    componentDidMount() {
-        TaskAPI.getTasks(this.props.projectID).then(res => {
-            console.log(res.data)
+    componentDidMount(id) {
+        TaskAPI.getIncompleteTasks(id).then(res => {
+            console.log("this should be incomplete tasks", res.data)
             this.setState({
                 tasks: res.data
             })
         })
+
             .catch(err => console.log(err.message));
         this.chart3 = new Chart(this.chart3Ref.current, {
             type: 'bar',
@@ -63,7 +64,7 @@ class Tasks extends Component {
     componentDidUpdate(prevProps) {
 
         if (this.props.projectID !== prevProps.projectID) {
-            TaskAPI.getTasks(this.props.projectID).then(res => {
+            TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
                 console.log(res.data)
                 this.setState({
                     tasks: res.data
@@ -106,11 +107,12 @@ class Tasks extends Component {
     }
 
     handleInputChange = event => {
+        
+        const {name, value} = event.target;
 
-        const { name, value } = event.target
         this.setState({
             [name]: value
-        });
+        })
     }
 
     addTask = event => {
@@ -141,22 +143,27 @@ class Tasks extends Component {
             .catch(err => console.log(err.message));
     }
 
-    completeTask = (id, complete) => {
-        // TaskAPI.updateTaskStatus(id, complete).then(res => {
-        //     console.log("UPDATED TASK", res.data)
-        console.log("sjhdbfihjsdbfjksdbf", complete)
+    completeTask = id => {
 
 
+        const com = {
+            complete: true
+        }
 
-
-
-        // });
-        // TasksAPI.getIncompleteTasks(id).then(res => {
-
-        // });
-        console.log("window", id)
-
-    };
+        TaskAPI.updateTask(id, com).then(res => {
+            console.log("UPDATED TASK", res.data)
+            let tasksList = this.state.tasks;
+            for (let i = 0; i < tasksList.length; i++) {
+                if (tasksList[i].id === id) {
+                    //remove it 
+                    tasksList.splice(i, 1);
+                }
+            }
+            this.setState({
+                tasks: tasksList
+            })
+        })
+    }
 
     render() {
         return (
@@ -169,8 +176,9 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    {this.state.tasks.map((task) => (
+                    {this.state.tasks.map((task,i) => (
                         <div key={task.id}>
+                            <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
                             <Task task={task.task} assignee1={task.assignee1}
                                 assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
                         </div>
