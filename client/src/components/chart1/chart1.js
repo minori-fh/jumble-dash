@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
+import BudgetAPI from '../../utils/API-budget';
 var Chart = require("chart.js")
 
 class Chart1 extends Component {
 
   constructor(props) {
     super(props);
+    console.log("shuahd", props);
     this.chart1Ref = React.createRef();
+    this.state = {
+      id: props.projectID,
+      budgetTotal: "",
+      budgetDep: []
+    }
+
   }
 
   componentDidMount() {
-    this.chart1 = new Chart(this.chart1Ref.current, {
-      type: 'doughnut',
-      data: {
-        labels: ['Red', 'Yellow', 'Blue'],
-        datasets: [{
-          data: [10, 20, 30],
-          backgroundColor: ['red', 'yellow', 'blue']
-        }]
-      }
-    });
+    if (this.props.total === "") {
+      var total = 100;
+      this.chart1 = new Chart(this.chart1Ref.current, {
+        type: 'doughnut',
+        data: {
+          labels: this.props.depts,
+          datasets: [{
+            data: [total / 7, total / 7, total / 7, total / 7, total / 7, total / 7, total / 7],
+            backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+          }]
+        }
+      });
+    }
+    else {
+      this.chart1 = new Chart(this.chart1Ref.current, {
+        type: 'doughnut',
+        data: {
+          labels: this.props.depts,
+          datasets: [{
+            data: [this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7],
+            backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+          }]
+        }
+      });
+    }
   }
 
   render() {
     return (
-      <canvas className='chart' ref={this.chart1Ref} />
+      <div>
+        <canvas className='chart' ref={this.chart1Ref} />
+      </div>
     )
   };
 
