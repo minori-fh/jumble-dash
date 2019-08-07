@@ -13,13 +13,20 @@ class Tasks extends Component {
         }
     }
 
-    componentDidMount() {
-        TaskAPI.getTasks(this.props.projectID).then(res => {
-            console.log(res.data)
+    componentDidMount(id) {
+        // TaskAPI.getTasks(this.props.projectID).then(res => {
+        //     console.log(res.data)
+        //     this.setState({
+        //         tasks: res.data
+        //     })
+        // })
+        TaskAPI.getIncompleteTasks(id).then(res => {
+            console.log("this should be incomplete tasks",res.data)
             this.setState({
                 tasks: res.data
             })
         })
+
             .catch(err => console.log(err.message));
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
@@ -58,7 +65,7 @@ class Tasks extends Component {
     componentDidUpdate(prevProps) {
 
         if (this.props.projectID !== prevProps.projectID) {
-            TaskAPI.getTasks(this.props.projectID).then(res => {
+            TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
                 console.log(res.data)
                 this.setState({
                     tasks: res.data
@@ -128,20 +135,18 @@ class Tasks extends Component {
             .catch(err => console.log(err.message));
     }
 
-    completeTask = (id, complete) => {
-        // TaskAPI.updateTaskStatus(id, complete).then(res => {
-        //     console.log("UPDATED TASK", res.data)
-        console.log("sjhdbfihjsdbfjksdbf",complete)
+    completeTask = id => {
+            const com = {
+                complete: true
+            }
+            TaskAPI.updateTask(id, com).then(res => {
+                console.log("UPDATED TASK", res.data)
+            })
+            const task = {
+                task: this.state.newTask,
+                ProjectId: this.props.projectID
+            }
         
-
-        
-            
-
-        // });
-        // TasksAPI.getIncompleteTasks(id).then(res => {
-
-        // });
-        console.log("window", id)
 
     };
 
@@ -152,7 +157,7 @@ class Tasks extends Component {
                 {this.state.tasks.map((task,i) => (
                     console.log("this is task",task),
                     <div key={i}>
-                        <button key={i} onClick={() => {this.completeTask(task.id, task.complete)}}>Complete</button>
+                        <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
                         <Task key={task.updatedAt} task={task.task} assignee1={task.assignee1} 
                         assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
                     </div>
