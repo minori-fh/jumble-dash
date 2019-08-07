@@ -14,7 +14,7 @@ class Chart4 extends Component {
       data: {
         labels: this.props.depts,
         datasets: [{
-          data: [this.props.marketing || this.props.total / 7, this.props.hr || this.props.total / 7, this.props.design || this.props.total / 7, this.props.engineering || this.props.total / 7, this.props.sales || this.props.total / 7, this.props.finance || this.props.total / 7, this.props.security || this.props.total / 7],
+          data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
           backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
         }]
       }
