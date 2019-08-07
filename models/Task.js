@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        complete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
         deadline: {
             type: DataTypes.DATE,
             allowNull: true

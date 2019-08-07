@@ -7,6 +7,9 @@ export default {
   getTasks: function(id) {
     return axios.get("/api/task/" + id);
   },
+  getIncompleteTasks: function(id) {
+    return axios.get("/api/task/" + id + "/incomplete");
+  },
   updateTask: function(id, body) {
     return axios.put("/api/task/" + id, body);
   },

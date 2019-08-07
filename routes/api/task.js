@@ -11,5 +11,8 @@ router.route("/:id")
     .get(task.findAll)
     .put(task.update)
     .delete(task.remove);
-	
+
+router.route("/:id/incomplete")
+    .get(task.findAllIncomplete)
+  
 module.exports = router;

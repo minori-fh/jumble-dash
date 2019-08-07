@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import Task from '../Task';
+var Chart = require("chart.js")
 
 class Tasks extends Component {
     constructor(props) {
         super(props)
+        this.chart3Ref = React.createRef();
         this.state = {
             newTask: "",
             tasks: []
@@ -19,6 +21,38 @@ class Tasks extends Component {
             })
         })
             .catch(err => console.log(err.message));
+            this.chart3 = new Chart(this.chart3Ref.current, {
+                type: 'bar',
+                data: {
+                  labels: ['A'],
+                  datasets: [{
+                    label: 'awldj',
+                    data: [33.33],
+                    backgroundColor: ['red']
+                  },
+                  {
+                    label: 'ndjak',
+                    data: [33.33],
+                    backgroundColor: ['green']
+                  },
+                  {
+                    label: 'djsad',
+                    data: [33.33],
+                    backgroundColor: ['blue']
+                  }
+                ]
+                },
+                options: {
+                  scales: {
+                    xAxes: [{
+                      stacked: true
+                    }],
+                    yAxes: [{
+                      stacked: true
+                    }]
+                  }
+                }
+              });
     }
 
     componentDidUpdate(prevProps) {
@@ -31,6 +65,38 @@ class Tasks extends Component {
                 })
             })
                 .catch(err => console.log(err.message));
+                this.chart3 = new Chart(this.chart3Ref.current, {
+                    type: 'bar',
+                    data: {
+                      labels: ['A'],
+                      datasets: [{
+                        label: 'awldj',
+                        data: [33.33],
+                        backgroundColor: ['red']
+                      },
+                      {
+                        label: 'ndjak',
+                        data: [33.33],
+                        backgroundColor: ['green']
+                      },
+                      {
+                        label: 'djsad',
+                        data: [33.33],
+                        backgroundColor: ['blue']
+                      }
+                    ]
+                    },
+                    options: {
+                      scales: {
+                        xAxes: [{
+                          stacked: true
+                        }],
+                        yAxes: [{
+                          stacked: true
+                        }]
+                      }
+                    }
+                  });
         }
     }
 
@@ -65,6 +131,7 @@ class Tasks extends Component {
     render() {
         return (
             <div>
+                <canvas className='chart' ref={this.chart3Ref} />
                 {this.state.tasks.map((task) => (
                     <div>
                         <Task key={task.updatedAt} task={task.task} assignee1={task.assignee1} 
