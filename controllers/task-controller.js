@@ -10,6 +10,16 @@ module.exports = {
             res.json(dbTask);
         });
     },
+    findAllIncomplete: function (req, res) {
+        db.Task.findAll({
+            where: {
+                ProjectId: req.params.id,
+                complete: false
+            }
+        }).then(function (dbTask) {
+            res.json(dbTask);
+        });
+    },
     create: function (req, res) {
         console.log("this is the req server side",req)
         db.Task.create({

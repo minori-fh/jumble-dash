@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
+var Chart = require("chart.js")
 
 class Tasks extends Component {
     constructor(props) {
         super(props)
+        this.chart3Ref = React.createRef();
         this.state = {
             newTask: "",
             newAssignee1: "",
@@ -24,6 +26,38 @@ class Tasks extends Component {
             })
         })
             .catch(err => console.log(err.message));
+        this.chart3 = new Chart(this.chart3Ref.current, {
+            type: 'bar',
+            data: {
+                labels: ['A'],
+                datasets: [{
+                    label: 'awldj',
+                    data: [33.33],
+                    backgroundColor: ['red']
+                },
+                {
+                    label: 'ndjak',
+                    data: [33.33],
+                    backgroundColor: ['green']
+                },
+                {
+                    label: 'djsad',
+                    data: [33.33],
+                    backgroundColor: ['blue']
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        });
     }
 
     componentDidUpdate(prevProps) {
@@ -36,6 +70,38 @@ class Tasks extends Component {
                 })
             })
                 .catch(err => console.log(err.message));
+            this.chart3 = new Chart(this.chart3Ref.current, {
+                type: 'bar',
+                data: {
+                    labels: ['A'],
+                    datasets: [{
+                        label: 'awldj',
+                        data: [33.33],
+                        backgroundColor: ['red']
+                    },
+                    {
+                        label: 'ndjak',
+                        data: [33.33],
+                        backgroundColor: ['green']
+                    },
+                    {
+                        label: 'djsad',
+                        data: [33.33],
+                        backgroundColor: ['blue']
+                    }
+                    ]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
         }
     }
 
@@ -75,10 +141,27 @@ class Tasks extends Component {
             .catch(err => console.log(err.message));
     }
 
+    completeTask = (id, complete) => {
+        // TaskAPI.updateTaskStatus(id, complete).then(res => {
+        //     console.log("UPDATED TASK", res.data)
+        console.log("sjhdbfihjsdbfjksdbf", complete)
+
+
+
+
+
+        // });
+        // TasksAPI.getIncompleteTasks(id).then(res => {
+
+        // });
+        console.log("window", id)
+
+    };
+
     render() {
         return (
             <div>
-
+                <canvas className='chart' ref={this.chart3Ref} />
                 <Row>
                     <Col className="xl12">
                         <h1>Tasks</h1>
