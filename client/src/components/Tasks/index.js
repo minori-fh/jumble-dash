@@ -196,28 +196,28 @@ class Tasks extends Component {
                         />
                         <input
                             type="text"
-                            value={this.state.assignee1}
+                            value={this.state.newAssignee1}
                             placeholder="Assignee #1"
                             onChange={this.handleInputChange}
                             name="newAssignee1"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee2}
+                            value={this.state.newAssignee2}
                             placeholder="Assignee #2"
                             onChange={this.handleInputChange}
                             name="newAssignee2"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee3}
+                            value={this.state.newAssignee3}
                             placeholder="Assignee #3"
                             onChange={this.handleInputChange}
                             name="newAssignee3"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee4}
+                            value={this.state.newAssignee4}
                             placeholder="Assignee #4"
                             onChange={this.handleInputChange}
                             name="newAssignee4"
