@@ -13,9 +13,6 @@ export default {
   updateTask: function(id, body) {
     return axios.put("/api/task/" + id, body);
   },
-  updateTaskStatus: function(id, complete){
-    return axios.put("/api/task" + id, complete)
-  },
   removeTask: function(id) {
     return axios.delete("/api/task/" + id);
   }
