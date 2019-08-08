@@ -14,3 +14,21 @@
 #active {
     color:green
 }
+
+#menu-left-col{
+    background-color: rgb(5, 5, 41); 
+    background-image: url("../../Guest/Home/images/loadingbkgrnd.png");
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.menu-left-col.animation{
+    transform: translateX(50vw);
+    transition: transform 800ms ease;
+}
+
+.menu-right-col.animation{
+    transform: translateX(-50vw);
+    transition: transform 800ms ease;
+}
+
