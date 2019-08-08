@@ -11,6 +11,7 @@ import ProjectAPI from '../../../utils/API-project';
 import LogoutButton from '../../../components/LogoutButton';
 import MenuLogoutButton from '../../../components/MenuLogoutButton';
 import MenuButton from '../../../components/MenuButtons/menuButtons';
+import MenuCreateProject from '../../../components/MenuCreateProject';
 import "./Profile.css";
 
 class Profile extends Component {
@@ -22,7 +23,7 @@ class Profile extends Component {
             selectedProject: -1,
             projects: [],
             loggedIn: true,
-            showDash: false
+            showDash: false,
         }
     }
 
@@ -43,6 +44,9 @@ class Profile extends Component {
             console.log("this is res dot data!!!!!!!!!!!!!!!", res.data)
             this.setState({ projects: res.data })
             console.log(this.state.loggedIn)
+
+            console.log("projects", this.state.projects)
+            console.log("length", this.state.projects.length)
         });
 
         requestAnimationFrame(()=> {this.animation()})
@@ -71,6 +75,13 @@ class Profile extends Component {
     }
 
     handleEdit = () => {
+
+        if(this.state.showDash === false){
+            this.setState({
+                showDash: true
+            });
+        };
+
         if (this.state.edit === false) {
             this.setState({
                 edit: true
@@ -84,6 +95,7 @@ class Profile extends Component {
     }
 
     loadDash = id => {
+
         this.setState({
             selectedProject: id,
             showDash: true
@@ -108,7 +120,7 @@ class Profile extends Component {
                                 <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
                             ))}
                         </div>
-                  
+                        <MenuCreateProject edit={this.handleEdit} />
                         <MenuLogoutButton logout={this.handlelogout.bind(this)} />
                     </Col>
                 </Row>
@@ -120,7 +132,10 @@ class Profile extends Component {
                                 {this.state.projects.map(project => (
                                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
                                 ))}
-                                <CreateProject edit={this.handleEdit} />
+                                
+                                    <CreateProject edit={this.handleEdit} />
+                                
+
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
                         </Sidenav>

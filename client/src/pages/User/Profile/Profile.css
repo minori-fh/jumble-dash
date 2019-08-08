@@ -36,7 +36,8 @@
 
 #menu-right-col {
     padding-top: 30% !important; 
-    display: none; 
+    display: none;
+    text-align: center; 
 }
 
 #menu-right-col.show {
@@ -65,7 +66,7 @@
 }
 
 #projectMenuButtons{
-    margin-top: -30%; 
+    margin-top: -20%; 
 }
 
 .xl6menu{

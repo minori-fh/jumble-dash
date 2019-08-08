@@ -59,8 +59,7 @@ class Home extends Component {
                 errorMsg: "",
                 errClassName: ""
             });
-
-            // this.renderMenu()
+            
             window.location.href = "/"
         }
         else {
