@@ -11,11 +11,6 @@ import ProjectAPI from '../../../utils/API-project';
 import LogoutButton from '../../../components/LogoutButton';
 import "./Profile.css";
 
-import Chart1 from '../../../components/chart1'
-// import Chart2 from '../../../components/chart2'
-// import Chart3 from '../../../components/chart3';
-import Chart4 from '../../../components/chart4';
-
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -93,10 +88,6 @@ class Profile extends Component {
                         {
                             !this.state.edit ?
                                 <Dashboard projectID={this.state.selectedProject}>
-                                    {/* {!this.state.chartSwitch ? <Chart1 projectId={this.state.selectedProject} /> : <Chart4 />} */}
-                                    {/* <button onClick={this.handleChartSwitch} >Switch</button> */}
-                                    {/* <Chart2 data={this.state.projects} />
-                                    <Chart3 /> */}
                                 </Dashboard>
                                 : <NewProjectForm edit={this.handleEdit} />
                         }
