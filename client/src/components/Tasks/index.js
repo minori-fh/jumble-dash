@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
-import Chart3 from "../chart3"
-var Chart = require("chart.js")
+import Chart3 from "../chart3";
 
 class Tasks extends Component {
     constructor(props) {
