@@ -109,14 +109,10 @@ class Profile extends Component {
                             <ProjectButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
                         ))}
                         </div>
+                        <LogoutButton logout={this.handlelogout.bind(this)} />
                     </Col>
                 </Row>
                 :
-                // <div>
-                //     <Row>
-                //         <Navbar />
-                //     </Row>
-                // </div>
                 <Row>
                     <Col className="xl2 l3">
                         <Sidenav>
