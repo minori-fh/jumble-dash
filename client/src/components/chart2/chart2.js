@@ -20,12 +20,12 @@ class Chart2 extends Component {
         datasets: [
           {
             label: "Unsolved Problems",
-            backgroundColor: "red",
+            backgroundColor: "#df4343",
             data: [40, 29]
           },
           {
             label: "Solved Problems",
-            backgroundColor: "green",
+            backgroundColor: "#379937",
             data: [26, 50]
           }
         ]
@@ -56,12 +56,12 @@ class Chart2 extends Component {
           datasets: [
             {
               label: "Incomplete",
-              backgroundColor: "red",
+              backgroundColor: "#df4343",
               data: [40]
             },
             {
               label: "Complete",
-              backgroundColor: "green",
+              backgroundColor: "#379937",
               data: [26]
             }
           ]
