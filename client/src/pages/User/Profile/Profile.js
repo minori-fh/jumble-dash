@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Actions from "../../../utils/API";
 import Dashboard from '../../../components/Dashboard';
 import { Col, Row } from "../../../components/Grid";
-import Navbar from "../../../components/Navbar";
+// import Navbar from "../../../components/Navbar";
 import Sidenav from "../../../components/Sidenav";
 import CreateProject from '../../../components/CreateProject';
 import ProjectButton from '../../../components/ProjectButton';
 import NewProjectForm from '../../../components/NewProjectForm';
 import ProjectAPI from '../../../utils/API-project';
 import LogoutButton from '../../../components/LogoutButton';
-import Menu from '../Menu/Menu'
+import MenuButton from '../../../components/MenuButtons/menuButtons';
 import "./Profile.css";
 
 class Profile extends Component {
@@ -43,8 +43,6 @@ class Profile extends Component {
         this.animation()
 
     }
-
-
 
     handlelogout() {
         Actions.handlelogout()
@@ -89,9 +87,6 @@ class Profile extends Component {
 
         let menu = document.getElementById("home-form-grid")
         menu.classList.toggle("hide")
-
-        
-
     }
 
     render() {
@@ -106,7 +101,7 @@ class Profile extends Component {
                         <p>What can we help you manage today?</p>
                         <div>
                         {this.state.projects.map(project => (
-                            <ProjectButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
+                            <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
                         ))}
                         </div>
                         <LogoutButton logout={this.handlelogout.bind(this)} />
@@ -161,7 +156,6 @@ class Profile extends Component {
                 //         }
                 //     </Col>
                 // </Row >
-            
         )
     }
 }
