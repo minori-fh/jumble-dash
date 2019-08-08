@@ -18,12 +18,11 @@
 
 #main-left-col{
     background-color: rgb(5, 5, 41); 
-    background-image: url("loadingbkgrnd.png");
+    background-image: url("images/loadingbkgrnd.png");
     background-repeat: no-repeat; 
     background-size: cover; 
 }
 
 .App-logo{
-    width: 200px !important; 
-    height: 200px !important;
+    width: 40% !important; 
 }

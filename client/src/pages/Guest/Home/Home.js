@@ -8,7 +8,7 @@ import Input from '../../../components/Input'
 import LoginButton from '../../../components/LoginButton'
 import { Row, Col } from "../../../components/Grid";
 
-import logo from '../../../../src/jumble.gif';
+import logo from "./images/logo.png"
 
 class Home extends Component {
     constructor(props){
@@ -150,42 +150,6 @@ class Home extends Component {
                     </form>
                 </Col>
             </Row>
-
-
-        
-        //   <div>
-        //     <form ref="submitForm" onClick={this.resetError}>
-        //       <p id="form-error" className={this.state.errClassName}>{this.state.errorMsg}</p>
-        //       <Input 
-        //         elementID="user-email" 
-        //         inputType="email" 
-        //         placeholder="email" 
-        //         img="email" 
-        //         required={true} 
-        //         size="3" 
-        //         name="email" 
-        //         handleChange={this.handleInputChange}/>
-        //       <Input 
-        //         elementID="user-pw" 
-        //         inputType="password" 
-        //         placeholder="password" 
-        //         img="password" 
-        //         required={true} 
-        //         size="6" 
-        //         name="local_pw" 
-        //         handleChange={this.handleInputChange}/>
-        //       <Button 
-        //         handleBtnClick={this.handleSubmitAuth} 
-        //         float="left">
-        //             LOGIN
-        //       </Button>
-        //       <Button 
-        //         handleBtnClick={this.handleSubmitAuth} 
-        //         float="right">
-        //             SIGNUP
-        //       </Button>
-        //     </form>
-        //   </div>
         )
     }
 
