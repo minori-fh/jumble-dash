@@ -4,6 +4,7 @@ import Tasks from "../Tasks";
 import Budget from "../Budget";
 import Problems from "../Problems";
 
+
 function Dashboard(props) {
     return (
         <div>
@@ -25,7 +26,7 @@ function Dashboard(props) {
                             </Col>
                         </Row>
                     </div>
-                    : <Row>OK</Row>
+                    :  <Row>Ok</Row>
             }
         </div>
     );

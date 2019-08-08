@@ -75,7 +75,7 @@ class Profile extends Component {
     }
 
     handleEdit = () => {
-
+        
         if(this.state.showDash === false){
             this.setState({
                 showDash: true
@@ -147,7 +147,7 @@ class Profile extends Component {
                             !this.state.edit ?
                                 <Dashboard projectID={this.state.selectedProject}>
                                 </Dashboard>
-                                : <NewProjectForm edit={this.handleEdit} />
+                                : <NewProjectForm   edit={this.handleEdit} projectID={this.state.selectedProject} />
                         }
                     </Col>
                 </Row>

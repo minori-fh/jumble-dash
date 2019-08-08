@@ -130,7 +130,7 @@ class Budget extends Component {
     render() {
         return (
             <div>
-                <p>{this.state.budgetTotal}</p>
+                <p>Budget Total : {this.state.budgetTotal}</p>
                 {!this.state.chartSwitch ?
                     // <canvas className='chart' ref={this.chart1Ref} /> :
                     <Chart1

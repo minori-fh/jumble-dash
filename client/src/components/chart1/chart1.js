@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
+import { Col, Row } from "../Grid";
+
 var Chart = require("chart.js")
 
 class Chart1 extends Component {
@@ -47,7 +49,7 @@ class Chart1 extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Row">
         <canvas className='chart' ref={this.chart1Ref} />
       </div>
     )

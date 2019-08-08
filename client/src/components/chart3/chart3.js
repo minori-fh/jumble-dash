@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style.css";
 var Chart = require("chart.js")
 
 class Chart3 extends Component {
@@ -34,7 +35,7 @@ class Chart3 extends Component {
                         stacked: true,
                         ticks: {
                             min: 0,
-                            max: ((this.props.complete + this.props.incomplete)/ (this.props.complete + this.props.incomplete)) * 100 
+                            max: ((this.props.complete + this.props.incomplete) / (this.props.complete + this.props.incomplete)) * 100
                         }
                     }]
                 }
@@ -72,7 +73,7 @@ class Chart3 extends Component {
                             stacked: true,
                             ticks: {
                                 min: 0,
-                                max: 100 
+                                max: 100
                             }
                         }]
                     }
@@ -83,8 +84,10 @@ class Chart3 extends Component {
 
     render() {
         return (
-            
-            <canvas className='chart' ref={this.chart3Ref} />
+            <div>
+                <h1>Task Completion</h1>
+                <canvas className='chart3' ref={this.chart3Ref} />
+            </div>
         )
     };
 
