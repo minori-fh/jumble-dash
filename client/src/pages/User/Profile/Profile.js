@@ -98,7 +98,7 @@ class Profile extends Component {
             <div>
                 {!this.state.showDash ?
                 <Row id='home-form-grid'>
-                    <Col className='xl6 menu-left-col' id='menu-left-col'>
+                    <Col className='xl6 xl6menu menu-left-col' id='menu-left-col'>
                     
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>

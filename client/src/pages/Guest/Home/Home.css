@@ -26,3 +26,9 @@
 .App-logo{
     width: 40% !important; 
 }
+
+.xl6home{
+    height: 130%; 
+    transform: skew(-0.06turn, 18deg);
+    margin-top: -18%; 
+}

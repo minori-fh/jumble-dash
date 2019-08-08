@@ -112,7 +112,7 @@ class Home extends Component {
     renderAuthForm = () => {
         return(
             <Row id='home-form-grid'>
-                <Col className='xl6' id='main-left-col'>
+                <Col className='xl6 xl6home' id='main-left-col'>
                 </Col>
                 <Col id="home-form-col" className='xl6'>
                     <header>

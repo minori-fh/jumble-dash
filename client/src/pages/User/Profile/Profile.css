@@ -23,9 +23,11 @@
 }
 
 .menu-left-col.animation{
-    transform: translateX(50vw);
+    transform: translateX(50vw) skew(-0.06turn, 18deg);
+    margin-top: -14%; 
     transition: transform 800ms ease;
 }
+
 
 /* .menu-right-col.animation{
     transform: translateX(-50vw);
@@ -65,3 +67,10 @@
 #projectMenuButtons{
     margin-top: -30%; 
 }
+
+.xl6menu{
+    height: 130%; 
+    transform: skew(-0.06turn, 18deg);
+    margin-top: -18%; 
+}
+
