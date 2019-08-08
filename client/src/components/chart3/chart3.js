@@ -3,80 +3,81 @@ var Chart = require("chart.js")
 
 class Chart3 extends Component {
 
-  constructor(props) {
-    super(props);
-    this.chart3Ref = React.createRef();
-  }
+    constructor(props) {
+        super(props);
+        this.chart3Ref = React.createRef();
+    }
 
-  componentDidMount() {
-    this.chart3 = new Chart(this.chart3Ref.current, {
-      type: 'bar',
-      data: {
-        labels: ['Total Tasks'],
-        datasets: [{
-            label: 'Incomplete',
-            data: [this.props.taskIncomplete],
-            backgroundColor: ['Red'],
-            hoverBackgroundColor:['Red']
-        },
-        {
-            label: 'Complete',
-            data:[this.props.tasksComplete] ,
-            backgroundColor: ['Green'],
-            hoverBackgroundColor: ['Green']
-        }
-      ]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            stacked: true
-          }],
-          yAxes: [{
-            stacked: true
-          }]
-        }
-      }
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-      if(this.props.tasksComplete !== prevProps.taskIncomplete){
+    componentDidMount() {
         this.chart3 = new Chart(this.chart3Ref.current, {
             type: 'bar',
             data: {
-              labels: ['Total Tasks'],
-              datasets: [{
-                  label: 'Incomplete',
-                  data: [this.props.taskIncomplete],
-                  backgroundColor: ['Red']
-              },
-              {
-                  label: 'Complete',
-                  data:[this.props.tasksComplete] ,
-                  backgroundColor: ['Green']
-              }
-            ]
+                labels: ['Total Tasks'],
+                datasets: [{
+                    label: 'Incomplete',
+                    data: [this.props.incomplete],
+                    backgroundColor: ['Red'],
+                    hoverBackgroundColor: ['red']
+                },
+                {
+                    label: 'Complete',
+                    data: [this.props.complete],
+                    backgroundColor: ['Green'],
+                    hoverBackgroundColor: ['green']
+                }
+                ]
             },
             options: {
-              scales: {
-                xAxes: [{
-                  stacked: true
-                }],
-                yAxes: [{
-                  stacked: true
-                }]
-              }
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
             }
-          });
-      }
-  }
+        });
+    }
 
-  render() {
-    return (
-      <canvas className='chart' ref={this.chart3Ref} />
-    )
-  };
+    componentDidUpdate(prevProps) {
+        if (this.props.projectID !== prevProps.projectID) {
+            this.chart3.destroy();
+            this.chart3 = new Chart(this.chart3Ref.current, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Tasks'],
+                    datasets: [{
+                        label: 'Incomplete',
+                        data: [this.props.incomplete],
+                        backgroundColor: ['Red']
+                    },
+                    {
+                        label: 'Complete',
+                        data: [this.props.complete],
+                        backgroundColor: ['Green']
+                    }
+                    ]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    render() {
+        return (
+            <canvas className='chart' ref={this.chart3Ref} />
+        )
+    };
 
 };
 

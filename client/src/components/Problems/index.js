@@ -1,81 +1,115 @@
-// import React, { Component } from 'react';
-// import TaskAPI from '../../utils/API-task';
-// import ProblemAPI from '../../utils/API-problem';
+import React, { Component } from 'react';
+import TaskAPI from '../../utils/API-task';
+import ProblemAPI from '../../utils/API-problem';
+import { Col, Row } from "../Grid";
 // import Chart2 from '../chart2';
 
-// class Problems extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.chart2Ref = React.createRef();
-//         this.state = {
-//             tasks: [],
-//             problems: []
-//         }
-//     }
+class Problems extends Component {
+    constructor(props) {
+        super(props)
+        this.chart2Ref = React.createRef();
+        this.state = {
+            tasks: [],
+            solvedProblems: [],
+            unsolvedProblems: []
+        }
+    }
 
-//     // componentDidMount() {
+    componentDidMount() {
 
-//     //     TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-//     //         this.setState({
-//     //             tasks: res.data
-//     //         })
-//     //     })
-//     //         .catch(err => console.log(err.message));
+        TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+            this.setState({
+                tasks: res.data
+            })
+        })
+            .catch(err => console.log(err.message));
 
-//     //     const problemsArr = [];
+        const unsolvedProblemsArr = [];
+        const solvedProblemsArr = [];
 
-//     //     for (let i = 0; i < this.state.tasks.length; i++) {
+        for (let i = 0; i < this.state.tasks.length; i++) {
 
-//     //         ProblemAPI.getproblems(this.state.tasks[i].id).then(res => {
-//     //             const taskProblems = [i, res.data];
-//     //             problemsArr.push(taskProblems);
-//     //         })
-//     //             .catch(err => console.log(err.message));
-//     //     }
+            ProblemAPI.getunsolvedproblems(this.state.tasks[i].id).then(res => {
+                const taskProblems = [this.state.tasks[i].id, res.data];
+                unsolvedProblemsArr.push(taskProblems);
+            })
+                .catch(err => console.log(err.message));
 
-//     //     this.setState({
-//     //         problems: problemsArr
-//     //     });
-//     // }
+            ProblemAPI.getsolvedproblems(this.state.tasks[i].id).then(res => {
+                const taskProblems = [this.state.tasks[i].id, res.data];
+                solvedProblemsArr.push(taskProblems);
+            })
+                .catch(err => console.log(err.message));
+        }
 
-//     componentDidUpdate(prevProps) {
+        this.setState({
+            unsolvedProblems: unsolvedProblemsArr,
+            solvedProblems: solvedProblemsArr
+        });
+    }
 
-//         if (this.props.projectID !== prevProps.projectID) {
-//             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-//                 this.setState({
-//                     tasks: res.data
-//                 })
-//             })
-//                 .catch(err => console.log(err.message));
+    componentDidUpdate(prevProps) {
 
-//             const problemsArr = [];
+        if (this.props.projectID !== prevProps.projectID) {
+            TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+                this.setState({
+                    tasks: res.data
+                })
+            })
+                .catch(err => console.log(err.message));
 
-//             for (let i = 0; i < this.state.tasks.length; i++) {
+            const unsolvedProblemsArr = [];
+            const solvedProblemsArr = [];
 
-//                 ProblemAPI.getproblems(this.state.tasks[i].id).then(res => {
-//                     const taskProblems = [i, res.data];
-//                     problemsArr.push(taskProblems);
-//                 })
-//                     .catch(err => console.log(err.message));
-//             }
+            for (let i = 0; i < this.state.tasks.length; i++) {
 
-//             this.setState({
-//                 problems: problemsArr
-//             });
-//         }
-//     }
+                ProblemAPI.getunsolvedproblems(this.state.tasks[i].id).then(res => {
+                    const taskProblems = [this.state.tasks[i].id, res.data];
+                    unsolvedProblemsArr.push(taskProblems);
+                })
+                    .catch(err => console.log(err.message));
 
-//     render() {
-//         return (
-//             <div>
-//                 <div>
-//                     {this.state.problems}
-//                 </div>
-//                 {console.log(this.state.problems)}
-//                 {/* <Chart2 /> */}
-//             </div>
-//         );
-//     }
-// }
+                ProblemAPI.getsolvedproblems(this.state.tasks[i].id).then(res => {
+                    const taskProblems = [this.state.tasks[i].id, res.data];
+                    solvedProblemsArr.push(taskProblems);
+                })
+                    .catch(err => console.log(err.message));
+            }
 
-// export default Problems;
+            this.setState({
+                unsolvedProblems: unsolvedProblemsArr,
+                solvedProblems: solvedProblemsArr
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <h1>PROBLEMS</h1>
+                    {this.state.problems}
+                    <Row>
+                        {this.state.unsolvedProblems.map((problem, i) => (
+                            <div key={problem.id}>
+                                <p>{problem.problem}</p>
+                            </div>
+                        ))}
+                    </Row>
+                    <Row>
+                        <datalist>
+                            {this.state.tasks.map((task) => (
+                                <option value={task.id} key={task}>{task.name}</option>
+                            ))}
+                        </datalist>
+                    </Row>
+                </div>
+                {console.log("unsolved", this.state.unsolvedProblems)}
+                {console.log("solved", this.state.solvedProblems)}
+                {/* <Chart2 /> */}
+            </div>
+        );
+    }
+}
+
+export default Problems;

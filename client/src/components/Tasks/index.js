@@ -16,7 +16,8 @@ class Tasks extends Component {
             newAssignee3: "",
             newAssignee4: "",
             tasks: [],
-            tasksTotal: 0,
+            total: 0,
+            tasksIncomplete: 0,
             tasksComplete: 0
         }
     }
@@ -28,57 +29,15 @@ class Tasks extends Component {
             })
         })
             .catch(err => console.log(err.message));
-            console.log("this.state.tasks", this.state.tasks);
+        console.log("this.state.tasks", this.state.tasks);
 
         TaskAPI.getTasks(this.props.projectID).then(res => {
 
             this.setState({
                 tasksTotal: res.data.length
-                // tasksComplete: result
             })
-            // console.log("state.tasks.length", this.state.tasks.length)
-            // console.log("state.tasksTotal", this.state.tasksTotal)
-            // console.log("state.tasks.length", this.state.tasks.length)
-            // console.log("state.tasksComplete", this.state.tasksComplete)
-
-            // let result =  this.state.tasksTotal - this.state.tasks.length
-            // let incomplete = this.state.tasks.length
-            // console.log("complete", result)
-            // console.log("incomplete", this.state.tasks.length)
         })
-        .catch(err => console.log(err.message));
-        // console.log("state.tasks.length" + this.state.tasks.length)
-        // console.log("state.tasksTotal" + this.state.tasksTotal)
-        // console.log("state.tasks.length" + this.state.tasks.length)
-        // console.log("state.tasksComplete" + this.state.tasksComplete)
-
-        // this.chart3 = new Chart(this.chart3Ref.current, {
-        //     type: 'bar',
-        //     data: {
-        //         labels: ['Total Tasks'],
-        //         datasets: [{
-        //             label: 'Complete',
-        //             data: [this.state.tasksComplete],
-        //             backgroundColor: ['Green']
-        //         },
-        //         {
-        //             label: 'Incomplete',
-        //             data: [this.state.tasksTotal],
-        //             backgroundColor: ['Red']
-        //         }
-        //         ]
-        //     },
-        //     options: {
-        //         scales: {
-        //             xAxes: [{
-        //                 stacked: true
-        //             }],
-        //             yAxes: [{
-        //                 stacked: true
-        //             }]
-        //         }
-        //     }
-        // });
+            .catch(err => console.log(err.message));
     }
 
     componentDidUpdate(prevProps) {
@@ -88,62 +47,30 @@ class Tasks extends Component {
                     tasks: res.data
                 })
             })
-           .catch(err => console.log(err.message));
+                .catch(err => console.log(err.message));
 
-           console.log("this.state.tasks", this.state.tasks);
+            console.log("this.state.tasks", this.state.tasks);
 
-           TaskAPI.getTasks(this.props.projectID).then(res => {
-            let result =  this.state.tasksTotal - this.state.tasks.length
-            let incomplete = this.state.tasks.length
-            console.log("complete", result)
-            console.log("incomplete", this.state.tasks.length)
+            TaskAPI.getTasks(this.props.projectID).then(res => {
+                let complete = res.data.length - this.state.tasks.length
+                let incomplete = this.state.tasks.length
+                console.log("complete", complete)
+                console.log("incomplete", incomplete)
 
-            this.setState({
-                tasksTotal: res.data.length,
-                tasksComplete: result
+                this.setState({
+                    total: res.data.length,
+                    tasksIncomplete: incomplete,
+                    tasksComplete: complete
+                })
+
             })
- 
-        })
-            .catch(err => console.log(err.message));
-  
-            // this.chart3 = new Chart(this.chart3Ref.current, {
-            //     type: 'bar',
-            //     data: {
-            //         labels: ['Total Tasks'],
-            //     datasets: [{
-            //         label: 'Incomplete',
-            //         data: [this.state.tasksTotal],
-            //         backgroundColor: ['Red']
-            //     },
-            //     {
-            //         label: 'Complete',
-            //         data:[this.state.tasksComplete] ,
-            //         backgroundColor: ['Green']
-            //     },
-            //         // {
-            //         //     label: 'djsad',
-            //         //     data: [33.33],
-            //         //     backgroundColor: ['blue']
-            //         // }
-            //         ]
-            //     },
-            //     options: {
-            //         scales: {
-            //             xAxes: [{
-            //                 stacked: true
-            //             }],
-            //             yAxes: [{
-            //                 stacked: true
-            //             }]
-            //         }
-            //     }
-            // });
+                .catch(err => console.log(err.message));
         }
     }
 
     handleInputChange = event => {
-        
-        const {name, value} = event.target;
+
+        const { name, value } = event.target;
 
         this.setState({
             [name]: value
@@ -186,31 +113,30 @@ class Tasks extends Component {
 
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
-            let result =  this.state.tasksTotal - this.state.tasks.length
+            // let result =  this.state.tasksIncomplete - this.state.tasks.length
 
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);
                 }
             }
+            let complete = this.state.tasksComplete;
             this.setState({
                 tasks: tasksList,
-                tasksTotal: this.state.tasks.length,
-                tasksComplete: result
+                tasksIncomplete: this.state.tasks.length,
+                tasksComplete: complete + 1
 
             })
         })
-        console.log("incomplete tasks",this.state.tasksTotal)
-        console.log("task total",this.state.tasks.length)
-        // console.log("complete", result)
+        console.log("incomplete tasks", this.state.tasksTotal)
+        console.log("task total", this.state.tasks.length)
     }
 
     render() {
         return (
             <div>
-                <Chart3 taskIncomplete ={this.state.tasksTotal}
-            tasksComplete={this.state.tasksComplete}/>
-                {/* <canvas className='chart' ref={this.chart3Ref} /> */}
+                <Chart3 projectID={this.props.projectID} incomplete={this.state.tasksIncomplete}
+                    complete={this.state.tasksComplete} />
                 <Row>
                     <Col className="xl12">
                         <h1>Tasks</h1>
@@ -218,7 +144,7 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    {this.state.tasks.map((task,i) => (
+                    {this.state.tasks.map((task, i) => (
                         <div key={task.id}>
                             <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
                             <Task task={task.task} assignee1={task.assignee1}
