@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
 import Chart1 from '../chart1';
 import Chart4 from '../chart4';
-var Chart = require("chart.js")
+
 
 class Budget extends Component {
     constructor(props) {
