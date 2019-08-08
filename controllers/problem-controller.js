@@ -22,10 +22,13 @@ module.exports = {
         });
     },
     create: function (req, res) {
+        console.log(req);
+        // heroku logs --tail
         db.Problem.create({
             Problem: req.body.Problem,
             TaskId: req.body.TaskId
         }).then(function (newProblem) {
+            console.log(newProblem)
             res.json(newProblem);
         })
     },

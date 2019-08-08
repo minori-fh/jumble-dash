@@ -20,6 +20,7 @@ class Problems extends Component {
     componentDidMount() {
 
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+            console.log(res)
             this.setState({
                 tasks: res.data
             })
@@ -32,6 +33,7 @@ class Problems extends Component {
         for (let i = 0; i < this.state.tasks.length; i++) {
 
             ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
+                console.log("WTF IS GOING ON")
                 const taskProblems = [this.state.tasks[i].id, res.data];
                 unsolvedProblemsArr.push(taskProblems);
             })
