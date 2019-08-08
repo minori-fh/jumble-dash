@@ -17,14 +17,16 @@ class Tasks extends Component {
             tasks: [],
             total: 0,
             tasksIncomplete: 0,
-            tasksComplete: 0
+            tasksComplete: 0,
+            counter: 0
         }
     }
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
             this.setState({
-                tasks: res.data
+                tasks: res.data,
+                tasksIncomplete: res.data.length
             })
         })
             .catch(err => console.log(err.message));
@@ -33,7 +35,9 @@ class Tasks extends Component {
         TaskAPI.getTasks(this.props.projectID).then(res => {
 
             this.setState({
-                tasksTotal: res.data.length
+                tasksTotal: res.data.length,
+                tasksComplete: res.data.length - this.state.tasksIncomplete,
+                counter: this.state.counter + 1
             })
         })
             .catch(err => console.log(err.message));
@@ -45,25 +49,26 @@ class Tasks extends Component {
                 this.setState({
                     tasks: res.data
                 })
+
+                TaskAPI.getTasks(this.props.projectID).then(res => {
+                    let complete = res.data.length - this.state.tasks.length
+                    let incomplete = this.state.tasks.length
+                    console.log("complete", complete)
+                    console.log("incomplete", incomplete)
+
+                    this.setState({
+                        total: res.data.length,
+                        tasksIncomplete: incomplete,
+                        tasksComplete: complete,
+                        counter: this.state.counter + 1
+                    })
+
+                })
+                    .catch(err => console.log(err.message));
             })
                 .catch(err => console.log(err.message));
 
             console.log("this.state.tasks", this.state.tasks);
-
-            TaskAPI.getTasks(this.props.projectID).then(res => {
-                let complete = res.data.length - this.state.tasks.length
-                let incomplete = this.state.tasks.length
-                console.log("complete", complete)
-                console.log("incomplete", incomplete)
-
-                this.setState({
-                    total: res.data.length,
-                    tasksIncomplete: incomplete,
-                    tasksComplete: complete
-                })
-
-            })
-                .catch(err => console.log(err.message));
         }
     }
 
@@ -98,7 +103,9 @@ class Tasks extends Component {
                 newAssignee1: "",
                 newAssignee2: "",
                 newAssignee3: "",
-                newAssignee4: ""
+                newAssignee4: "",
+                tasksIncomplete: this.state.tasksIncomplete + 1,
+                counter: this.state.counter + 1
             })
         })
             .catch(err => console.log(err.message));
@@ -123,20 +130,19 @@ class Tasks extends Component {
             this.setState({
                 tasks: tasksList,
                 tasksIncomplete: this.state.tasks.length,
-                tasksComplete: complete + 1
+                tasksComplete: complete + 1,
+                counter: this.state.counter + 1
 
             })
-
             console.log("incomplete tasks", this.state.tasksTotal)
             console.log("task total", this.state.tasks.length)
         })
-    
     }
 
     render() {
         return (
             <div>
-                <Chart3 projectID={this.props.projectID} incomplete={this.state.tasksIncomplete}
+                <Chart3 counter={this.state.counter} incomplete={this.state.tasksIncomplete}
                     complete={this.state.tasksComplete} />
                 <Row>
                     <Col className="xl12">

@@ -12,18 +12,16 @@ class Chart3 extends Component {
         this.chart3 = new Chart(this.chart3Ref.current, {
             type: 'bar',
             data: {
-                labels: ['Total Tasks'],
+                labels: ['Total Tasks (in %)'],
                 datasets: [{
                     label: 'Incomplete',
                     data: [this.props.incomplete],
-                    backgroundColor: ['Red'],
-                    hoverBackgroundColor: ['red']
+                    backgroundColor: ['Red']
                 },
                 {
                     label: 'Complete',
                     data: [this.props.complete],
-                    backgroundColor: ['Green'],
-                    hoverBackgroundColor: ['green']
+                    backgroundColor: ['Green']
                 }
                 ]
             },
@@ -33,7 +31,11 @@ class Chart3 extends Component {
                         stacked: true
                     }],
                     yAxes: [{
-                        stacked: true
+                        stacked: true,
+                        ticks: {
+                            min: 0,
+                            max: ((this.props.complete + this.props.incomplete)/ (this.props.complete + this.props.incomplete)) * 100 
+                        }
                     }]
                 }
             }
@@ -41,21 +43,23 @@ class Chart3 extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.counter !== prevProps.counter) {
             this.chart3.destroy();
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
                 data: {
-                    labels: ['Total Tasks'],
+                    labels: ['Total Tasks (in %)'],
                     datasets: [{
                         label: 'Incomplete',
-                        data: [this.props.incomplete],
-                        backgroundColor: ['Red']
+                        data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
+                        backgroundColor: ['Red'],
+                        hoverBackgroundColor: ['Red']
                     },
                     {
                         label: 'Complete',
-                        data: [this.props.complete],
-                        backgroundColor: ['Green']
+                        data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
+                        backgroundColor: ['Green'],
+                        hoverBackgroundColor: ['Green']
                     }
                     ]
                 },
@@ -65,7 +69,11 @@ class Chart3 extends Component {
                             stacked: true
                         }],
                         yAxes: [{
-                            stacked: true
+                            stacked: true,
+                            ticks: {
+                                min: 0,
+                                max: 100 
+                            }
                         }]
                     }
                 }
@@ -75,6 +83,7 @@ class Chart3 extends Component {
 
     render() {
         return (
+            
             <canvas className='chart' ref={this.chart3Ref} />
         )
     };
