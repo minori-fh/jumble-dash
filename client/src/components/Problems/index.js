@@ -106,7 +106,7 @@ class Problems extends Component {
         console.log(this.state.selectedTask)
 
         const problem = {
-            Problem: this.state.newProblem,
+            problem: this.state.newProblem,
             TaskId: this.state.selectedTask
         }
 
