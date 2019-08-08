@@ -26,8 +26,6 @@ class Budget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-            console.log(res.data)
-            console.log(res.data.total);
             this.setState({
                 budgetTotal: res.data.total,
                 budgetDesign: res.data.Design,
