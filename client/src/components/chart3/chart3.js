@@ -41,7 +41,7 @@ class Chart3 extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.counter !== prevProps.counter) {
             this.chart3.destroy();
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
@@ -75,6 +75,7 @@ class Chart3 extends Component {
 
     render() {
         return (
+            
             <canvas className='chart' ref={this.chart3Ref} />
         )
     };
