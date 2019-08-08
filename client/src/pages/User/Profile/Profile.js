@@ -114,13 +114,15 @@ class Profile extends Component {
                     
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>
-                        <p id='menuHeader'>What can we help you manage today?</p>
-                        <div id='projectMenuButtons'>
-                            {this.state.projects.map(project => (
-                                <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
-                            ))}
+                        <div>
+                            <p id='menuHeader'>What can we help you manage today?</p>
+                            <div id='projectMenuButtons'>
+                                {this.state.projects.map(project => (
+                                    <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
+                                ))}
+                            </div>
+                            <MenuCreateProject edit={this.handleEdit} />
                         </div>
-                        <MenuCreateProject edit={this.handleEdit} />
                         <MenuLogoutButton logout={this.handlelogout.bind(this)} />
                     </Col>
                 </Row>
