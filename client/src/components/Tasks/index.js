@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
+import Chart3 from "../chart3"
 var Chart = require("chart.js")
 
 class Tasks extends Component {
@@ -14,102 +15,62 @@ class Tasks extends Component {
             newAssignee2: "",
             newAssignee3: "",
             newAssignee4: "",
-            tasks: []
+            tasks: [],
+            total: 0,
+            tasksIncomplete: 0,
+            tasksComplete: 0
         }
     }
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-            console.log("this should be incomplete tasks", res.data)
             this.setState({
                 tasks: res.data
             })
         })
             .catch(err => console.log(err.message));
+        console.log("this.state.tasks", this.state.tasks);
 
-        this.chart3 = new Chart(this.chart3Ref.current, {
-            type: 'bar',
-            data: {
-                labels: ['A'],
-                datasets: [{
-                    label: 'awldj',
-                    data: [33.33],
-                    backgroundColor: ['red']
-                },
-                {
-                    label: 'ndjak',
-                    data: [33.33],
-                    backgroundColor: ['green']
-                },
-                {
-                    label: 'djsad',
-                    data: [33.33],
-                    backgroundColor: ['blue']
-                }
-                ]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-        });
+        TaskAPI.getTasks(this.props.projectID).then(res => {
+
+            this.setState({
+                tasksTotal: res.data.length
+            })
+        })
+            .catch(err => console.log(err.message));
     }
 
     componentDidUpdate(prevProps) {
-
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-                console.log(res.data)
                 this.setState({
                     tasks: res.data
                 })
             })
                 .catch(err => console.log(err.message));
 
-            this.chart3 = new Chart(this.chart3Ref.current, {
-                type: 'bar',
-                data: {
-                    labels: ['A'],
-                    datasets: [{
-                        label: 'awldj',
-                        data: [33.33],
-                        backgroundColor: ['red']
-                    },
-                    {
-                        label: 'ndjak',
-                        data: [33.33],
-                        backgroundColor: ['green']
-                    },
-                    {
-                        label: 'djsad',
-                        data: [33.33],
-                        backgroundColor: ['blue']
-                    }
-                    ]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            stacked: true
-                        }],
-                        yAxes: [{
-                            stacked: true
-                        }]
-                    }
-                }
-            });
+            console.log("this.state.tasks", this.state.tasks);
+
+            TaskAPI.getTasks(this.props.projectID).then(res => {
+                let complete = res.data.length - this.state.tasks.length
+                let incomplete = this.state.tasks.length
+                console.log("complete", complete)
+                console.log("incomplete", incomplete)
+
+                this.setState({
+                    total: res.data.length,
+                    tasksIncomplete: incomplete,
+                    tasksComplete: complete
+                })
+
+            })
+                .catch(err => console.log(err.message));
         }
     }
 
     handleInputChange = event => {
-        
-        const {name, value} = event.target;
+
+        const { name, value } = event.target;
 
         this.setState({
             [name]: value
@@ -152,22 +113,30 @@ class Tasks extends Component {
 
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
+            // let result =  this.state.tasksIncomplete - this.state.tasks.length
+
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
-                    //remove it 
                     tasksList.splice(i, 1);
                 }
             }
+            let complete = this.state.tasksComplete;
             this.setState({
-                tasks: tasksList
+                tasks: tasksList,
+                tasksIncomplete: this.state.tasks.length,
+                tasksComplete: complete + 1
+
             })
         })
+        console.log("incomplete tasks", this.state.tasksTotal)
+        console.log("task total", this.state.tasks.length)
     }
 
     render() {
         return (
             <div>
-                <canvas className='chart' ref={this.chart3Ref} />
+                <Chart3 projectID={this.props.projectID} incomplete={this.state.tasksIncomplete}
+                    complete={this.state.tasksComplete} />
                 <Row>
                     <Col className="xl12">
                         <h1>Tasks</h1>
@@ -175,7 +144,7 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    {this.state.tasks.map((task,i) => (
+                    {this.state.tasks.map((task, i) => (
                         <div key={task.id}>
                             <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
                             <Task task={task.task} assignee1={task.assignee1}

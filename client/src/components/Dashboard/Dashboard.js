@@ -21,7 +21,7 @@ function Dashboard(props) {
                         </Row>
                         <Row>
                             <Col className="xl12">
-                                <Problems projectID={props.projectID} />
+                                {/* <Problems projectID={props.projectID} /> */}
                             </Col>
                         </Row>
                     </div>

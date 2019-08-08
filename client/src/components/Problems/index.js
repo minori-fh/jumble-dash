@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import ProblemAPI from '../../utils/API-problem';
 import { Col, Row } from "../Grid";
-import Chart2 from '../chart2';
+// import Chart2 from '../chart2';
 
 class Problems extends Component {
     constructor(props) {
