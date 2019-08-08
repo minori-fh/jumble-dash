@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Link } from "react-router-dom";
 import Actions from "../../../utils/API";
 import "./Home.css"
 
@@ -8,7 +7,7 @@ import Input from '../../../components/Input'
 import LoginButton from '../../../components/LoginButton'
 import { Row, Col } from "../../../components/Grid";
 
-import logo from '../../../../src/jumble.gif';
+import logo from "./images/logo.png"
 
 class Home extends Component {
     constructor(props){
@@ -60,7 +59,7 @@ class Home extends Component {
                 errorMsg: "",
                 errClassName: ""
             });
-
+            
             window.location.href = "/"
         }
         else {
@@ -111,7 +110,7 @@ class Home extends Component {
     renderAuthForm = () => {
         return(
             <Row id='home-form-grid'>
-                <Col className='xl6' id='main-left-col'>
+                <Col className='xl6 xl6home' id='main-left-col'>
                 </Col>
                 <Col id="home-form-col" className='xl6'>
                     <header>
@@ -150,66 +149,31 @@ class Home extends Component {
                     </form>
                 </Col>
             </Row>
-
-
-        
-        //   <div>
-        //     <form ref="submitForm" onClick={this.resetError}>
-        //       <p id="form-error" className={this.state.errClassName}>{this.state.errorMsg}</p>
-        //       <Input 
-        //         elementID="user-email" 
-        //         inputType="email" 
-        //         placeholder="email" 
-        //         img="email" 
-        //         required={true} 
-        //         size="3" 
-        //         name="email" 
-        //         handleChange={this.handleInputChange}/>
-        //       <Input 
-        //         elementID="user-pw" 
-        //         inputType="password" 
-        //         placeholder="password" 
-        //         img="password" 
-        //         required={true} 
-        //         size="6" 
-        //         name="local_pw" 
-        //         handleChange={this.handleInputChange}/>
-        //       <Button 
-        //         handleBtnClick={this.handleSubmitAuth} 
-        //         float="left">
-        //             LOGIN
-        //       </Button>
-        //       <Button 
-        //         handleBtnClick={this.handleSubmitAuth} 
-        //         float="right">
-        //             SIGNUP
-        //       </Button>
-        //     </form>
-        //   </div>
         )
     }
 
-    renderLoading = () => {
-        if(this.state.new) {
-            return(
-                <div>
-                    <h2>Creating your shiney new account!</h2>
-                    <p>Please wait...</p>
-                </div>
-            ) 
+    // renderMenu = () => {
+    //     <Menu/>
+    //     // if(this.state.new) {
+    //     //     return(
+    //     //         <div>
+    //     //             <h2>Creating your shiney new account!</h2>
+    //     //             <p>Please wait...</p>
+    //     //         </div>
+    //     //     ) 
             
-        } else {
-           return( <div>
-                <h2>Loading your Profile!</h2>
-                <p>Please wait...</p>
-            </div>)
-        }
-    }
+    //     // } else {
+    //     //    return( <div>
+    //     //         <h2>Loading your Profile!</h2>
+    //     //         <p>Please wait...</p>
+    //     //     </div>)
+    //     // }
+    // }
 
     render(){
         return(
             <Panel>
-                {(this.state.loading)? this.renderLoading() : this.renderAuthForm()}
+                {(this.state.loading)? this.renderAuthForm() : this.renderAuthForm()}
             </Panel>
         )
     }

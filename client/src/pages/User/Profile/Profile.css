@@ -14,3 +14,60 @@
 #active {
     color:green
 }
+
+#menu-left-col{
+    background-color: rgb(5, 5, 41); 
+    background-image: url("../../Guest/Home/images/loadingbkgrnd.png");
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.menu-left-col.animation{
+    transform: translateX(50vw) skew(-0.06turn, 18deg);
+    margin-top: -14%; 
+    transition: transform 800ms ease;
+}
+
+
+/* .menu-right-col.animation{
+    transform: translateX(-50vw);
+    transition: transform 800ms ease;
+} */
+
+#menu-right-col {
+    padding-top: 30% !important; 
+    display: none;
+    text-align: center; 
+}
+
+#menu-right-col.show {
+    transform: translateX(-50vw);
+    display: inherit !important; 
+}
+
+.menuButton {
+    border: none !important; 
+}
+
+/* #home-form-grid{
+    height: 100vh; 
+} */
+
+#home-form-grid.hide{
+    display: none; 
+}
+
+#dash{
+    display: none; 
+}
+
+#menuHeader{
+    height: 10%; 
+}
+
+.xl6menu{
+    height: 130%; 
+    transform: skew(-0.06turn, 18deg);
+    margin-top: -18%; 
+}
+
