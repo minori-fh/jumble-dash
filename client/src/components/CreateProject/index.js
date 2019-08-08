@@ -1,12 +1,10 @@
 import React from 'react';
-
-
-
+import "./style.css"
 
 function CreateProject(props) {
 
     return (
-        <button className="sideBtn active" onClick={() => props.edit()} style={{width:100}} >+ Project</button>
+        <button className="createBtn active" onClick={() => props.edit()} style={{width:100}} >+</button>
     );
 
 }

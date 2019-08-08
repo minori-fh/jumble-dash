@@ -131,7 +131,6 @@ class Profile extends Component {
                 <Row>
                     <Col className="xl2 l3">
                         <Sidenav>
-                            
                             <div className="centerButtons">
                                 <img src={Logo} className="Side-logo" alt="logo" />
                                 {this.state.projects.map(project => (
@@ -140,7 +139,6 @@ class Profile extends Component {
                                 
                                     <CreateProject edit={this.handleEdit} />
                                 
-
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
                         </Sidenav>
