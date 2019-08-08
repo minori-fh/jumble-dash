@@ -23,6 +23,7 @@ class Chart4 extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.total !== prevProps.total) {
+      this.chart4.destroy();
       this.chart4 = new Chart(this.chart4Ref.current, {
         type: 'polarArea',
         data: {
