@@ -20,7 +20,8 @@ class Profile extends Component {
             edit: false,
             selectedProject: -1,
             projects: [],
-            loggedIn: true
+            loggedIn: true,
+            showDash: false
         }
     }
 
@@ -40,6 +41,7 @@ class Profile extends Component {
         });
 
         this.animation()
+
     }
 
 
@@ -79,48 +81,91 @@ class Profile extends Component {
         }
     }
 
+    loadDash = id => {
+        this.setState({
+            selectedProject: id,
+            showDash: true
+        });
+
+        let menu = document.getElementById("home-form-grid")
+        menu.classList.toggle("hide")
+
+        
+
+    }
+
     render() {
         return (
-            <Row id='home-form-grid'>
-                <Col className='xl6 menu-left-col' id='menu-left-col'>
-                
-                </Col>
-                <Col className='xl6 menu-right-col' id='menu-right-col'>
-                    <p>What can we help you manage today?</p>
-                    <div>
-                    {this.state.projects.map(project => (
-                        <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
-                    ))}
-                    </div>
-                </Col>
-            </Row>
+            <div>
+                {!this.state.showDash ?
+                <Row id='home-form-grid'>
+                    <Col className='xl6 menu-left-col' id='menu-left-col'>
+                    
+                    </Col>
+                    <Col className='xl6 menu-right-col' id='menu-right-col'>
+                        <p>What can we help you manage today?</p>
+                        <div>
+                        {this.state.projects.map(project => (
+                            <ProjectButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
+                        ))}
+                        </div>
+                    </Col>
+                </Row>
+                :
+                // <div>
+                //     <Row>
+                //         <Navbar />
+                //     </Row>
+                // </div>
+                <Row>
+                    <Col className="xl2 l3">
+                        <Sidenav>
+                            <div className="centerButtons">
+                                {this.state.projects.map(project => (
+                                    <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
+                                ))}
+                                <CreateProject edit={this.handleEdit} />
+                                <LogoutButton logout={this.handlelogout.bind(this)} />
+                            </div>
+                        </Sidenav>
+                    </Col>
+                    <Col className="xl10 l9">
+                        {
+                            !this.state.edit ?
+                                <Dashboard projectID={this.state.selectedProject}>
+                                </Dashboard>
+                                : <NewProjectForm edit={this.handleEdit} />
+                        }
+                    </Col>
+                </Row>
+                }
+            </div>
             
-            // <div>
-            //     <Row>
-            //         <Navbar />
-            //     </Row>
-            //     <Row>
-            //         <Col className="xl2 l3">
-            //             <Sidenav>
-            //                 <div className="centerButtons">
-            //                     {this.state.projects.map(project => (
-            //                         <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
-            //                     ))}
-            //                     <CreateProject edit={this.handleEdit} />
-            //                     <LogoutButton logout={this.handlelogout.bind(this)} />
-            //                 </div>
-            //             </Sidenav>
-            //         </Col>
-            //         <Col className="xl10 l9">
-            //             {
-            //                 !this.state.edit ?
-            //                     <Dashboard projectID={this.state.selectedProject}>
-            //                     </Dashboard>
-            //                     : <NewProjectForm edit={this.handleEdit} />
-            //             }
-            //         </Col>
-            //     </Row >
-            // </div>
+                // <Row>
+                //     <Navbar />
+                // </Row>
+                // <Row>
+                //     <Col className="xl2 l3">
+                //         <Sidenav>
+                //             <div className="centerButtons">
+                //                 {this.state.projects.map(project => (
+                //                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
+                //                 ))}
+                //                 <CreateProject edit={this.handleEdit} />
+                //                 <LogoutButton logout={this.handlelogout.bind(this)} />
+                //             </div>
+                //         </Sidenav>
+                //     </Col>
+                //     <Col className="xl10 l9">
+                //         {
+                //             !this.state.edit ?
+                //                 <Dashboard projectID={this.state.selectedProject}>
+                //                 </Dashboard>
+                //                 : <NewProjectForm edit={this.handleEdit} />
+                //         }
+                //     </Col>
+                // </Row >
+            
         )
     }
 }

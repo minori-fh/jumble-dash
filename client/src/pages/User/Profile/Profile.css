@@ -32,3 +32,22 @@
     transition: transform 800ms ease;
 }
 
+#menu-right-col {
+    padding-top: 30% !important; 
+}
+
+.menuButton {
+    border: none !important; 
+}
+
+/* #home-form-grid{
+    height: 100vh; 
+} */
+
+#home-form-grid.hide{
+    display: none; 
+}
+
+#dash{
+    display: none; 
+}
