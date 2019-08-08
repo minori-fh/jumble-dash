@@ -27,7 +27,6 @@ function Dashboard(props) {
                     </div>
                     : <Row>OK</Row>
             }
-            {props.children}
         </div>
     );
 }
