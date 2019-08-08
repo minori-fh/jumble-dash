@@ -11,7 +11,8 @@ class Problems extends Component {
         this.state = {
             tasks: [],
             solvedProblems: [],
-            unsolvedProblems: []
+            unsolvedProblems: [],
+            selectedTask: ""
         }
     }
 
@@ -78,9 +79,17 @@ class Problems extends Component {
 
             this.setState({
                 unsolvedProblems: unsolvedProblemsArr,
-                solvedProblems: solvedProblemsArr
+                solvedProblems: solvedProblemsArr,
+                selectedTask: ""
             });
         }
+    }
+
+    handleInputChange = event => {
+
+        this.setState({
+            selectedTask: event.target.value
+        })
     }
 
     render() {
@@ -88,20 +97,24 @@ class Problems extends Component {
             <div>
                 <div>
                     <h1>PROBLEMS</h1>
-                    {this.state.problems}
+                    <div>{this.state.problems}</div>
                     <Row>
                         {this.state.unsolvedProblems.map((problem, i) => (
-                            <div key={problem.id}>
+                            <div key={i}>
                                 <p>{problem.problem}</p>
                             </div>
                         ))}
                     </Row>
                     <Row>
-                        <datalist>
-                            {this.state.tasks.map((task) => (
-                                <option value={task.id} key={task}>{task.name}</option>
-                            ))}
-                        </datalist>
+                        <form>
+                            <div>{this.state.selectedTask}</div>
+                            <select value={this.state.selectedTask} onChange={this.handleInputChange}>
+                                    <option></option>
+                                {this.state.tasks.map((task,i) => (
+                                    <option value={task.id} key={i}>{task.task}</option>
+                                ))}
+                            </select>
+                        </form>
                     </Row>
                 </div>
                 {console.log("unsolved", this.state.unsolvedProblems)}
