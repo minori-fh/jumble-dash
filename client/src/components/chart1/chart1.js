@@ -17,26 +17,26 @@ class Chart1 extends Component {
   }
 
   componentDidMount() {
-    if (this.props.total === "") {
-      var total = 100;
+    this.chart1 = new Chart(this.chart1Ref.current, {
+      type: 'doughnut',
+      data: {
+        labels: this.props.depts,
+        datasets: [{
+          data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
+          backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+        }]
+      }
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.total !== prevProps.total) {
       this.chart1 = new Chart(this.chart1Ref.current, {
         type: 'doughnut',
         data: {
           labels: this.props.depts,
           datasets: [{
-            data: [total / 7, total / 7, total / 7, total / 7, total / 7, total / 7, total / 7],
-            backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
-          }]
-        }
-      });
-    }
-    else {
-      this.chart1 = new Chart(this.chart1Ref.current, {
-        type: 'doughnut',
-        data: {
-          labels: this.props.depts,
-          datasets: [{
-            data: [this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7],
+            data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
             backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
           }]
         }

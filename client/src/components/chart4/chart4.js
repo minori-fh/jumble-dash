@@ -14,11 +14,26 @@ class Chart4 extends Component {
       data: {
         labels: this.props.depts,
         datasets: [{
-          data: [this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7, this.props.total / 7],
+          data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
           backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
         }]
       }
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.total !== prevProps.total) {
+      this.chart4 = new Chart(this.chart4Ref.current, {
+        type: 'polarArea',
+        data: {
+          labels: this.props.depts,
+          datasets: [{
+            data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
+            backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+          }]
+        }
+      });
+    }
   }
 
   render() {

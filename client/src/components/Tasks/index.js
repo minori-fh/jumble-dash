@@ -14,38 +14,58 @@ class Tasks extends Component {
             newAssignee2: "",
             newAssignee3: "",
             newAssignee4: "",
-            tasks: []
+            tasks: [],
+            tasksTotal: 0,
+            tasksComplete: 0
         }
     }
 
-    componentDidMount(id) {
-        TaskAPI.getIncompleteTasks(id).then(res => {
-            console.log("SHOOHOHOHOHOHOHOSHOSHO",res.data)
+    componentDidMount() {
+        TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
             this.setState({
                 tasks: res.data
             })
-            console.log(res.data)
-        })
 
+            console.log("this.state.tasks", this.state.tasks)
+            console.log("res.data", res.data)
+        })
             .catch(err => console.log(err.message));
+
+        TaskAPI.getTasks(this.props.projectID).then(res => {
+
+            this.setState({
+                tasksTotal: res.data.length
+                // tasksComplete: result
+            })
+            console.log("state.tasks.length", this.state.tasks.length)
+            console.log("state.tasksTotal", this.state.tasksTotal)
+            console.log("state.tasks.length", this.state.tasks.length)
+            console.log("state.tasksComplete", this.state.tasksComplete)
+
+            // let result =  this.state.tasksTotal - this.state.tasks.length
+            // let incomplete = this.state.tasks.length
+            // console.log("complete", result)
+            // console.log("incomplete", this.state.tasks.length)
+        })
+        .catch(err => console.log(err.message));
+        console.log("state.tasks.length" + this.state.tasks.length)
+        console.log("state.tasksTotal" + this.state.tasksTotal)
+        console.log("state.tasks.length" + this.state.tasks.length)
+        console.log("state.tasksComplete" + this.state.tasksComplete)
+
         this.chart3 = new Chart(this.chart3Ref.current, {
             type: 'bar',
             data: {
-                labels: ['A'],
+                labels: ['Total Tasks'],
                 datasets: [{
-                    label: 'awldj',
-                    data: [33.33],
-                    backgroundColor: ['red']
+                    label: 'Complete',
+                    data: [this.state.tasksComplete],
+                    backgroundColor: ['Green']
                 },
                 {
-                    label: 'ndjak',
-                    data: [33.33],
-                    backgroundColor: ['green']
-                },
-                {
-                    label: 'djsad',
-                    data: [33.33],
-                    backgroundColor: ['blue']
+                    label: 'Incomplete',
+                    data: [this.state.tasksTotal],
+                    backgroundColor: ['Red']
                 }
                 ]
             },
@@ -63,41 +83,47 @@ class Tasks extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
-        console.log(this.state.tasks.length)
-        console.log()
-
-       
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-                
                 this.setState({
                     tasks: res.data
                 })
-
-                
             })
-           
-                .catch(err => console.log(err.message));
+           .catch(err => console.log(err.message));
+
+           TaskAPI.getTasks(this.props.projectID).then(res => {
+            let result =  this.state.tasksTotal - this.state.tasks.length
+            let incomplete = this.state.tasks.length
+            console.log("complete", result)
+            console.log("incomplete", this.state.tasks.length)
+
+            this.setState({
+                tasksTotal: res.data.length,
+                tasksComplete: result
+            })
+ 
+        })
+            .catch(err => console.log(err.message));
+  
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
                 data: {
-                    labels: ['A'],
-                    datasets: [{
-                        label: 'awldj',
-                        data: [33.33],
-                        backgroundColor: ['red']
-                    },
-                    {
-                        label: 'ndjak',
-                        data: [33.33],
-                        backgroundColor: ['green']
-                    },
-                    {
-                        label: 'djsad',
-                        data: [33.33],
-                        backgroundColor: ['blue']
-                    }
+                    labels: ['Total Tasks'],
+                datasets: [{
+                    label: 'Incomplete',
+                    data: [this.state.tasksTotal],
+                    backgroundColor: ['Red']
+                },
+                {
+                    label: 'Complete',
+                    data:[this.state.tasksComplete] ,
+                    backgroundColor: ['Green']
+                },
+                    // {
+                    //     label: 'djsad',
+                    //     data: [33.33],
+                    //     backgroundColor: ['blue']
+                    // }
                     ]
                 },
                 options: {
@@ -153,29 +179,26 @@ class Tasks extends Component {
 
     completeTask = id => {
 
-
         const com = {
             complete: true
         }
 
         TaskAPI.updateTask(id, com).then(res => {
-            console.log("UPDATED TASK", res.data)
             let tasksList = this.state.tasks;
-            console.log("tasksList: " + tasksList)
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
-                    //remove it 
                     tasksList.splice(i, 1);
                 }
             }
-            console.log(tasksList)
             this.setState({
                 tasks: tasksList
             })
-      
-           
         })
-   
+        console.log("task total",this.state.tasksTotal)
+        console.log("incomplete tasks",this.state.tasks.length)
+
+        let result =  this.state.tasksTotal - this.state.tasks.length
+        console.log("complete", result)
     }
 
     render() {
@@ -209,28 +232,28 @@ class Tasks extends Component {
                         />
                         <input
                             type="text"
-                            value={this.state.assignee1}
+                            value={this.state.newAssignee1}
                             placeholder="Assignee #1"
                             onChange={this.handleInputChange}
                             name="newAssignee1"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee2}
+                            value={this.state.newAssignee2}
                             placeholder="Assignee #2"
                             onChange={this.handleInputChange}
                             name="newAssignee2"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee3}
+                            value={this.state.newAssignee3}
                             placeholder="Assignee #3"
                             onChange={this.handleInputChange}
                             name="newAssignee3"
                         />
                         <input
                             type="text"
-                            value={this.state.assignee4}
+                            value={this.state.newAssignee4}
                             placeholder="Assignee #4"
                             onChange={this.handleInputChange}
                             name="newAssignee4"
