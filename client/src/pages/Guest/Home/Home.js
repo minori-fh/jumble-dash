@@ -6,7 +6,6 @@ import Panel from '../../../components/Panel'
 import Input from '../../../components/Input'
 import LoginButton from '../../../components/LoginButton'
 import { Row, Col } from "../../../components/Grid";
-import Menu from '../../User/Menu/Menu'
 
 import logo from "./images/logo.png"
 
