@@ -41,6 +41,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-
     return Task;
 }
