@@ -1,19 +1,19 @@
 import axios from "axios";
 
 export default {
-  createproblem: function(body) {
+  createProblem: function(body) {
     return axios.post("/api/problem", body);
   },
-  getunsolvedproblems: function(id) {
+  getUnsolvedProblems: function(id) {
     return axios.get("/api/problem/" + id + "/unsolved");
   },
-  getsolvedproblems: function(id) {
+  getSolvedProblems: function(id) {
     return axios.get("/api/problem/" + id + "/solved");
   },
-  updateproblem: function(id, body) {
+  updateProblem: function(id, body) {
     return axios.put("/api/problem/" + id, body);
   },
-  removeproblem: function(id) {
+  removeProblem: function(id) {
     return axios.delete("/api/problem/" + id);
   }
 };
