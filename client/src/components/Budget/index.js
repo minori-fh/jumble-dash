@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
 import Chart1 from '../chart1';
 import Chart4 from '../chart4';
-var Chart = require("chart.js")
 
 class Budget extends Component {
     constructor(props) {
@@ -36,30 +35,8 @@ class Budget extends Component {
                 budgetSales: res.data.Sales,
                 budgetSecurity: res.data.Security
             })
-
-            // this.chart1 = new Chart(this.chart1Ref.current, {
-            //     type: 'doughnut',
-            //     data: {
-            //         labels: this.state.budgetDept,
-            //         datasets: [{
-            //             data: [res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7],
-            //             backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
-            //         }]
-            //     }
-            // });
         })
             .catch(err => console.log(err.message));
-
-        // this.chart1 = new Chart(this.chart1Ref.current, {
-        //     type: 'doughnut',
-        //     data: {
-        //         labels: this.state.budgetDep,
-        //         datasets: [{
-        //             data: [this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8],
-        //             backgroundColor: ['red', 'yellow', 'black', 'blue', 'green', 'purple', 'teal', 'orange']
-        //         }]
-        //     }
-        // });
     }
 
     componentDidUpdate(prevProps) {
@@ -84,30 +61,8 @@ class Budget extends Component {
                     budgetSecurity: res.data.Security,
                     chartSwitch: false
                 })
-
-                // this.chart1 = new Chart(this.chart1Ref.current, {
-                //     type: "doughnut",
-                //     data: {
-                //         labels: this.state.budgetDept,
-                //         datasets: [{
-                //             data: [res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7, res.data.total / 7],
-                //             backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
-                //         }]
-                //     }
-                // });
             })
                 .catch(err => console.log(err.message));
-
-            // this.chart1 = new Chart(this.chart1Ref.current, {
-            //     type: 'doughnut',
-            //     data: {
-            //         labels: this.state.budgetDep,
-            //         datasets: [{
-            //             data: [this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8, this.state.budgetTotal / 8],
-            //             backgroundColor: ['red', 'yellow', 'black', 'blue', 'green', 'purple', 'teal', 'orange']
-            //         }]
-            //     }
-            // });
         }
     }
 
@@ -132,7 +87,6 @@ class Budget extends Component {
             <div>
                 <p>{this.state.budgetTotal}</p>
                 {!this.state.chartSwitch ?
-                    // <canvas className='chart' ref={this.chart1Ref} /> :
                     <Chart1
                         total={this.state.budgetTotal}
                         depts={this.state.budgetDept}
