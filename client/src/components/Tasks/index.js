@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
+import Chart3 from "../chart3"
 var Chart = require("chart.js")
 
 class Tasks extends Component {
@@ -25,11 +26,9 @@ class Tasks extends Component {
             this.setState({
                 tasks: res.data
             })
-
-            console.log("this.state.tasks", this.state.tasks)
-            console.log("res.data", res.data)
         })
             .catch(err => console.log(err.message));
+            console.log("this.state.tasks", this.state.tasks);
 
         TaskAPI.getTasks(this.props.projectID).then(res => {
 
@@ -37,10 +36,10 @@ class Tasks extends Component {
                 tasksTotal: res.data.length
                 // tasksComplete: result
             })
-            console.log("state.tasks.length", this.state.tasks.length)
-            console.log("state.tasksTotal", this.state.tasksTotal)
-            console.log("state.tasks.length", this.state.tasks.length)
-            console.log("state.tasksComplete", this.state.tasksComplete)
+            // console.log("state.tasks.length", this.state.tasks.length)
+            // console.log("state.tasksTotal", this.state.tasksTotal)
+            // console.log("state.tasks.length", this.state.tasks.length)
+            // console.log("state.tasksComplete", this.state.tasksComplete)
 
             // let result =  this.state.tasksTotal - this.state.tasks.length
             // let incomplete = this.state.tasks.length
@@ -48,38 +47,38 @@ class Tasks extends Component {
             // console.log("incomplete", this.state.tasks.length)
         })
         .catch(err => console.log(err.message));
-        console.log("state.tasks.length" + this.state.tasks.length)
-        console.log("state.tasksTotal" + this.state.tasksTotal)
-        console.log("state.tasks.length" + this.state.tasks.length)
-        console.log("state.tasksComplete" + this.state.tasksComplete)
+        // console.log("state.tasks.length" + this.state.tasks.length)
+        // console.log("state.tasksTotal" + this.state.tasksTotal)
+        // console.log("state.tasks.length" + this.state.tasks.length)
+        // console.log("state.tasksComplete" + this.state.tasksComplete)
 
-        this.chart3 = new Chart(this.chart3Ref.current, {
-            type: 'bar',
-            data: {
-                labels: ['Total Tasks'],
-                datasets: [{
-                    label: 'Complete',
-                    data: [this.state.tasksComplete],
-                    backgroundColor: ['Green']
-                },
-                {
-                    label: 'Incomplete',
-                    data: [this.state.tasksTotal],
-                    backgroundColor: ['Red']
-                }
-                ]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-        });
+        // this.chart3 = new Chart(this.chart3Ref.current, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Total Tasks'],
+        //         datasets: [{
+        //             label: 'Complete',
+        //             data: [this.state.tasksComplete],
+        //             backgroundColor: ['Green']
+        //         },
+        //         {
+        //             label: 'Incomplete',
+        //             data: [this.state.tasksTotal],
+        //             backgroundColor: ['Red']
+        //         }
+        //         ]
+        //     },
+        //     options: {
+        //         scales: {
+        //             xAxes: [{
+        //                 stacked: true
+        //             }],
+        //             yAxes: [{
+        //                 stacked: true
+        //             }]
+        //         }
+        //     }
+        // });
     }
 
     componentDidUpdate(prevProps) {
@@ -90,6 +89,8 @@ class Tasks extends Component {
                 })
             })
            .catch(err => console.log(err.message));
+
+           console.log("this.state.tasks", this.state.tasks);
 
            TaskAPI.getTasks(this.props.projectID).then(res => {
             let result =  this.state.tasksTotal - this.state.tasks.length
@@ -105,38 +106,38 @@ class Tasks extends Component {
         })
             .catch(err => console.log(err.message));
   
-            this.chart3 = new Chart(this.chart3Ref.current, {
-                type: 'bar',
-                data: {
-                    labels: ['Total Tasks'],
-                datasets: [{
-                    label: 'Incomplete',
-                    data: [this.state.tasksTotal],
-                    backgroundColor: ['Red']
-                },
-                {
-                    label: 'Complete',
-                    data:[this.state.tasksComplete] ,
-                    backgroundColor: ['Green']
-                },
-                    // {
-                    //     label: 'djsad',
-                    //     data: [33.33],
-                    //     backgroundColor: ['blue']
-                    // }
-                    ]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            stacked: true
-                        }],
-                        yAxes: [{
-                            stacked: true
-                        }]
-                    }
-                }
-            });
+            // this.chart3 = new Chart(this.chart3Ref.current, {
+            //     type: 'bar',
+            //     data: {
+            //         labels: ['Total Tasks'],
+            //     datasets: [{
+            //         label: 'Incomplete',
+            //         data: [this.state.tasksTotal],
+            //         backgroundColor: ['Red']
+            //     },
+            //     {
+            //         label: 'Complete',
+            //         data:[this.state.tasksComplete] ,
+            //         backgroundColor: ['Green']
+            //     },
+            //         // {
+            //         //     label: 'djsad',
+            //         //     data: [33.33],
+            //         //     backgroundColor: ['blue']
+            //         // }
+            //         ]
+            //     },
+            //     options: {
+            //         scales: {
+            //             xAxes: [{
+            //                 stacked: true
+            //             }],
+            //             yAxes: [{
+            //                 stacked: true
+            //             }]
+            //         }
+            //     }
+            // });
         }
     }
 
@@ -185,26 +186,31 @@ class Tasks extends Component {
 
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
+            let result =  this.state.tasksTotal - this.state.tasks.length
+
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);
                 }
             }
             this.setState({
-                tasks: tasksList
+                tasks: tasksList,
+                tasksTotal: this.state.tasks.length,
+                tasksComplete: result
+
             })
         })
-        console.log("task total",this.state.tasksTotal)
-        console.log("incomplete tasks",this.state.tasks.length)
-
-        let result =  this.state.tasksTotal - this.state.tasks.length
-        console.log("complete", result)
+        console.log("incomplete tasks",this.state.tasksTotal)
+        console.log("task total",this.state.tasks.length)
+        // console.log("complete", result)
     }
 
     render() {
         return (
             <div>
-                <canvas className='chart' ref={this.chart3Ref} />
+                <Chart3 taskIncomplete ={this.state.tasksTotal}
+            tasksComplete={this.state.tasksComplete}/>
+                {/* <canvas className='chart' ref={this.chart3Ref} /> */}
                 <Row>
                     <Col className="xl12">
                         <h1>Tasks</h1>
