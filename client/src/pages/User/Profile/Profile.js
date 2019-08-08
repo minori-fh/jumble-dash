@@ -9,6 +9,7 @@ import ProjectButton from '../../../components/ProjectButton';
 import NewProjectForm from '../../../components/NewProjectForm';
 import ProjectAPI from '../../../utils/API-project';
 import LogoutButton from '../../../components/LogoutButton';
+import MenuLogoutButton from '../../../components/MenuLogoutButton';
 import MenuButton from '../../../components/MenuButtons/menuButtons';
 import "./Profile.css";
 
@@ -28,8 +29,12 @@ class Profile extends Component {
     animation(){
         let left = document.getElementById("menu-left-col")
         left.classList.toggle("animation")
+        setTimeout(this.handleRightAnimation(), 2000)
+    }
+
+    handleRightAnimation(){
         let right = document.getElementById("menu-right-col")
-        right.classList.toggle("animation")
+        right.classList.toggle("show")
     }
 
 
@@ -40,8 +45,7 @@ class Profile extends Component {
             console.log(this.state.loggedIn)
         });
 
-        this.animation()
-
+        requestAnimationFrame(()=> {this.animation()})
     }
 
     handlelogout() {
@@ -98,13 +102,13 @@ class Profile extends Component {
                     
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>
-                        <p>What can we help you manage today?</p>
+                        <p id='menuHeader'>What can we help you manage today?</p>
                         <div>
                         {this.state.projects.map(project => (
                             <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
                         ))}
                         </div>
-                        <LogoutButton logout={this.handlelogout.bind(this)} />
+                        <MenuLogoutButton logout={this.handlelogout.bind(this)} />
                     </Col>
                 </Row>
                 :

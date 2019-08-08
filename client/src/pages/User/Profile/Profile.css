@@ -27,13 +27,19 @@
     transition: transform 800ms ease;
 }
 
-.menu-right-col.animation{
+/* .menu-right-col.animation{
     transform: translateX(-50vw);
     transition: transform 800ms ease;
-}
+} */
 
 #menu-right-col {
     padding-top: 30% !important; 
+    display: none; 
+}
+
+#menu-right-col.show {
+    transform: translateX(-50vw);
+    display: inherit !important; 
 }
 
 .menuButton {
@@ -50,4 +56,8 @@
 
 #dash{
     display: none; 
+}
+
+#menuHeader{
+    height: 10%; 
 }
