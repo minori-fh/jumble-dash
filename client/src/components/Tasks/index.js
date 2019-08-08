@@ -126,9 +126,11 @@ class Tasks extends Component {
                 tasksComplete: complete + 1
 
             })
+
+            console.log("incomplete tasks", this.state.tasksTotal)
+            console.log("task total", this.state.tasks.length)
         })
-        console.log("incomplete tasks", this.state.tasksTotal)
-        console.log("task total", this.state.tasks.length)
+    
     }
 
     render() {

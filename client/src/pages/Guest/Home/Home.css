@@ -18,6 +18,9 @@
 
 #main-left-col{
     background-color: rgb(5, 5, 41); 
+    background-image: url("loadingbkgrnd.png");
+    background-repeat: no-repeat; 
+    background-size: cover; 
 }
 
 .App-logo{
