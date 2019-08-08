@@ -15,12 +15,12 @@ class Chart3 extends Component {
                 labels: ['Total Tasks (in %)'],
                 datasets: [{
                     label: 'Incomplete',
-                    data: [this.props.incomplete],
+                    data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
                     backgroundColor: ['Red']
                 },
                 {
                     label: 'Complete',
-                    data: [this.props.complete],
+                    data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
                     backgroundColor: ['Green']
                 }
                 ]
