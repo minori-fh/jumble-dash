@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import Profile from '../pages/User/Profile/Profile'
-import Menu from '../pages/User/Menu/Menu'
 
 class UserRoutes extends Component {
     render(){

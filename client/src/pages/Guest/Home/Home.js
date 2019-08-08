@@ -6,7 +6,6 @@ import Panel from '../../../components/Panel'
 import Input from '../../../components/Input'
 import LoginButton from '../../../components/LoginButton'
 import { Row, Col } from "../../../components/Grid";
-import Menu from '../../User/Menu/Menu'
 
 import logo from "./images/logo.png"
 
@@ -61,7 +60,7 @@ class Home extends Component {
                 errClassName: ""
             });
 
-            this.renderMenu()
+            // this.renderMenu()
             window.location.href = "/"
         }
         else {
@@ -154,23 +153,23 @@ class Home extends Component {
         )
     }
 
-    renderMenu = () => {
-        <Menu/>
-        // if(this.state.new) {
-        //     return(
-        //         <div>
-        //             <h2>Creating your shiney new account!</h2>
-        //             <p>Please wait...</p>
-        //         </div>
-        //     ) 
+    // renderMenu = () => {
+    //     <Menu/>
+    //     // if(this.state.new) {
+    //     //     return(
+    //     //         <div>
+    //     //             <h2>Creating your shiney new account!</h2>
+    //     //             <p>Please wait...</p>
+    //     //         </div>
+    //     //     ) 
             
-        // } else {
-        //    return( <div>
-        //         <h2>Loading your Profile!</h2>
-        //         <p>Please wait...</p>
-        //     </div>)
-        // }
-    }
+    //     // } else {
+    //     //    return( <div>
+    //     //         <h2>Loading your Profile!</h2>
+    //     //         <p>Please wait...</p>
+    //     //     </div>)
+    //     // }
+    // }
 
     render(){
         return(
