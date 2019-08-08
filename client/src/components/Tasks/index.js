@@ -25,8 +25,8 @@ class Tasks extends Component {
                 tasks: res.data
             })
         })
-
             .catch(err => console.log(err.message));
+
         this.chart3 = new Chart(this.chart3Ref.current, {
             type: 'bar',
             data: {
@@ -71,6 +71,7 @@ class Tasks extends Component {
                 })
             })
                 .catch(err => console.log(err.message));
+                
             this.chart3 = new Chart(this.chart3Ref.current, {
                 type: 'bar',
                 data: {
