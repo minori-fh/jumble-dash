@@ -32,7 +32,7 @@ class Chart1 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.total !== prevProps.total) {
+    if (this.props.total !== prevProps.total || this.props.counter !== prevProps.counter) {
       this.chart1.destroy();
       this.chart1 = new Chart(this.chart1Ref.current, {
         type: 'doughnut',

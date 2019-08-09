@@ -132,7 +132,7 @@ class Problems extends Component {
                         <Col className='xl3 newIssue'>
                             <form id='newIssue'>
                                 <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
-                                    <option id='selectedTask'>Please Select a Task</option>
+                                    <option id='selectedTask'>Please Select a Task to submit Problems</option>
                                     {this.state.tasks.map((task, i) => (
                                         <option value={task.id} key={i}>{task.task}</option>
                                     ))}
@@ -151,7 +151,7 @@ class Problems extends Component {
                         <Col className='xl3 viewIssue'>
                         <form id='viewIssue'>
                             <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
-                                <option id='viewTaskProblem' >Please Select a Task</option>
+                                <option id='viewTaskProblem' >Please Select a Task to View</option>
                                 {this.state.tasks.map((task, i) => (
                                     <option value={task.id} key={i}>{task.task}</option>
                                 ))}
