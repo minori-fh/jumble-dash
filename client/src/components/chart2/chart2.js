@@ -9,13 +9,12 @@ class Chart2 extends Component {
   }
 
   componentDidMount() {
+
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
         //labels are task names or ids
-        labels: [
-          "Task 1", "Task 2"
-        ],
+        labels: this.props.tasks.map(task => task.task),
         //data needs to 
         datasets: [
           {
@@ -46,23 +45,26 @@ class Chart2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.total !== prevProps.total) {
+    if (this.props.counter !== prevProps.counter) {
+      this.chart2.destroy();
+
+      console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
+      console.log("counter",this.props.counter)
+
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: [
-            "Tasks"
-          ],
+          labels: this.props.tasks.map(task => task.task),
           datasets: [
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: [40]
+              data: this.props.unsolved
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data: [26]
+              data:  this.props.solved
             }
           ]
         },
