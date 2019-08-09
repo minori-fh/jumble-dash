@@ -9,23 +9,23 @@ class Chart2 extends Component {
   }
 
   componentDidMount() {
-
+    console.log(this.props.unsolved);
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
         //labels are task names or ids
-        labels: this.props.tasks.map(task => task.task),
+        labels: ["name"],
         //data needs to 
         datasets: [
           {
             label: "Unsolved Problems",
             backgroundColor: "#df4343",
-            data: [40, 29]
+            data: [this.props.unsolved]
           },
           {
             label: "Solved Problems",
             backgroundColor: "#379937",
-            data: [26, 50]
+            data: [this.props.solved]
           }
         ]
       },
@@ -35,7 +35,7 @@ class Chart2 extends Component {
             {
               ticks: {
                 min: 0,
-                max: 100
+                max: 10
               }
             }
           ]
@@ -47,6 +47,7 @@ class Chart2 extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.counter !== prevProps.counter) {
       this.chart2.destroy();
+      console.log(this.props);
 
       console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
       console.log("counter",this.props.counter)
@@ -54,17 +55,17 @@ class Chart2 extends Component {
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: this.props.tasks.map(task => task.task),
+          labels: ["name"],
           datasets: [
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: this.props.unsolved
+              data: [this.props.unsolved]
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data:  this.props.solved
+              data: [this.props.solved]
             }
           ]
         },
@@ -74,7 +75,7 @@ class Chart2 extends Component {
               {
                 ticks: {
                   min: 0,
-                  max: 100
+                  max: this.props.unsolved + this.props.solved
                 }
               }
             ]
