@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500&display=swap');
+
 #nameStyling{
-    font-size: 26px;
-    font-family: 'San serif'
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(5, 5, 41) 
 }
 /* #moveRight{
     position: relative;
     right: 550px;
     top: -250px;
 } */
+
+#moveRight{
+    padding-left: 25%;
+    padding-right: 25%; 
+    margin-top: 8%; 
+}
+
 .formFix{
     height: 25px;
     width: 200px;
@@ -16,10 +26,20 @@
     margin-bottom: 4px;
     border-radius: 8px;
 }
+
 #buttnStyling{
-    font-size: 16px;
-    font-family: sans-serif;
-    width:100px;
+    margin-top: 10%; 
     border-radius: 8px;
-    box-shadow: 2px 3px #c6c5c5;
+    padding: 1%; 
+    width: 100px; 
+    background-color: rgb(68, 167, 68); 
+    color: white; 
+}
+
+#makeNewTasks{
+    margin-top: 10%; 
+}
+
+#taskList{
+    margin-bottom: 5%; 
 }

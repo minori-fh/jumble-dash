@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500&display=swap');
+
+#name-styling{
+    font-family: 'Poppins', sans-serif;
+    font-size:24px;
+    color: rgb(5, 5, 41) 
+}
+
+#newIssue{
+    display: block;
+
+}
+
+#viewIssue{
+    display: block; 
+
+}
+
+#selectedTask{
+    height: 5%; 
+
+}
+
+#viewTaskProblem{
+    height: 5%; 
+
+}
+
+.newIssue{
+    margin-bottom: 2%;
+    text-align: left; 
+}
+
+.viewIssue{
+    margin-bottom: 2%; 
+    text-align: left; 
+}
+
+select{
+    height: 30px;
+    line-height: 30px; 
+}
+
+.newProblem{
+    height: 60px; 
+    width: 400px; 
+    margin-left: 3%; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+#taskIssuebtn1, #taskIssuebtn2{
+    margin-top: 10%; 
+    border-radius: 8px !important;
+    padding: 0px !important; 
+    /* padding-bottom: 1% !important; 
+    padding-top: 1% !important;  */
+    width: 80px; 
+    background-color: rgb(68, 167, 68); 
+    color: white; 
+    height: 15px;
+    margin-left: 3%; 
+    margin-top: 0px !important; 
+    text-align: middle !important; 
+}
