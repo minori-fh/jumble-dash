@@ -129,7 +129,7 @@ class Profile extends Component {
                 </Row>
                 :
                 <Row>
-                    <Col className="xl2 l3">
+                    <Col className="newProjectCol xl2 l3">
                         <Sidenav>
                             <div className="centerButtons">
                                 <img src={Logo} className="Side-logo" alt="logo" />
@@ -143,12 +143,12 @@ class Profile extends Component {
                             </div>
                         </Sidenav>
                     </Col>
-                    <Col className="xl10 l9">
+                    <Col className="newProjectCol xl10 l9">
                         {
                             !this.state.edit ?
                                 <Dashboard projectID={this.state.selectedProject}>
                                 </Dashboard>
-                                : <NewProjectForm   edit={this.handleEdit} projectID={this.state.selectedProject} />
+                                : <NewProjectForm  edit={this.handleEdit} projectID={this.state.selectedProject} />
                         }
                     </Col>
                 </Row>

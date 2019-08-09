@@ -6,6 +6,7 @@ import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
 import TaskForm from "../TaskForm";
 import Dashboard from '../Dashboard';
+import Arrow from './arrow.png';
 
 class NewProjectForm extends Component {
 
@@ -25,7 +26,7 @@ class NewProjectForm extends Component {
         assignee1: "",
         assignee2: "",
         assignee3: "",
-        assignee4: ""
+        assignee4: "",
     }
 
     handleInputChange = event => {
@@ -45,6 +46,13 @@ class NewProjectForm extends Component {
             savedTitle: true
         });
 
+        let budgetForm = document.getElementById("newBudgetFormDiv")
+        budgetForm.classList.toggle("hide")
+
+        let projectTitle = document.getElementById("body")
+        projectTitle.classList.toggle("animate")
+
+
         API.createProject(body)
             .then(res => {
                 console.log(res.data.id)
@@ -54,6 +62,8 @@ class NewProjectForm extends Component {
                 console.log("--------------" + this.state.projectID)
             })
             .catch(err => console.log(err.message));
+
+        
     }
 
     addTask = event => {
@@ -126,7 +136,7 @@ class NewProjectForm extends Component {
     }
 
     formRender() {
-        if (this.state.savedTitle === false) {
+        if(!this.state.showBudget){
             return (
                 <div id="body">
                     <form id="styling">
@@ -138,125 +148,563 @@ class NewProjectForm extends Component {
                             onChange={this.handleInputChange}
                             name="title"
                         />
-                        <button id="submitNewProject" onClick={this.saveProject} > Next </button>
                     </form>
+                    <img src={Arrow} id="submitNewProject" onClick={this.saveProject} className="Next-logo" alt="logo" />
+            
+
+                    <div className='newBudgetFormDiv' id="newBudgetFormDiv">
+    
+                    <Row>
+                        <Col className='xl6 newProjectHalfCol'>
+                            <p>Department Budgets</p>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input required
+                                        id="inputBudget"
+                                        type="text"
+                                        value={this.state.budget}
+                                        placeholder="Total Budget"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budget"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetDesign}
+                                        placeholder="Design"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetDesign"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetEngineering}
+                                        placeholder="Engineering"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetEngineering"
+                                    /> 
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetFinance}
+                                        placeholder="Finance"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetFinance"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetHR}
+                                        placeholder="HR"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetHR"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetMarketing}
+                                        placeholder="Marketing"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetMarketing"
+                                    />  
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetSales}
+                                        placeholder="Sales"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetSales"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.budgetSecurity}
+                                        placeholder="Security"
+                                        onChange={this.handleInputChange}
+                                        className='budget'
+                                        name="budgetSecurity"
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col className='newProjectHalfCol xl6'>
+                            <p>Please add an initial task: </p>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input required
+                                        type="text"
+                                        value={this.state.task}
+                                        placeholder="Task"
+                                        onChange={this.handleInputChange}
+                                        name="task"
+                                        className='task'
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input required
+                                        type="text"
+                                        value={this.state.assignee1}
+                                        placeholder="Assignee #1 (Required)"
+                                        onChange={this.handleInputChange}
+                                        name="assignee1"
+                                        className='task'
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.assignee2}
+                                        placeholder="Assignee #2 (Optional)"
+                                        onChange={this.handleInputChange}
+                                        name="assignee2"
+                                        className='task'
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.assignee3}
+                                        placeholder="Assignee #3 (Optional)"
+                                        onChange={this.handleInputChange}
+                                        name="assignee3"
+                                        className='task'
+                                    /> 
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.assignee4}
+                                        placeholder="Assignee #4 (Optional)"
+                                        onChange={this.handleInputChange}
+                                        name="assignee4"
+                                        className='task'
+                                    />
+                                </Col>
+                            </Row>
+                            <button id="submit" onClick={this.saveBudgetTask} >Submit Project</button>
+                        </Col>
+                    </Row>
+
+                    </div>
                 </div>
-            )
-        }
-        else {
-            return (
-                <div>
-                    <form id="styling">
-                        <Row>
-                            <input required
-                                id="inputBudget"
-                                type="text"
-                                value={this.state.budget}
-                                placeholder="Budget"
-                                onChange={this.handleInputChange}
-                                name="budget"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetDesign}
-                                placeholder="Design"
-                                onChange={this.handleInputChange}
-                                name="budgetDesign"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetEngineering}
-                                placeholder="Engineering"
-                                onChange={this.handleInputChange}
-                                name="budgetEngineering"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetFinance}
-                                placeholder="Finance"
-                                onChange={this.handleInputChange}
-                                name="budgetFinance"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetHR}
-                                placeholder="HR"
-                                onChange={this.handleInputChange}
-                                name="budgetHR"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetMarketing}
-                                placeholder="Marketing"
-                                onChange={this.handleInputChange}
-                                name="budgetMarketing"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetSales}
-                                placeholder="Sales"
-                                onChange={this.handleInputChange}
-                                name="budgetSales"
-                            />
-                            <input
-                                type="text"
-                                value={this.state.budgetSecurity}
-                                placeholder="Security"
-                                onChange={this.handleInputChange}
-                                name="budgetSecurity"
-                            />
-                        </Row>
-                        <Row>
-                            <input required
-                                type="text"
-                                value={this.state.task}
-                                placeholder="Task"
-                                onChange={this.handleInputChange}
-                                name="task"
-                            />
-                        </Row>
-                        <Row>
-                            <input required
-                                type="text"
-                                value={this.state.assignee1}
-                                placeholder="Assignee #1 (Required)"
-                                onChange={this.handleInputChange}
-                                name="assignee1"
-                            />
-                        </Row>
-                        <Row>
-                            <input
-                                type="text"
-                                value={this.state.assignee2}
-                                placeholder="Assignee #2 (Optional)"
-                                onChange={this.handleInputChange}
-                                name="assignee2"
-                            />
-                        </Row>
-                        <Row>
-                            <input
-                                type="text"
-                                value={this.state.assignee3}
-                                placeholder="Assignee #3 (Optional)"
-                                onChange={this.handleInputChange}
-                                name="assignee3"
-                            />
-                        </Row>
-                        <Row>
-                            <input
-                                type="text"
-                                value={this.state.assignee4}
-                                placeholder="Assignee #4 (Optional)"
-                                onChange={this.handleInputChange}
-                                name="assignee4"
-                            />
-                        </Row>
-                        <button id="submit" onClick={this.saveBudgetTask} >Submit</button>
-                    </form>
-                </div>
-            )
-        }
-    }
+            );
+        }; 
+    };
+
+
+        //     } else if(this.state.showBudget){
+        //         return (
+        //             <div id="newBudgetFormDiv">
+        //                 <p id="newProjectTitle">Project: {this.state.title}</p>
+        //                 <Row>
+        //                     <Col className='xl6 newProjectHalfCol'>
+        //                         <p>Department Budgets</p>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input required
+        //                                     id="inputBudget"
+        //                                     type="text"
+        //                                     value={this.state.budget}
+        //                                     placeholder="Total Budget"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budget"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetDesign}
+        //                                     placeholder="Design"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetDesign"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetDesign}
+        //                                     placeholder="Design"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetDesign"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetEngineering}
+        //                                     placeholder="Engineering"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetEngineering"
+        //                                 /> 
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetFinance}
+        //                                     placeholder="Finance"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetFinance"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetHR}
+        //                                     placeholder="HR"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetHR"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetMarketing}
+        //                                     placeholder="Marketing"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetMarketing"
+        //                                 />  
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetSales}
+        //                                     placeholder="Sales"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetSales"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.budgetSecurity}
+        //                                     placeholder="Security"
+        //                                     onChange={this.handleInputChange}
+        //                                     className='budget'
+        //                                     name="budgetSecurity"
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                     </Col>
+    
+        //                     <Col className='newProjectHalfCol xl6'>
+        //                         <p>Please add an initial task: </p>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input required
+        //                                     type="text"
+        //                                     value={this.state.task}
+        //                                     placeholder="Task"
+        //                                     onChange={this.handleInputChange}
+        //                                     name="task"
+        //                                     className='task'
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input required
+        //                                     type="text"
+        //                                     value={this.state.assignee1}
+        //                                     placeholder="Assignee #1 (Required)"
+        //                                     onChange={this.handleInputChange}
+        //                                     name="assignee1"
+        //                                     className='task'
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.assignee2}
+        //                                     placeholder="Assignee #2 (Optional)"
+        //                                     onChange={this.handleInputChange}
+        //                                     name="assignee2"
+        //                                     className='task'
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.assignee3}
+        //                                     placeholder="Assignee #3 (Optional)"
+        //                                     onChange={this.handleInputChange}
+        //                                     name="assignee3"
+        //                                     className='task'
+        //                                 /> 
+        //                             </Col>
+        //                         </Row>
+        //                         <Row>
+        //                             <Col className='xl12'>
+        //                                 <input
+        //                                     type="text"
+        //                                     value={this.state.assignee4}
+        //                                     placeholder="Assignee #4 (Optional)"
+        //                                     onChange={this.handleInputChange}
+        //                                     name="assignee4"
+        //                                     className='task'
+        //                                 />
+        //                             </Col>
+        //                         </Row>
+        //                         <button id="submit" onClick={this.saveBudgetTask} >Submit</button>
+        //                     </Col>
+        //                 </Row>
+    
+        //             </div>
+        //         )
+        //     } 
+        // }
+    //     else if (this.state.showBudget) {
+    //         return (
+    //             <div id="newBudgetFormDiv">
+    //                 <p id="newProjectTitle">Project: {this.state.title}</p>
+    //                 <Row>
+    //                     <Col className='xl6 newProjectHalfCol'>
+    //                         <p>Department Budgets</p>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input required
+    //                                     id="inputBudget"
+    //                                     type="text"
+    //                                     value={this.state.budget}
+    //                                     placeholder="Total Budget"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budget"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetDesign}
+    //                                     placeholder="Design"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetDesign"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetDesign}
+    //                                     placeholder="Design"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetDesign"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetEngineering}
+    //                                     placeholder="Engineering"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetEngineering"
+    //                                 /> 
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetFinance}
+    //                                     placeholder="Finance"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetFinance"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetHR}
+    //                                     placeholder="HR"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetHR"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetMarketing}
+    //                                     placeholder="Marketing"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetMarketing"
+    //                                 />  
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetSales}
+    //                                     placeholder="Sales"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetSales"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.budgetSecurity}
+    //                                     placeholder="Security"
+    //                                     onChange={this.handleInputChange}
+    //                                     className='budget'
+    //                                     name="budgetSecurity"
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                     </Col>
+
+    //                     <Col className='newProjectHalfCol xl6'>
+    //                         <p>Please add an initial task: </p>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input required
+    //                                     type="text"
+    //                                     value={this.state.task}
+    //                                     placeholder="Task"
+    //                                     onChange={this.handleInputChange}
+    //                                     name="task"
+    //                                     className='task'
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input required
+    //                                     type="text"
+    //                                     value={this.state.assignee1}
+    //                                     placeholder="Assignee #1 (Required)"
+    //                                     onChange={this.handleInputChange}
+    //                                     name="assignee1"
+    //                                     className='task'
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.assignee2}
+    //                                     placeholder="Assignee #2 (Optional)"
+    //                                     onChange={this.handleInputChange}
+    //                                     name="assignee2"
+    //                                     className='task'
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.assignee3}
+    //                                     placeholder="Assignee #3 (Optional)"
+    //                                     onChange={this.handleInputChange}
+    //                                     name="assignee3"
+    //                                     className='task'
+    //                                 /> 
+    //                             </Col>
+    //                         </Row>
+    //                         <Row>
+    //                             <Col className='xl12'>
+    //                                 <input
+    //                                     type="text"
+    //                                     value={this.state.assignee4}
+    //                                     placeholder="Assignee #4 (Optional)"
+    //                                     onChange={this.handleInputChange}
+    //                                     name="assignee4"
+    //                                     className='task'
+    //                                 />
+    //                             </Col>
+    //                         </Row>
+    //                         <button id="submit" onClick={this.saveBudgetTask} >Submit</button>
+    //                     </Col>
+    //                 </Row>
+
+    //             </div>
+    //         )
+    //     }
+    // }
 
     render() {
         return (

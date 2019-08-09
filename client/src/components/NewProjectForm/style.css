@@ -5,18 +5,70 @@
     margin-right:30px;
 }
 
-#inputBudget{
-    height:30px;
-    width:200px;
-    font-size: 18px
-}
-
 #submitNewProject{
-    margin-left:30px;
+    margin-left:5px;
+    margin-bottom: -1%; 
     height:30px;
-    width:100px;
+    width: 30px;
     font-size: 18px
 }
 
+#body {
+    margin-top: 25%; 
+}
+
+#body.animate{
+    transform: translateY(-35%);
+    transition: transform 800ms ease;
+}
+
+#budget-form{
+    margin-top: 25%; 
+}
+
+input{
+    border-radius: 8px; 
+    border: none; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.budget, .task{
+    width: 50%; 
+    height: 30px; 
+    margin-top: 2%; 
+
+}
+
+#newBudgetFormDiv{
+    margin-top: 11%; 
+    text-align: center; 
+    display: none; 
+}
+
+#newBudgetFormDiv.hide{
+    display: inherit; 
+}
+
+#newProjectHalfCol{
+    text-align: center; 
+}
+
+.Next-logo{
+    width: 30px; 
+}
+
+#styling{
+    display: inline !important; 
+}
+
+#submit {
+    margin-top: 10%; 
+    border-radius: 8px;
+    padding: 1%; 
+    background-color: rgb(68, 167, 68); 
+    color: white; 
+
+
+}
 
 
