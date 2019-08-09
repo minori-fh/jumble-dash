@@ -28,7 +28,7 @@ module.exports = {
     update: function (req, res) {
         db.Budget.update(req.body, {
             where: {
-                id: req.params.id
+                ProjectId: req.params.id
             }
         }).then(function (dbBudget) {
             res.json(dbBudget);
