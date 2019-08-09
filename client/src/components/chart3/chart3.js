@@ -85,7 +85,7 @@ class Chart3 extends Component {
     render() {
         return (
             <div>
-                <h1>Task Completion</h1>
+                <h1 id="chart2title">Task Completion</h1>
                 <canvas className='chart3' ref={this.chart3Ref} />
             </div>
         )
