@@ -13,6 +13,7 @@ import MenuLogoutButton from '../../../components/MenuLogoutButton';
 import MenuButton from '../../../components/MenuButtons/menuButtons';
 import MenuCreateProject from '../../../components/MenuCreateProject';
 import "./Profile.css";
+import Logo from './whiteLogo.png'
 
 class Profile extends Component {
     constructor(props) {
@@ -131,13 +132,13 @@ class Profile extends Component {
                     <Col className="xl2 l3">
                         <Sidenav>
                             <div className="centerButtons">
+                                <img src={Logo} className="Side-logo" alt="logo" />
                                 {this.state.projects.map(project => (
                                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
                                 ))}
                                 
                                     <CreateProject edit={this.handleEdit} />
                                 
-
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
                         </Sidenav>
