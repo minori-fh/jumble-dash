@@ -1,0 +1,25 @@
+#nameStyling{
+    font-size: 26px;
+    font-family: 'San serif'
+}
+/* #moveRight{
+    position: relative;
+    right: 550px;
+    top: -250px;
+} */
+.formFix{
+    height: 25px;
+    width: 200px;
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+}
+#buttnStyling{
+    font-size: 16px;
+    font-family: sans-serif;
+    width:100px;
+    border-radius: 8px;
+    box-shadow: 2px 3px #c6c5c5;
+}

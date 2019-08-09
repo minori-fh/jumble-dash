@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
 import Chart1 from '../chart1';
 import Chart4 from '../chart4';
+import "./style.css"
 
 class Budget extends Component {
     constructor(props) {
@@ -85,7 +86,7 @@ class Budget extends Component {
     render() {
         return (
             <div>
-                <p>Budget Total : {this.state.budgetTotal}</p>
+                <h2 id="nameStyling"> Budget: {this.state.budgetTotal}</h2>
                 {!this.state.chartSwitch ?
                     <Chart1
                         total={this.state.budgetTotal}

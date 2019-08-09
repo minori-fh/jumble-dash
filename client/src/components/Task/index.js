@@ -13,7 +13,7 @@ function Task(props) {
             <div className = 'assignees'>{props.assignee3}</div>
             <div className = 'assignees'>{props.assignee4}</div>
         </div>
-        
+      
     );
 }
 

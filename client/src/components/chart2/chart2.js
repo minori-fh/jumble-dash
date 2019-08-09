@@ -82,7 +82,10 @@ class Chart2 extends Component {
 
   render() {
     return (
-      <canvas className='chart' ref={this.chart2Ref} />
+      <div>
+        
+        <canvas className='chart' ref={this.chart2Ref} />
+      </div>
     )
   };
 
