@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import ProblemAPI from '../../utils/API-problem';
 import Chart2 from '../chart2';
 import { Col, Row } from "../Grid";
+import "./style.css";
 
 class Problems extends Component {
     constructor(props) {
@@ -125,7 +126,7 @@ class Problems extends Component {
         return (
             <div>
                 <div>
-                    <h1>PROBLEMS</h1>
+                    <p id='name-styling'>Task Issues</p>
                     <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
                     <Row>
                         <form>

@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500&display=swap');
+
 #nameStyling{
-    font-size: 26px;
-    font-family: 'San serif'
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(5, 5, 41) 
 }
 /* #moveRight{
     position: relative;
