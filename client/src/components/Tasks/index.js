@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
 import Chart3 from "../chart3";
+import "./style.css"
 
 class Tasks extends Component {
     constructor(props) {
@@ -146,7 +147,7 @@ class Tasks extends Component {
                     complete={this.state.tasksComplete} />
                 <Row>
                     <Col className="xl12">
-                        <h1>Tasks</h1>
+                        <h1 id="nameStyling">Tasks</h1>
                         <hr></hr>
                     </Col>
                 </Row>
@@ -162,8 +163,9 @@ class Tasks extends Component {
                     ))}
                 </Row>
                 <Row>
-                    <form>
+                    <form id="moveRight" >
                         <input required
+                            class="formFix"
                             id="addTask"
                             type="text"
                             value={this.state.newTask}
@@ -171,35 +173,35 @@ class Tasks extends Component {
                             onChange={this.handleInputChange}
                             name="newTask"
                         />
-                        <input
+                        <input class="formFix"
                             type="text"
                             value={this.state.newAssignee1}
                             placeholder="Assignee #1"
                             onChange={this.handleInputChange}
                             name="newAssignee1"
                         />
-                        <input
+                        <input class="formFix"
                             type="text"
                             value={this.state.newAssignee2}
                             placeholder="Assignee #2"
                             onChange={this.handleInputChange}
                             name="newAssignee2"
                         />
-                        <input
+                        <input class="formFix"
                             type="text"
                             value={this.state.newAssignee3}
                             placeholder="Assignee #3"
                             onChange={this.handleInputChange}
                             name="newAssignee3"
                         />
-                        <input
+                        <input class="formFix"
                             type="text"
                             value={this.state.newAssignee4}
                             placeholder="Assignee #4"
                             onChange={this.handleInputChange}
                             name="newAssignee4"
                         />
-                        <button onClick={this.addTask}> Submit </button>
+                        <button id="buttnStyling" onClick={this.addTask}> Submit </button>
                     </form>
                 </Row>
             </div>

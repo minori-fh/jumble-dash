@@ -14,13 +14,15 @@ class Chart3 extends Component {
             data: {
                 labels: ['Total Tasks (in %)'],
                 datasets: [{
-                    label: 'Incomplete',
-                    data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
+
+
+                    label: 'Complete',
+                    data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
                     backgroundColor: ['#e47676']
                 },
                 {
-                    label: 'Complete',
-                    data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
+                    label: 'Incomplete',
+                    data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
                     backgroundColor: ['#e47676']
                 }
                 ]
@@ -34,7 +36,7 @@ class Chart3 extends Component {
                         stacked: true,
                         ticks: {
                             min: 0,
-                            max: ((this.props.complete + this.props.incomplete)/ (this.props.complete + this.props.incomplete)) * 100 
+                            max: ((this.props.complete + this.props.incomplete) / (this.props.complete + this.props.incomplete)) * 100
                         }
                     }]
                 }
@@ -50,16 +52,18 @@ class Chart3 extends Component {
                 data: {
                     labels: ['Total Tasks (in %)'],
                     datasets: [{
-                        label: 'Incomplete',
-                        data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
-                        backgroundColor: ['#e47676'],
-                        hoverBackgroundColor: ['#e47676']
-                    },
-                    {
+
                         label: 'Complete',
                         data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
                         backgroundColor: ['#6ec56e'],
                         hoverBackgroundColor: ['#6ec56e']
+
+                    },
+                    {
+                        label: 'Incomplete',
+                        data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
+                        backgroundColor: ['#e47676'],
+                        hoverBackgroundColor: ['#e47676']
                     }
                     ]
                 },
@@ -72,7 +76,7 @@ class Chart3 extends Component {
                             stacked: true,
                             ticks: {
                                 min: 0,
-                                max: 100 
+                                max: 100
                             }
                         }]
                     }
@@ -83,8 +87,10 @@ class Chart3 extends Component {
 
     render() {
         return (
-            
-            <canvas className='chart' ref={this.chart3Ref} />
+            <div>
+                <h2 id="nameStyling">Task Completion</h2>
+                <canvas className='chart' ref={this.chart3Ref} />
+            </div>
         )
     };
 

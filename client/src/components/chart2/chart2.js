@@ -49,7 +49,7 @@ class Chart2 extends Component {
       this.chart2.destroy();
 
       console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
-      console.log("counter",this.props.counter)
+      console.log("counter", this.props.counter)
 
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
@@ -64,7 +64,7 @@ class Chart2 extends Component {
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data:  this.props.solved
+              data: this.props.solved
             }
           ]
         },
@@ -86,7 +86,10 @@ class Chart2 extends Component {
 
   render() {
     return (
-      <canvas className='chart' ref={this.chart2Ref} />
+      <div>
+        
+        <canvas className='chart' ref={this.chart2Ref} />
+      </div>
     )
   };
 
