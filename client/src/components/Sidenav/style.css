@@ -1,7 +1,8 @@
 .navBar{
     height:100vh;
     display:flex;
-    width: 100%;
+    width: 15%;
     background-color: rgb(5, 5, 41); 
-    border-right:2px solid lightgray
+    border-right:2px solid lightgray;
+    position:fixed;
 }

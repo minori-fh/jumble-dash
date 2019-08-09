@@ -23,10 +23,12 @@
  .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    max-width: span 12;
  }
  
  .xl0 {
     grid-column: span 0;
+    max-width: span 0; 
  }
  .xl1 {
     grid-column: span 1;
@@ -45,6 +47,7 @@
  }
  .xl6 {
     grid-column: span 6;
+    max-width: span 6;
  }
  .xl7 {
     grid-column: span 7;
@@ -63,6 +66,7 @@
  }
  .xl12 {
     grid-column: span 12;
+    max-width: span 12;
  }
  
  @media screen and (max-width: 992px) {

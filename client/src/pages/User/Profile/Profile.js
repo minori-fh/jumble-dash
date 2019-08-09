@@ -13,6 +13,7 @@ import MenuLogoutButton from '../../../components/MenuLogoutButton';
 import MenuButton from '../../../components/MenuButtons/menuButtons';
 import MenuCreateProject from '../../../components/MenuCreateProject';
 import "./Profile.css";
+import Logo from './whiteLogo.png'
 
 class Profile extends Component {
     constructor(props) {
@@ -75,7 +76,7 @@ class Profile extends Component {
     }
 
     handleEdit = () => {
-
+        
         if(this.state.showDash === false){
             this.setState({
                 showDash: true
@@ -131,13 +132,13 @@ class Profile extends Component {
                     <Col className="xl2 l3">
                         <Sidenav>
                             <div className="centerButtons">
+                                <img src={Logo} className="Side-logo" alt="logo" />
                                 {this.state.projects.map(project => (
                                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
                                 ))}
                                 
                                     <CreateProject edit={this.handleEdit} />
                                 
-
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
                             </div>
                         </Sidenav>
@@ -147,7 +148,7 @@ class Profile extends Component {
                             !this.state.edit ?
                                 <Dashboard projectID={this.state.selectedProject}>
                                 </Dashboard>
-                                : <NewProjectForm edit={this.handleEdit} />
+                                : <NewProjectForm   edit={this.handleEdit} projectID={this.state.selectedProject} />
                         }
                     </Col>
                 </Row>
