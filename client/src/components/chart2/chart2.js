@@ -9,7 +9,7 @@ class Chart2 extends Component {
   }
 
   componentDidMount() {
-
+    console.log(this.props.unsolved);
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
@@ -20,12 +20,12 @@ class Chart2 extends Component {
           {
             label: "Unsolved Problems",
             backgroundColor: "red",
-            data: [40, 29]
+            data: this.props.unsolved
           },
           {
             label: "Solved Problems",
             backgroundColor: "green",
-            data: [26, 50]
+            data: this.props.solved
           }
         ]
       },
@@ -47,6 +47,7 @@ class Chart2 extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.counter !== prevProps.counter) {
       this.chart2.destroy();
+      console.log(this.props);
 
       console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
       console.log("counter",this.props.counter)
@@ -64,7 +65,7 @@ class Chart2 extends Component {
             {
               label: "Complete",
               backgroundColor: "green",
-              data:  this.props.solved
+              data: [4, 5]
             }
           ]
         },

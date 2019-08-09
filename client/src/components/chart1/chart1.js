@@ -22,7 +22,14 @@ class Chart1 extends Component {
       data: {
         labels: this.props.depts,
         datasets: [{
-          data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
+          data: 
+            [this.props.marketing, 
+            this.props.hr, 
+            this.props.design, 
+            this.props.engineering, 
+            this.props.sales, 
+            this.props.finance, 
+            this.props.security],
           backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
         }]
       }

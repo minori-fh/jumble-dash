@@ -13,6 +13,7 @@ class Problems extends Component {
             solvedProblems: [],
             unsolvedProblems: [],
             selectedTask: "",
+            selectedProblem: "",
             newProblem: "",
             counter: 0,
             unsolved: 0,
@@ -120,7 +121,7 @@ class Problems extends Component {
             console.log("NEWProblem", res.data)
             let problemsList = this.state.unsolvedProblems;
             const newProblem = [res.data.TaskId, res.data];
-            problemsList.push(newProblem)
+            problemsList.push(newProblem);
             this.setState({
                 unsolvedProblems: problemsList,
                 newProblem: "",
@@ -134,12 +135,13 @@ class Problems extends Component {
 
     calculateUnsolved = () => {
 
-        const unsolved = this.state.unsolvedProblems.map(problem => problem[1].length);
-        const solved = this.state.solvedProblems.map(problem => problem[1].length);
+        let unsolved = this.state.unsolvedProblems[0][1].map(problem => problem.length);
+        let solved = this.state.solvedProblems.map(problem => problem[1].length);
         this.setState({
             unsolved: unsolved,
             solved: solved
-        })
+        });
+        console.log(this.state.unsolved);
     }
 
     render() {
@@ -154,6 +156,7 @@ class Problems extends Component {
                                 <p>{problem.problem}</p>
                             </div>
                         ))}
+                        {/* {this.state.} */}
                     </Row>
                     <Row>
                         <form>
@@ -173,7 +176,24 @@ class Problems extends Component {
                             />
                             <button onClick={this.addProblem}> Submit </button>
                         </form>
-                        {console.log(this.state.unsolvedProblems)}
+                        <form>
+                            <div>{this.state.unsolvedProblems}</div>
+                            <select name="selectedProblem" value={this.state.selectedProblem} onChange={this.handleInputChange}>
+                                <option>Please Select a Problem</option>
+                                {this.state.unsolvedProblems.map((problem, i) => (
+                                    <option value={problem.id} key={i}>{problem.task}</option>
+                                ))}
+                            </select>
+                            <input
+                                type="text"
+                                value={this.state.newProblem}
+                                placeholder="What seems to be the problem?"
+                                onChange={this.handleInputChange}
+                                name="newProblem"
+                            />
+                            <button onClick={this.addProblem}> Submit </button>
+                        </form>
+                        {console.log(this.state.unsolved)}
                     </Row>
                 </div>
             </div>
