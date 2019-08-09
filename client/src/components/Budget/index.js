@@ -86,7 +86,7 @@ class Budget extends Component {
     render() {
         return (
             <div>
-                <h2 id="nameStyling"> Budget: {this.state.budgetTotal}</h2>
+                <h2 id="nameStyling">Budget: {this.state.budgetTotal}</h2>
                 {!this.state.chartSwitch ?
                     <Chart1
                         total={this.state.budgetTotal}
