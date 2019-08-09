@@ -143,6 +143,7 @@ class Problems extends Component {
                                     placeholder="What seems to be the problem?"
                                     onChange={this.handleInputChange}
                                     name="newProblem"
+                                    className='newProblem'
                                 />
                                 <button onClick={this.addProblem}> Submit </button>
                             </form>

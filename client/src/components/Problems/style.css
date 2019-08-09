@@ -41,7 +41,7 @@ select{
     line-height: 30px; 
 }
 
-input{
+.newProblem{
     height: 60px; 
     width: 400px; 
     margin-left: 3%; 
