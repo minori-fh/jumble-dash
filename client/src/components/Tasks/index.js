@@ -141,10 +141,10 @@ class Tasks extends Component {
             <div>
                 <Chart3 counter={this.state.counter} incomplete={this.state.tasksIncomplete}
                     complete={this.state.tasksComplete} />
-                <Row>
+                <Row id='makeNewTasks'>
                     <Col className="xl12">
                         <h1 id="nameStyling">Tasks</h1>
-                        <hr></hr>
+                        <hr width="80%"/>
                     </Col>
                 </Row>
                 <Row>

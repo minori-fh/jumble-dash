@@ -126,7 +126,8 @@ class Problems extends Component {
         return (
             <div>
                 <div>
-                    <p id='name-styling'>Task Issues</p>
+                    <h1 id='name-styling'>Task Issues</h1>
+                    <hr width="80%"/>
                     <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
                     <Row>
                         <form>
