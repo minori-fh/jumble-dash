@@ -5,3 +5,49 @@
     font-size:24px;
     color: rgb(5, 5, 41) 
 }
+
+#newIssue{
+    display: block;
+
+}
+
+#viewIssue{
+    display: block; 
+
+}
+
+#selectedTask{
+    height: 5%; 
+
+}
+
+#viewTaskProblem{
+    height: 5%; 
+
+}
+
+.newIssue{
+    margin-bottom: 2%;
+    text-align: left; 
+}
+
+.viewIssue{
+    margin-bottom: 2%; 
+    text-align: left; 
+}
+
+select{
+    height: 30px;
+    line-height: 30px; 
+}
+
+input{
+    height: 60px; 
+    width: 400px; 
+    margin-left: 3%; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+button{
+    margin-left: 3%; 
+}

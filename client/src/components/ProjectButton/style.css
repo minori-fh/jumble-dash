@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 .sideBtn{
+    margin-left: 0px !important; 
     height: auto; 
     width: 100%; 
     background-color: transparent; 

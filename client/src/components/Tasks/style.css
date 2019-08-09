@@ -10,6 +10,13 @@
     right: 550px;
     top: -250px;
 } */
+
+#moveRight{
+    padding-left: 25%;
+    padding-right: 25%; 
+    margin-top: 8%; 
+}
+
 .formFix{
     height: 25px;
     width: 200px;
@@ -24,9 +31,13 @@
     font-family: sans-serif;
     width:100px;
     border-radius: 8px;
-    box-shadow: 2px 3px #c6c5c5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 #makeNewTasks{
     margin-top: 10%; 
+}
+
+#taskList{
+    margin-bottom: 5%; 
 }
