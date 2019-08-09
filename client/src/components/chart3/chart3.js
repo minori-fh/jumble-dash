@@ -16,12 +16,12 @@ class Chart3 extends Component {
                 datasets: [{
                     label: 'Incomplete',
                     data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
-                    backgroundColor: ['Red']
+                    backgroundColor: ['#e47676']
                 },
                 {
                     label: 'Complete',
                     data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
-                    backgroundColor: ['Green']
+                    backgroundColor: ['#e47676']
                 }
                 ]
             },
@@ -52,14 +52,14 @@ class Chart3 extends Component {
                     datasets: [{
                         label: 'Incomplete',
                         data: [(this.props.incomplete / (this.props.complete + this.props.incomplete)) * 100],
-                        backgroundColor: ['Red'],
-                        hoverBackgroundColor: ['Red']
+                        backgroundColor: ['#e47676'],
+                        hoverBackgroundColor: ['#e47676']
                     },
                     {
                         label: 'Complete',
                         data: [(this.props.complete / (this.props.complete + this.props.incomplete)) * 100],
-                        backgroundColor: ['Green'],
-                        hoverBackgroundColor: ['Green']
+                        backgroundColor: ['#6ec56e'],
+                        hoverBackgroundColor: ['#6ec56e']
                     }
                     ]
                 },

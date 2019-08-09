@@ -23,7 +23,7 @@ class Chart1 extends Component {
         labels: this.props.depts,
         datasets: [{
           data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
-          backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+          backgroundColor: ['#e47676', '#ffb01d', '#b0fff4', '#6ec56e', '#9e9e9e', '#47b4b4', '#ffff89']
         }]
       }
     });
@@ -38,7 +38,7 @@ class Chart1 extends Component {
           labels: this.props.depts,
           datasets: [{
             data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
-            backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'teal', 'orange']
+            backgroundColor: ['#e47676', '#ffb01d', '#b0fff4', '#6ec56e', '#9e9e9e', '#47b4b4', '#ffff89']
           }]
         }
       });
@@ -48,7 +48,7 @@ class Chart1 extends Component {
   render() {
     return (
       <div>
-        <canvas className='chart' ref={this.chart1Ref} />
+        <canvas id= 'chart1' className='chart' ref={this.chart1Ref} />
       </div>
     )
   };

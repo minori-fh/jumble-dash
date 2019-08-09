@@ -152,11 +152,13 @@ class Tasks extends Component {
                 </Row>
                 <Row>
                     {this.state.tasks.map((task, i) => (
-                        <div key={task.id}>
-                            <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
-                            <Task task={task.task} assignee1={task.assignee1}
-                                assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
-                        </div>
+                        <Col className='xl3'>
+                            <div key={task.id}>
+                                <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
+                                <Task task={task.task} assignee1={task.assignee1}
+                                    assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
+                            </div>
+                        </Col>
                     ))}
                 </Row>
                 <Row>

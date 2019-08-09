@@ -1,8 +1,11 @@
 .MenuNewProject {
     border-radius: 5px 20px 5px;
-    height: 10%; 
+    height: 8%; 
     font-size: 24px;
     text-align: center; 
     margin-top: 5%;  
-    width: 5%; 
+    width: 2%; 
+    border: none; 
+    color: #ffb01d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
