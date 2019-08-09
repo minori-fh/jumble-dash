@@ -15,8 +15,8 @@ class Problems extends Component {
             selectedTask: "",
             newProblem: "",
             counter: 0,
-            unsolved: 0,
-            solved: 0
+            unsolved: [],
+            solved: []
         }
     }
 
@@ -29,6 +29,8 @@ class Problems extends Component {
             })
             const unsolvedProblemsArr = [];
             const solvedProblemsArr = [];
+            const solved = [];
+            const unsolved = [];
 
             for (let i = 0; i < this.state.tasks.length; i++) {
 
@@ -36,12 +38,14 @@ class Problems extends Component {
                     console.log("WTF IS GOING ON")
                     const taskProblems = [this.state.tasks[i].id, res.data];
                     unsolvedProblemsArr.push(taskProblems);
-                })
-                    .catch(err => console.log(err.message));
+                    unsolved.push(parseInt(res.data.length));
 
-                ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
-                    const taskProblems = [this.state.tasks[i].id, res.data];
-                    solvedProblemsArr.push(taskProblems);
+                    ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
+                        const taskProblems = [this.state.tasks[i].id, res.data];
+                        solvedProblemsArr.push(taskProblems);
+                        solved.push(parseInt(res.data.length));
+                    })
+                        .catch(err => console.log(err.message));
                 })
                     .catch(err => console.log(err.message));
             }
@@ -49,6 +53,8 @@ class Problems extends Component {
             this.setState({
                 unsolvedProblems: unsolvedProblemsArr,
                 solvedProblems: solvedProblemsArr,
+                solved: solved,
+                unsolved: unsolved,
                 counter: this.state.counter + 1
             });
         })
@@ -65,29 +71,40 @@ class Problems extends Component {
 
                 const unsolvedProblemsArr = [];
                 const solvedProblemsArr = [];
+                const unsolved = [];
+                const solved = [];
 
                 for (let i = 0; i < this.state.tasks.length; i++) {
 
                     ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
                         const taskProblems = [this.state.tasks[i].id, res.data];
                         unsolvedProblemsArr.push(taskProblems);
-                    })
-                        .catch(err => console.log(err.message));
+                        unsolved.push(parseInt(res.data.length));
 
-                    ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
-                        const taskProblems = [this.state.tasks[i].id, res.data];
-                        solvedProblemsArr.push(taskProblems);
+                        ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
+                            const taskProblems = [this.state.tasks[i].id, res.data];
+                            solvedProblemsArr.push(taskProblems);
+                            solved.push(parseInt(res.data.length));
+                        })
+                            .catch(err => console.log(err.message));
+
                     })
                         .catch(err => console.log(err.message));
                 }
 
-                this.calculateUnsolved();
+                console.log("UNSOLVED PROBLEMS HERE", unsolvedProblemsArr);
+
+                console.log("THESE ARE UNSOLVED PROBLEMS", unsolved);
+                console.log("WHAT ARE THOSE", unsolved);
+
 
                 this.setState({
                     unsolvedProblems: unsolvedProblemsArr,
                     solvedProblems: solvedProblemsArr,
                     selectedTask: "",
                     newProblem: "",
+                    solved: solved,
+                    unsolved: unsolved,
                     counter: this.state.counter + 1
                 });
             })
@@ -132,21 +149,12 @@ class Problems extends Component {
             .catch(err => console.log(err.message));
     }
 
-    calculateUnsolved = () => {
-
-        const unsolved = this.state.unsolvedProblems.map(problem => problem[1].length);
-        const solved = this.state.solvedProblems.map(problem => problem[1].length);
-        this.setState({
-            unsolved: unsolved,
-            solved: solved
-        })
-    }
-
     render() {
         return (
             <div>
                 <div>
                     <h1>PROBLEMS</h1>
+                    {console.log("WHYYYYYYYYYYYYYYYYYYYYY", [1,2,3,4,5])}
                     <Chart2 counter={this.state.counter} projectID={this.props.projectID} tasks={this.state.tasks} unsolved={this.state.unsolved} solved={this.state.solved} />
                     <Row>
                         {this.state.unsolvedProblems.map((problem, i) => (
@@ -173,7 +181,6 @@ class Problems extends Component {
                             />
                             <button onClick={this.addProblem}> Submit </button>
                         </form>
-                        {console.log(this.state.unsolvedProblems)}
                     </Row>
                 </div>
             </div>

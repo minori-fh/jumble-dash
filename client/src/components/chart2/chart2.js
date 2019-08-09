@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var Chart = require("chart.js")
+var Chart = require("chart.js");
 
 class Chart2 extends Component {
 
@@ -20,12 +20,12 @@ class Chart2 extends Component {
           {
             label: "Unsolved Problems",
             backgroundColor: "red",
-            data: [40, 29]
+            data: this.props.unsolved
           },
           {
             label: "Solved Problems",
             backgroundColor: "green",
-            data: [26, 50]
+            data: this.props.solved
           }
         ]
       },
@@ -35,7 +35,7 @@ class Chart2 extends Component {
             {
               ticks: {
                 min: 0,
-                max: 100
+                max: 50
               }
             }
           ]
@@ -48,8 +48,11 @@ class Chart2 extends Component {
     if (this.props.counter !== prevProps.counter) {
       this.chart2.destroy();
 
-      console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
-      console.log("counter",this.props.counter)
+      console.log("OUT TASK MF", this.props.tasks);
+      console.log("PROBLEMS WE HAVE", this.props.unsolved);
+
+      console.log("WHAT EVEN IS THIS (ARRAY?)", typeof(this.props.unsolved));
+      console.log("WHAT EVEN IS THIS (UNDEF)", this.props.unsolved[0]);
 
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
@@ -64,7 +67,7 @@ class Chart2 extends Component {
             {
               label: "Complete",
               backgroundColor: "green",
-              data:  this.props.solved
+              data: [2,3]
             }
           ]
         },
@@ -74,7 +77,7 @@ class Chart2 extends Component {
               {
                 ticks: {
                   min: 0,
-                  max: 100
+                  max: 50
                 }
               }
             ]
