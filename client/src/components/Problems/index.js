@@ -145,7 +145,7 @@ class Problems extends Component {
                                     name="newProblem"
                                     className='newProblem'
                                 />
-                                <button onClick={this.addProblem}> Submit </button>
+                                <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
                             </form>
                         </Col>
                         <Col className='xl3 viewIssue'>
@@ -156,14 +156,14 @@ class Problems extends Component {
                                     <option value={task.id} key={i}>{task.task}</option>
                                 ))}
                             </select>
-                            <button onClick={this.viewProblem}> Submit </button>
+                            <button id='taskIssuebtn2' onClick={this.viewProblem}> Submit </button>
                         </form>
                         </Col>
                         
                         <div>{this.state.problemsList.map((problem) => (
                             <Row key={problem.id}>
                                 {problem.problem}
-                                <button key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
+                                <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
                             </Row>
                         ))}</div>
                     

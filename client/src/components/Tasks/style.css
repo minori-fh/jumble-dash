@@ -26,12 +26,14 @@
     margin-bottom: 4px;
     border-radius: 8px;
 }
+
 #buttnStyling{
-    font-size: 16px;
-    font-family: sans-serif;
-    width:100px;
+    margin-top: 10%; 
     border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+    padding: 1%; 
+    width: 100px; 
+    background-color: rgb(68, 167, 68); 
+    color: white; 
 }
 
 #makeNewTasks{
