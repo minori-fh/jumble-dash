@@ -19,13 +19,13 @@ class Chart2 extends Component {
         datasets: [
           {
             label: "Unsolved Problems",
-            backgroundColor: "red",
-            data: this.props.unsolved
+            backgroundColor: "#df4343",
+            data: [40, 29]
           },
           {
             label: "Solved Problems",
-            backgroundColor: "green",
-            data: this.props.solved
+            backgroundColor: "#379937",
+            data: [26, 50]
           }
         ]
       },
@@ -59,13 +59,13 @@ class Chart2 extends Component {
           datasets: [
             {
               label: "Incomplete",
-              backgroundColor: "red",
+              backgroundColor: "#df4343",
               data: this.props.unsolved
             },
             {
               label: "Complete",
-              backgroundColor: "green",
-              data: [4, 5]
+              backgroundColor: "#379937",
+              data:  this.props.solved
             }
           ]
         },
