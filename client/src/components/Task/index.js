@@ -4,16 +4,14 @@ import "./style.css"
 
 function Task(props) {
     return (
-      
-        <div >
-              <Col className="xl3">
-            <h3 id="nameStyling">{props.task}</h3>
-            <p id="nameStyling">Assignees</p>
-            <div>{props.assignee1}</div>
-            <div>{props.assignee2}</div>
-            <div>{props.assignee3}</div>
-            <div>{props.assignee4}</div>
-            </Col>
+        // <Col className="xl3">
+        <div id='newTaskList'>
+            <p id='newTask'>{props.task}</p>
+            <p id='assignees'>Assigned to: </p>
+            <div className = 'assignees'>{props.assignee1}</div>
+            <div className = 'assignees'>{props.assignee2}</div>
+            <div className = 'assignees'>{props.assignee3}</div>
+            <div className = 'assignees'>{props.assignee4}</div>
         </div>
       
     );
