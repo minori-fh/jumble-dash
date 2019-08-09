@@ -16,7 +16,9 @@ class Problems extends Component {
             newProblem: "",
             counter: 0,
             unsolved: [],
-            solved: []
+            solved: [],
+            test: 5,
+            test2: 9
         }
     }
 
@@ -27,38 +29,55 @@ class Problems extends Component {
             this.setState({
                 tasks: res.data
             })
-            const unsolvedProblemsArr = [];
-            const solvedProblemsArr = [];
-            const solved = [];
-            const unsolved = [];
-
-            for (let i = 0; i < this.state.tasks.length; i++) {
-
-                ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
-                    console.log("WTF IS GOING ON")
-                    const taskProblems = [this.state.tasks[i].id, res.data];
-                    unsolvedProblemsArr.push(taskProblems);
-                    unsolved.push(parseInt(res.data.length));
-
-                    ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
-                        const taskProblems = [this.state.tasks[i].id, res.data];
-                        solvedProblemsArr.push(taskProblems);
-                        solved.push(parseInt(res.data.length));
-                    })
-                        .catch(err => console.log(err.message));
-                })
-                    .catch(err => console.log(err.message));
-            }
-
-            this.setState({
-                unsolvedProblems: unsolvedProblemsArr,
-                solvedProblems: solvedProblemsArr,
-                solved: solved,
-                unsolved: unsolved,
-                counter: this.state.counter + 1
-            });
         })
             .catch(err => console.log(err.message));
+
+        this.loadProblems();
+    }
+
+    loadProblems = () => {
+        const unsolvedProblemsArr = [];
+        const unsolved = [];
+
+        for (let i = 0; i < this.state.tasks.length; i++) {
+
+            ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
+                console.log("WTF IS GOING ON")
+                const taskProblems = [this.state.tasks[i].id, res.data];
+                unsolvedProblemsArr.push(taskProblems);
+                unsolved.push(parseInt(res.data.length));
+            })
+                .catch(err => console.log(err.message));
+        }
+
+        this.setState({
+            unsolvedProblems: unsolvedProblemsArr,
+            unsolved: unsolved,
+            counter: this.state.counter + 1
+        });
+
+        this.loadProblems2();
+    }
+
+    loadProblems2 = () => {
+        const solvedProblemsArr = [];
+        const solved = [];
+
+        for (let i = 0; i < this.state.tasks.length; i++) {
+            ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
+                const taskProblems = [this.state.tasks[i].id, res.data];
+                solvedProblemsArr.push(taskProblems);
+                solved.push(parseInt(res.data.length));
+            })
+                .catch(err => console.log(err.message));
+        }
+
+
+        this.setState({
+            solvedProblems: solvedProblemsArr,
+            solved: solved,
+            counter: this.state.counter + 1
+        });
     }
 
     componentDidUpdate(prevProps) {
@@ -154,8 +173,7 @@ class Problems extends Component {
             <div>
                 <div>
                     <h1>PROBLEMS</h1>
-                    {console.log("WHYYYYYYYYYYYYYYYYYYYYY", [1,2,3,4,5])}
-                    <Chart2 counter={this.state.counter} projectID={this.props.projectID} tasks={this.state.tasks} unsolved={this.state.unsolved} solved={this.state.solved} />
+                    <Chart2 counter={this.state.counter} projectID={this.props.projectID} tasks={this.state.tasks} unsolved={this.state.test} solved={this.state.test2} />
                     <Row>
                         {this.state.unsolvedProblems.map((problem, i) => (
                             <div key={i}>

@@ -57,17 +57,17 @@ class Chart2 extends Component {
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: this.props.tasks.map(task => task.task),
+          labels: ["Selected Task"],
           datasets: [
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: this.props.unsolved
+              data: [this.props.unsolved]
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data:  this.props.solved
+              data:  [this.props.solved]
             }
           ]
         },
