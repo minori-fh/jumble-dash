@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import ProblemAPI from '../../utils/API-problem';
 import Chart2 from '../chart2';
 import { Col, Row } from "../Grid";
+import "./style.css";
 
 class Problems extends Component {
     constructor(props) {
@@ -125,41 +126,47 @@ class Problems extends Component {
         return (
             <div>
                 <div>
-                    <h1>PROBLEMS</h1>
+                    <h1 id='name-styling'>Task Issues</h1>
+                    <hr width="80%"/>
                     <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
-                    <Row>
-                        <form>
-                            <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
-                                <option>Please Select a Task</option>
-                                {this.state.tasks.map((task, i) => (
-                                    <option value={task.id} key={i}>{task.task}</option>
-                                ))}
-                            </select>
-                            <input
-                                type="text"
-                                value={this.state.newProblem}
-                                placeholder="What seems to be the problem?"
-                                onChange={this.handleInputChange}
-                                name="newProblem"
-                            />
-                            <button onClick={this.addProblem}> Submit </button>
-                        </form>
-                        <form>
+                        <Col className='xl3 newIssue'>
+                            <form id='newIssue'>
+                                <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
+                                    <option id='selectedTask'>Please Select a Task</option>
+                                    {this.state.tasks.map((task, i) => (
+                                        <option value={task.id} key={i}>{task.task}</option>
+                                    ))}
+                                </select>
+                                <input
+                                    type="text"
+                                    value={this.state.newProblem}
+                                    placeholder="What seems to be the problem?"
+                                    onChange={this.handleInputChange}
+                                    name="newProblem"
+                                    className='newProblem'
+                                />
+                                <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
+                            </form>
+                        </Col>
+                        <Col className='xl3 viewIssue'>
+                        <form id='viewIssue'>
                             <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
-                                <option>Please Select a Task</option>
+                                <option id='viewTaskProblem' >Please Select a Task</option>
                                 {this.state.tasks.map((task, i) => (
                                     <option value={task.id} key={i}>{task.task}</option>
                                 ))}
                             </select>
-                            <button onClick={this.viewProblem}> Submit </button>
+                            <button id='taskIssuebtn2' onClick={this.viewProblem}> Submit </button>
                         </form>
+                        </Col>
+                        
                         <div>{this.state.problemsList.map((problem) => (
                             <Row key={problem.id}>
                                 {problem.problem}
-                                <button key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
+                                <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
                             </Row>
                         ))}</div>
-                    </Row>
+                    
                 </div>
             </div>
         );

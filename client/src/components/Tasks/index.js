@@ -141,64 +141,70 @@ class Tasks extends Component {
             <div>
                 <Chart3 counter={this.state.counter} incomplete={this.state.tasksIncomplete}
                     complete={this.state.tasksComplete} />
-                <Row>
+                <Row id='makeNewTasks'>
                     <Col className="xl12">
                         <h1 id="nameStyling">Tasks</h1>
-                        <hr></hr>
+                        <hr width="80%"/>
                     </Col>
                 </Row>
-                <Row>
+                <Row id='taskList'>
                     {this.state.tasks.map((task, i) => (
                         <Col key={i} className='xl3'>
                             <div key={task.id}>
-                                <button key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
                                 <Task task={task.task} assignee1={task.assignee1}
                                     assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
+                                <button key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
                             </div>
                         </Col>
                     ))}
                 </Row>
+                <hr width="80%"/>
                 <Row>
-                    <form id="moveRight" >
-                        <input required
-                            className="formFix"
-                            id="addTask"
-                            type="text"
-                            value={this.state.newTask}
-                            placeholder="Task Name"
-                            onChange={this.handleInputChange}
-                            name="newTask"
-                        />
-                        <input className="formFix"
-                            type="text"
-                            value={this.state.newAssignee1}
-                            placeholder="Assignee #1"
-                            onChange={this.handleInputChange}
-                            name="newAssignee1"
-                        />
-                        <input className="formFix"
-                            type="text"
-                            value={this.state.newAssignee2}
-                            placeholder="Assignee #2"
-                            onChange={this.handleInputChange}
-                            name="newAssignee2"
-                        />
-                        <input className="formFix"
-                            type="text"
-                            value={this.state.newAssignee3}
-                            placeholder="Assignee #3"
-                            onChange={this.handleInputChange}
-                            name="newAssignee3"
-                        />
-                        <input className="formFix"
-                            type="text"
-                            value={this.state.newAssignee4}
-                            placeholder="Assignee #4"
-                            onChange={this.handleInputChange}
-                            name="newAssignee4"
-                        />
-                        <button id="buttnStyling" onClick={this.addTask}> Submit </button>
-                    </form>
+                    <Col className="xl12">
+                        <div>
+                            <form id="moveRight" >
+                            <p><b>Make a New Task</b></p>
+                                <input required
+                                    className="formFix"
+                                    id="addTask"
+                                    type="text"
+                                    value={this.state.newTask}
+                                    placeholder="Task Name"
+                                    onChange={this.handleInputChange}
+                                    name="newTask"
+                                />
+                                <input className="formFix"
+                                    type="text"
+                                    value={this.state.newAssignee1}
+                                    placeholder="Assignee #1"
+                                    onChange={this.handleInputChange}
+                                    name="newAssignee1"
+                                />
+                                <input className="formFix"
+                                    type="text"
+                                    value={this.state.newAssignee2}
+                                    placeholder="Assignee #2"
+                                    onChange={this.handleInputChange}
+                                    name="newAssignee2"
+                                />
+                                <input className="formFix"
+                                    type="text"
+                                    value={this.state.newAssignee3}
+                                    placeholder="Assignee #3"
+                                    onChange={this.handleInputChange}
+                                    name="newAssignee3"
+                                />
+                                <input className="formFix"
+                                    type="text"
+                                    value={this.state.newAssignee4}
+                                    placeholder="Assignee #4"
+                                    onChange={this.handleInputChange}
+                                    name="newAssignee4"
+                                />
+                                <button id="buttnStyling" onClick={this.addTask}> Submit </button>
+                            </form>
+                        </div>
+                    </Col>
                 </Row>
             </div>
         );

@@ -90,6 +90,7 @@ class Chart3 extends Component {
         return (
             <div>
                 <h1 id="chart2title">Task Completion</h1>
+                <hr width="80%"/>
                 <canvas className='chart3' ref={this.chart3Ref} />
             </div>
         )
