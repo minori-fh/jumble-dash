@@ -89,7 +89,8 @@ class Problems extends Component {
             });
             ProblemAPI.getSolvedProblems(this.state.viewTaskProblem).then(res => {
                 this.setState({
-                    solved: res.data.length
+                    solved: res.data.length,
+                    counter: this.state.counter + 1
                 })
             })
                 .catch(err => console.log(err.message));
@@ -127,15 +128,7 @@ class Problems extends Component {
                     <h1>PROBLEMS</h1>
                     <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
                     <Row>
-                        {this.state.unsolvedProblems.map((problem, i) => (
-                            <div key={i}>
-                                <p>{problem.problem}</p>
-                            </div>
-                        ))}
-                    </Row>
-                    <Row>
                         <form>
-                            <div>{this.state.selectedTask}</div>
                             <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
                                 <option>Please Select a Task</option>
                                 {this.state.tasks.map((task, i) => (
@@ -152,7 +145,6 @@ class Problems extends Component {
                             <button onClick={this.addProblem}> Submit </button>
                         </form>
                         <form>
-                            <div>{this.state.viewTaskProblem}</div>
                             <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
                                 <option>Please Select a Task</option>
                                 {this.state.tasks.map((task, i) => (
