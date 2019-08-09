@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var Chart = require("chart.js")
+var Chart = require("chart.js");
 
 class Chart2 extends Component {
 
@@ -9,12 +9,11 @@ class Chart2 extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.unsolved);
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
         //labels are task names or ids
-        labels: ["name"],
+        labels: ["Task"],
         //data needs to 
         datasets: [
           {
@@ -47,15 +46,11 @@ class Chart2 extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.counter !== prevProps.counter) {
       this.chart2.destroy();
-      console.log(this.props);
-
-      console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
-      console.log("counter",this.props.counter)
 
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: ["name"],
+          labels: ["Task"],
           datasets: [
             {
               label: "Incomplete",

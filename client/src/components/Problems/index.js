@@ -35,7 +35,7 @@ class Problems extends Component {
 
     componentDidUpdate(prevProps) {
 
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.projectID !== prevProps.projectID || this.props.tasksAdded !== prevProps.tasksAdded) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
                 this.setState({
                     tasks: res.data,
@@ -159,7 +159,6 @@ class Problems extends Component {
                                 <button key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
                             </Row>
                         ))}</div>
-                        {console.log(this.state.unsolved)}
                     </Row>
                 </div>
             </div>

@@ -94,9 +94,8 @@ class Tasks extends Component {
         }
 
         TaskAPI.createTask(task).then(res => {
-            console.log("NEWTASK", res.data)
-            let tasksList = this.state.tasks
-            tasksList.push(res.data)
+            let tasksList = this.state.tasks;
+            tasksList.push(res.data);
             this.setState({
                 tasks: tasksList,
                 newTask: "",
@@ -119,7 +118,6 @@ class Tasks extends Component {
 
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
-            // let result =  this.state.tasksIncomplete - this.state.tasks.length
 
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
@@ -134,8 +132,6 @@ class Tasks extends Component {
                 counter: this.state.counter + 1
 
             })
-            console.log("incomplete tasks", this.state.tasksTotal)
-            console.log("task total", this.state.tasks.length)
         })
     }
 
@@ -152,9 +148,9 @@ class Tasks extends Component {
                 </Row>
                 <Row>
                     {this.state.tasks.map((task, i) => (
-                        <Col className='xl3'>
+                        <Col key={i} className='xl3'>
                             <div key={task.id}>
-                                <button key={i} onClick={() => this.completeTask(task.id)}>Complete</button>
+                                <button key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
                                 <Task task={task.task} assignee1={task.assignee1}
                                     assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
                             </div>
@@ -199,7 +195,7 @@ class Tasks extends Component {
                             onChange={this.handleInputChange}
                             name="newAssignee4"
                         />
-                        <button onClick={this.addTask}> Submit </button>
+                        <button onClick={(event) => {this.addTask(event); this.props.updateTasks(event)}}> Submit </button>
                     </form>
                 </Row>
             </div>
