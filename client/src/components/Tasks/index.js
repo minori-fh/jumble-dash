@@ -161,7 +161,7 @@ class Tasks extends Component {
                 <Row>
                     <form id="moveRight" >
                         <input required
-                            class="formFix"
+                            className="formFix"
                             id="addTask"
                             type="text"
                             value={this.state.newTask}
@@ -169,39 +169,35 @@ class Tasks extends Component {
                             onChange={this.handleInputChange}
                             name="newTask"
                         />
-                        <input class="formFix"
+                        <input className="formFix"
                             type="text"
                             value={this.state.newAssignee1}
                             placeholder="Assignee #1"
                             onChange={this.handleInputChange}
                             name="newAssignee1"
                         />
-                        <input class="formFix"
+                        <input className="formFix"
                             type="text"
                             value={this.state.newAssignee2}
                             placeholder="Assignee #2"
                             onChange={this.handleInputChange}
                             name="newAssignee2"
                         />
-                        <input class="formFix"
+                        <input className="formFix"
                             type="text"
                             value={this.state.newAssignee3}
                             placeholder="Assignee #3"
                             onChange={this.handleInputChange}
                             name="newAssignee3"
                         />
-                        <input class="formFix"
+                        <input className="formFix"
                             type="text"
                             value={this.state.newAssignee4}
                             placeholder="Assignee #4"
                             onChange={this.handleInputChange}
                             name="newAssignee4"
                         />
-<<<<<<< HEAD
                         <button id="buttnStyling" onClick={this.addTask}> Submit </button>
-=======
-                        <button onClick={(event) => {this.addTask(event); this.props.updateTasks(event)}}> Submit </button>
->>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
                     </form>
                 </Row>
             </div>

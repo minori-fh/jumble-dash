@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
-<<<<<<< HEAD
-=======
 import { Col, Row } from "../Grid";
->>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
 
 var Chart = require("chart.js")
 
