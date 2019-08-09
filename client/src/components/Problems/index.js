@@ -10,15 +10,14 @@ class Problems extends Component {
         this.chart2Ref = React.createRef();
         this.state = {
             tasks: [],
-            solvedProblems: [],
-            unsolvedProblems: [],
+            viewUnsolvedProblems: [],
             selectedTask: "",
+            selectedProblem: "",
             newProblem: "",
             counter: 0,
-            unsolved: [],
-            solved: [],
-            test: 5,
-            test2: 9
+            unsolved: 0,
+            solved: 0,
+            problemsList: []
         }
     }
 
@@ -27,57 +26,11 @@ class Problems extends Component {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
             console.log(res)
             this.setState({
-                tasks: res.data
+                tasks: res.data,
+                counter: this.state.counter + 1
             })
         })
             .catch(err => console.log(err.message));
-
-        this.loadProblems();
-    }
-
-    loadProblems = () => {
-        const unsolvedProblemsArr = [];
-        const unsolved = [];
-
-        for (let i = 0; i < this.state.tasks.length; i++) {
-
-            ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
-                console.log("WTF IS GOING ON")
-                const taskProblems = [this.state.tasks[i].id, res.data];
-                unsolvedProblemsArr.push(taskProblems);
-                unsolved.push(parseInt(res.data.length));
-            })
-                .catch(err => console.log(err.message));
-        }
-
-        this.setState({
-            unsolvedProblems: unsolvedProblemsArr,
-            unsolved: unsolved,
-            counter: this.state.counter + 1
-        });
-
-        this.loadProblems2();
-    }
-
-    loadProblems2 = () => {
-        const solvedProblemsArr = [];
-        const solved = [];
-
-        for (let i = 0; i < this.state.tasks.length; i++) {
-            ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
-                const taskProblems = [this.state.tasks[i].id, res.data];
-                solvedProblemsArr.push(taskProblems);
-                solved.push(parseInt(res.data.length));
-            })
-                .catch(err => console.log(err.message));
-        }
-
-
-        this.setState({
-            solvedProblems: solvedProblemsArr,
-            solved: solved,
-            counter: this.state.counter + 1
-        });
     }
 
     componentDidUpdate(prevProps) {
@@ -85,41 +38,7 @@ class Problems extends Component {
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
                 this.setState({
-                    tasks: res.data
-                });
-
-                const unsolvedProblemsArr = [];
-                const solvedProblemsArr = [];
-                const unsolved = [];
-                const solved = [];
-
-                for (let i = 0; i < this.state.tasks.length; i++) {
-
-                    ProblemAPI.getUnsolvedProblems(this.state.tasks[i].id).then(res => {
-                        const taskProblems = [this.state.tasks[i].id, res.data];
-                        unsolvedProblemsArr.push(taskProblems);
-                        unsolved.push(parseInt(res.data.length));
-
-                        ProblemAPI.getSolvedProblems(this.state.tasks[i].id).then(res => {
-                            const taskProblems = [this.state.tasks[i].id, res.data];
-                            solvedProblemsArr.push(taskProblems);
-                            solved.push(parseInt(res.data.length));
-                        })
-                            .catch(err => console.log(err.message));
-
-                    })
-                        .catch(err => console.log(err.message));
-                }
-
-                console.log("UNSOLVED PROBLEMS HERE", unsolvedProblemsArr);
-
-                console.log("THESE ARE UNSOLVED PROBLEMS", unsolved);
-                console.log("WHAT ARE THOSE", unsolved);
-
-
-                this.setState({
-                    unsolvedProblems: unsolvedProblemsArr,
-                    solvedProblems: solvedProblemsArr,
+                    tasks: res.data,
                     selectedTask: "",
                     newProblem: "",
                     solved: solved,
@@ -143,29 +62,65 @@ class Problems extends Component {
     addProblem = event => {
         event.preventDefault();
 
-        console.log("HITTING THE BUTTON")
-        console.log(this.state.newProblem)
-        console.log(this.state.selectedTask)
-
         const problem = {
             problem: this.state.newProblem,
             TaskId: this.state.selectedTask
         }
 
         ProblemAPI.createProblem(problem).then(res => {
-            console.log("NEWProblem", res.data)
             let problemsList = this.state.unsolvedProblems;
             const newProblem = [res.data.TaskId, res.data];
-            problemsList.push(newProblem)
+            problemsList.push(newProblem);
             this.setState({
                 unsolvedProblems: problemsList,
                 newProblem: "",
                 selectedTask: "",
                 counter: this.state.counter + 1
             })
-            console.log("NANI")
         })
             .catch(err => console.log(err.message));
+    }
+
+    viewProblem = event => {
+        event.preventDefault();
+
+        ProblemAPI.getUnsolvedProblems(this.state.viewTaskProblem).then(res => {
+            this.setState({
+                problemsList: res.data,
+                unsolved: res.data.length
+            });
+            ProblemAPI.getSolvedProblems(this.state.viewTaskProblem).then(res => {
+                this.setState({
+                    solved: res.data.length,
+                    counter: this.state.counter + 1
+                })
+            })
+                .catch(err => console.log(err.message));
+        })
+            .catch(err => console.log(err.message));
+    }
+
+    completeProblem = id => {
+
+        const solve = {
+            solved: true
+        }
+
+        ProblemAPI.updateProblem(id, solve).then(res => {
+            let list = this.state.problemsList;
+
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].id === id) {
+                    list.splice(i, 1);
+                }
+            }
+            this.setState({
+                problemsList: list,
+                solved: this.state.solved + 1,
+                unsolved: this.state.unsolved - 1,
+                counter: this.state.counter + 1
+            });
+        })
     }
 
     render() {
@@ -173,17 +128,9 @@ class Problems extends Component {
             <div>
                 <div>
                     <h1>PROBLEMS</h1>
-                    <Chart2 counter={this.state.counter} projectID={this.props.projectID} tasks={this.state.tasks} unsolved={this.state.test} solved={this.state.test2} />
-                    <Row>
-                        {this.state.unsolvedProblems.map((problem, i) => (
-                            <div key={i}>
-                                <p>{problem.problem}</p>
-                            </div>
-                        ))}
-                    </Row>
+                    <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
                     <Row>
                         <form>
-                            <div>{this.state.selectedTask}</div>
                             <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
                                 <option>Please Select a Task</option>
                                 {this.state.tasks.map((task, i) => (
@@ -199,6 +146,22 @@ class Problems extends Component {
                             />
                             <button onClick={this.addProblem}> Submit </button>
                         </form>
+                        <form>
+                            <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
+                                <option>Please Select a Task</option>
+                                {this.state.tasks.map((task, i) => (
+                                    <option value={task.id} key={i}>{task.task}</option>
+                                ))}
+                            </select>
+                            <button onClick={this.viewProblem}> Submit </button>
+                        </form>
+                        <div>{this.state.problemsList.map((problem) => (
+                            <Row key={problem.id}>
+                                {problem.problem}
+                                <button key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
+                            </Row>
+                        ))}</div>
+                        {console.log(this.state.unsolved)}
                     </Row>
                 </div>
             </div>
