@@ -3,9 +3,10 @@
     width: 53%; 
     font-size: 18px; 
     margin-top: 2%; 
-    background-color: rgb(5, 5, 41);
-    color: white; 
+    background-color: transparent;
+    color: darkblue; 
     border-radius: 10px; 
-    height: 35px; 
+    height: auto; 
+    box-shadow: 1px
 
 }

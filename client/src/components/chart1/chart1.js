@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
+import { Col, Row } from "../Grid";
+
 var Chart = require("chart.js")
 
 class Chart1 extends Component {

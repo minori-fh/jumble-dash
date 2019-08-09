@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Col,Row} from "../Grid/Col"
 
 class TaskForm extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class TaskForm extends Component {
     render() {
         return (
             <div>
-                <p>{this.state.task}</p>
+                <Col>
+                <p>{this.state.task} </p>
                 <input required
                     type="text"
                     value={this.state.task}
@@ -19,6 +21,8 @@ class TaskForm extends Component {
                     onChange={this.handleInputChange}
                     name="task"
                 />
+                </Col>
+                <Col>
                 <p>{this.state.assignee}</p>
                 <input required
                     type="text"
@@ -27,6 +31,7 @@ class TaskForm extends Component {
                     onChange={this.handleInputChange}
                     name="Assignee"
                 />
+                </Col>
             </div>
         )
     }
