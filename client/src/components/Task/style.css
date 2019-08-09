@@ -1,4 +1,10 @@
-#nameStyling{
+@import url("https://fonts.googleapis.com/css?family=Muli:800&display=swap");
+
+#test{
+    margin-right:20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+#newTask{
     font-weight: bold; 
     font-family: 'San serif';
     font-size:24px;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var Chart = require("chart.js")
+var Chart = require("chart.js");
 
 class Chart2 extends Component {
 
@@ -9,23 +9,22 @@ class Chart2 extends Component {
   }
 
   componentDidMount() {
-
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
         //labels are task names or ids
-        labels: this.props.tasks.map(task => task.task),
+        labels: ["Task"],
         //data needs to 
         datasets: [
           {
             label: "Unsolved Problems",
             backgroundColor: "#df4343",
-            data: [40, 29]
+            data: [this.props.unsolved]
           },
           {
             label: "Solved Problems",
             backgroundColor: "#379937",
-            data: [26, 50]
+            data: [this.props.solved]
           }
         ]
       },
@@ -35,7 +34,7 @@ class Chart2 extends Component {
             {
               ticks: {
                 min: 0,
-                max: 100
+                max: 10
               }
             }
           ]
@@ -48,23 +47,30 @@ class Chart2 extends Component {
     if (this.props.counter !== prevProps.counter) {
       this.chart2.destroy();
 
+<<<<<<< HEAD
       console.log("PROBLEMS WE HAVE", this.props.unsolved.length)
       console.log("counter", this.props.counter)
 
+=======
+>>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: this.props.tasks.map(task => task.task),
+          labels: ["Task"],
           datasets: [
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: this.props.unsolved
+              data: [this.props.unsolved]
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
+<<<<<<< HEAD
               data: this.props.solved
+=======
+              data: [this.props.solved]
+>>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
             }
           ]
         },
@@ -74,7 +80,7 @@ class Chart2 extends Component {
               {
                 ticks: {
                   min: 0,
-                  max: 100
+                  max: this.props.unsolved + this.props.solved
                 }
               }
             ]

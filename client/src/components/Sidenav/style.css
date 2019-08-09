@@ -1,7 +1,12 @@
 .navBar{
     height:100vh;
+<<<<<<< HEAD
     position:fixed;
+=======
+    display:flex;
+>>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
     width: 15%;
     background-color: rgb(5, 5, 41); 
-    border-right:2px solid lightgray
+    border-right:2px solid lightgray;
+    position:fixed;
 }

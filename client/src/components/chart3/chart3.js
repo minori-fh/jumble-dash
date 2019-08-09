@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style.css";
 var Chart = require("chart.js")
 
 class Chart3 extends Component {
@@ -88,8 +89,8 @@ class Chart3 extends Component {
     render() {
         return (
             <div>
-                <h2 id="nameStyling">Task Completion</h2>
-                <canvas className='chart' ref={this.chart3Ref} />
+                <h1 id="chart2title">Task Completion</h1>
+                <canvas className='chart3' ref={this.chart3Ref} />
             </div>
         )
     };

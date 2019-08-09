@@ -86,7 +86,11 @@ class Budget extends Component {
     render() {
         return (
             <div>
+<<<<<<< HEAD
                 <h2 id="nameStyling"> Budget: {this.state.budgetTotal}</h2>
+=======
+                <p>Budget Total : {this.state.budgetTotal}</p>
+>>>>>>> 3710fa7f1cd2f5ae25b4666dbffee97ba6800675
                 {!this.state.chartSwitch ?
                     <Chart1
                         total={this.state.budgetTotal}
