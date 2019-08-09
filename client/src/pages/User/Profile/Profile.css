@@ -69,3 +69,13 @@
     margin-top: 5%; 
 }
 
+.newProjectCol {
+    height: 100vh; 
+    text-align: center; 
+}
+
+#newProjectTitle {
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
