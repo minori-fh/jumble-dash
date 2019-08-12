@@ -21,10 +21,7 @@ class EditBudget extends Component {
     };
 
     componentDidMount() {
-
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-
-            console.log(res.data)
 
             this.setState({
                 newMarketingBudget: res.data.Marketing,
@@ -38,6 +35,24 @@ class EditBudget extends Component {
 
         });
     };
+
+    componentDidUpdate(prevProps) {
+        if (this.props.projectID !== prevProps.projectID) {
+            BudgetAPI.getBudget(this.props.projectID).then(res => {
+
+                this.setState({
+                    newMarketingBudget: res.data.Marketing,
+                    newHRBudget: res.data.HR,
+                    newDesignBudget: res.data.Design,
+                    newEngBudget: res.data.Engineering,
+                    newSalesBudget: res.data.Sales,
+                    newFinanceBudget: res.data.Finance, 
+                    newSecurityBudget: res.data.Security,
+                });
+            })
+                .catch(err => console.log(err.message));
+        }
+    }
 
     handleInputChange = event => {
 
