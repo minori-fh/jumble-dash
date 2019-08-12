@@ -4,6 +4,10 @@
     color:green
 }
 
+#profile-section{
+    overflow: hidden;
+}
+
 #menu-left-col{
     background-color: rgb(5, 5, 41); 
     background-image: url("../../Guest/Home/images/loadingbkgrnd.png");
@@ -17,11 +21,10 @@
     transition: transform 800ms ease;
 }
 
-
-/* .menu-right-col.animation{
+.menu-right-col.animation{
     transform: translateX(-50vw);
     transition: transform 800ms ease;
-} */
+}
 
 #menu-right-col {
     padding-top: 30% !important; 
