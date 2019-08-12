@@ -154,31 +154,6 @@ class Profile extends Component {
                 </Row>
                 }
             </div>
-            
-                // <Row>
-                //     <Navbar />
-                // </Row>
-                // <Row>
-                //     <Col className="xl2 l3">
-                //         <Sidenav>
-                //             <div className="centerButtons">
-                //                 {this.state.projects.map(project => (
-                //                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
-                //                 ))}
-                //                 <CreateProject edit={this.handleEdit} />
-                //                 <LogoutButton logout={this.handlelogout.bind(this)} />
-                //             </div>
-                //         </Sidenav>
-                //     </Col>
-                //     <Col className="xl10 l9">
-                //         {
-                //             !this.state.edit ?
-                //                 <Dashboard projectID={this.state.selectedProject}>
-                //                 </Dashboard>
-                //                 : <NewProjectForm edit={this.handleEdit} />
-                //         }
-                //     </Col>
-                // </Row >
         )
     }
 }
