@@ -1,3 +1,8 @@
 #editBudget{
     margin-top: 2%; 
 }
+
+.editBudgetLabel{
+    display: inline; 
+    margin-right: 3%; 
+}

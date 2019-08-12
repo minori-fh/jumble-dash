@@ -108,6 +108,7 @@ class EditBudget extends Component {
                 </Row>
                 <Row>
                     <Col className="xl12">
+                        <p className='editBudgetLabel'>Total Budget</p>
                         <input required
                             id="inputBudget"
                             type="text"
@@ -116,7 +117,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="budget"
-                        />
+                        /><br/>
+                        <p className='editBudgetLabel'>Design</p>
                         <input
                             type="text"
                             value={this.state.newDesignBudget}
@@ -124,7 +126,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newDesignBudget"
-                        />
+                        /><br/>
+                        <p className='editBudgetLabel'>Engineering</p>
                         <input
                             type="text"
                             value={this.state.newEngBudget}
@@ -132,7 +135,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newEngBudget"
-                        /> 
+                        /><br/>
+                        <p className='editBudgetLabel'>Finance</p>
                         <input
                             type="text"
                             value={this.state.newFinanceBudget}
@@ -140,7 +144,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newFinanceBudget"
-                        />
+                        /><br/>
+                        <p className='editBudgetLabel'>HR</p>
                         <input
                             type="text"
                             value={this.state.newHRBudget}
@@ -148,7 +153,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newHRBudget"
-                        />
+                        /><br/>
+                        <p className='editBudgetLabel'>Marketing</p>
                         <input
                             type="text"
                             value={this.state.newMarketingBudget}
@@ -156,7 +162,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newMarketingBudget"
-                        />  
+                        /><br/> 
+                        <p className='editBudgetLabel'>Sales</p> 
                         <input
                             type="text"
                             value={this.state.newSalesBudget}
@@ -164,7 +171,8 @@ class EditBudget extends Component {
                             onChange={this.handleInputChange}
                             className='budget'
                             name="newSalesBudget"
-                        />
+                        /><br/>
+                        <p className='editBudgetLabel'>Security</p>
                         <input
                             type="text"
                             value={this.state.newSecurityBudget}
