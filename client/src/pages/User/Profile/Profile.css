@@ -1,7 +1,9 @@
-
-
 #active {
     color:green
+}
+
+#profile-section{
+    overflow: hidden;
 }
 
 #menu-left-col{
@@ -13,15 +15,14 @@
 
 .menu-left-col.animation{
     transform: translateX(50vw) skew(-0.06turn, 18deg);
-    margin-top: -14%; 
+    margin-top: -16%; 
     transition: transform 800ms ease;
 }
 
-
-/* .menu-right-col.animation{
+.menu-right-col.animation{
     transform: translateX(-50vw);
     transition: transform 800ms ease;
-} */
+}
 
 #menu-right-col {
     padding-top: 30% !important; 
@@ -38,10 +39,6 @@
     border: none !important; 
 }
 
-/* #home-form-grid{
-    height: 100vh; 
-} */
-
 #home-form-grid.hide{
     display: none; 
 }
@@ -57,7 +54,7 @@
 .xl6menu{
     height: 130%; 
     transform: skew(-0.06turn, 18deg);
-    margin-top: -18%; 
+    margin-top: -16%; 
 }
 
 .centerButtons{
@@ -78,4 +75,3 @@
     font-size: 20px; 
     font-weight: bold; 
 }
-

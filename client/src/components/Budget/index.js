@@ -111,7 +111,7 @@ class Budget extends Component {
                         finance={this.state.budgetFinance}
                         security={this.state.budgetSecurity}
                     />}
-                <button onClick={this.handleChartSwitch}>Switch</button>
+                <button id='switchDoughnut' onClick={this.handleChartSwitch}>Switch</button>
             </div>
         );
     }

@@ -24,14 +24,14 @@ class Profile extends Component {
             selectedProject: -1,
             projects: [],
             loggedIn: true,
-            showDash: false,
+            showDash: false
         }
     }
 
     animation(){
         let left = document.getElementById("menu-left-col")
         left.classList.toggle("animation")
-        setTimeout(this.handleRightAnimation(), 800)
+        setTimeout(this.handleRightAnimation(), 200)
     }
 
     handleRightAnimation(){
@@ -50,7 +50,9 @@ class Profile extends Component {
             console.log("length", this.state.projects.length)
         });
 
-        requestAnimationFrame(()=> {this.animation()})
+        requestAnimationFrame(() => {
+            requestAnimationFrame(()=> {this.animation()})
+        });
     }
 
     handlelogout() {
@@ -108,10 +110,11 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div id='profileSection'>
                 {!this.state.showDash ?
                 <Row id='home-form-grid'>
                     <Col className='xl6 xl6menu menu-left-col' id='menu-left-col'>
+                    
                     
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>
