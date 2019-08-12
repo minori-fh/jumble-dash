@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BudgetAPI from '../../utils/API-budget';
 import Chart1 from '../chart1';
 import Chart4 from '../chart4';
+import EditBudget from '../EditBudget/EditBudget'
 import "./style.css"
 
 class Budget extends Component {
@@ -112,6 +113,17 @@ class Budget extends Component {
                         security={this.state.budgetSecurity}
                     />}
                 <button id='switchDoughnut' onClick={this.handleChartSwitch}>Switch</button>
+              
+                <EditBudget
+                    projectID={this.props.projectID}
+                    marketing={this.state.budgetMarketing}
+                    hr={this.state.budgetHR}
+                    design={this.state.budgetDesign}
+                    engineering={this.state.budgetEngineering}
+                    sales={this.state.budgetSales}
+                    finance={this.state.budgetFinance}
+                    security={this.state.budgetSecurity}
+                />
             </div>
         );
     }
