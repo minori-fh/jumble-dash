@@ -5,7 +5,7 @@
 
 The motivation came from developing an app that would have a large user-base; regardless of what industry, project management is an integral part of helping businesses achieve their goals. 
 
-**Summary of Technologies Used**
+**Summary of Technologies Used** <br/>
 [Passport](http://www.passportjs.org/docs/) was used for user authentication and [ReactJS](https://reactjs.org/docs/getting-started.html) for reusable components as well as fast rendering on the DOM. 
 
 Here we call on the checkAuth function to see if the user is logged in or not and to save this status as a state. 
@@ -24,7 +24,7 @@ class App extends Component {
   }
 ```
 
-We then call to different routings based on their 'isLoggedIn' state. 
+We then call to different routings based on the user's 'isLoggedIn' state. 
 
 ```
 render() {
