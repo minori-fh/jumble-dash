@@ -59,7 +59,7 @@ componentDidMount() {
 ```
 
 ## Pictures of Site
-[Click here to visit site](https://adopt-a-friend.herokuapp.com/)
+[Click here to visit site](https://jumble-dash.herokuapp.com/)
 
 **Initial home page:**
 ![Home page](public/style/images/site-images/site1.png)
