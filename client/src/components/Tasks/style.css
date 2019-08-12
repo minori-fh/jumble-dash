@@ -20,7 +20,7 @@
 .formFix{
     height: 25px;
     width: 200px;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Raleway', sans-serif;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -31,8 +31,9 @@
 
 #buttnStyling{
     margin-top: 10%; 
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 1%; 
+    height: 30px; 
     width: 100px; 
     background-color: rgb(68, 167, 68); 
     color: white; 
@@ -48,9 +49,11 @@
 
 #taskComplete{
     border: none; 
-    background-color: white; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
     border-radius: 7px; 
     margin-top: 3%; 
     padding: 3%; 
+}
+
+#completeImg{
+    width: 20px; 
 }

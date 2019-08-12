@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import ProblemAPI from '../../utils/API-problem';
 import Chart2 from '../chart2';
 import { Col, Row } from "../Grid";
+import Complete from './complete.png';
 import "./style.css";
 
 class Problems extends Component {
@@ -128,6 +129,19 @@ class Problems extends Component {
                 <div>
                     <h1 id='name-styling'>Task Issues</h1>
                     <hr width="80%"/>
+                    <Row id='viewIssueRow'>
+                        <Col className='xl12'>
+                            <form id='viewIssue'>
+                                <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
+                                    <option id='viewTaskProblem' >Select a Task to View</option>
+                                    {this.state.tasks.map((task, i) => (
+                                        <option value={task.id} key={i}>{task.task}</option>
+                                    ))}
+                                </select>
+                                <button id='taskIssuebtn2' onClick={this.viewProblem}> View </button>
+                            </form>
+                        </Col>
+                    </Row>
                     <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
                         <Row>
                             <Col className='xl6 newIssue'>
@@ -139,7 +153,7 @@ class Problems extends Component {
                                             <option value={task.id} key={i}>{task.task}</option>
                                         ))}
                                     </select>
-                                    <input
+                                    <textarea
                                         type="text"
                                         value={this.state.newProblem}
                                         placeholder="What seems to be the problem?"
@@ -151,23 +165,12 @@ class Problems extends Component {
                                 </form>
                             </Col>
                             <Col className='xl6 viewIssue'>
-                                <p className='taskIssueHeader'>View Issues by Task:</p>
-                                <form id='viewIssue'>
-                                    <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
-                                        <option id='viewTaskProblem' >Please Select a Task</option>
-                                        {this.state.tasks.map((task, i) => (
-                                            <option value={task.id} key={i}>{task.task}</option>
-                                        ))}
-                                    </select>
-                                    <button id='taskIssuebtn2' onClick={this.viewProblem}> View </button>
-                                </form>
-
                                 <div className='taskIssueHeader'>{this.state.problemsList.map((problem) => (
                                     <Row key={problem.id}>
                                         <p>Issues:</p>
                                         <Col id='completeIssueCol' className='xl12'> 
                                             {problem.problem}
-                                            <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
+                                            <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}><img id='taskIssueImg' src={Complete}/></button>
                                         </Col>
                                     </Row>
                                 ))}</div>
