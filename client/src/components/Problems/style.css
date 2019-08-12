@@ -6,13 +6,9 @@
     color: rgb(5, 5, 41) 
 }
 
-#newIssue{
+#newIssue, #viewIssue{
     display: block;
-
-}
-
-#viewIssue{
-    display: block; 
+    margin-left: 5%; 
 
 }
 
@@ -42,9 +38,10 @@ select{
 }
 
 .newProblem{
-    height: 60px; 
+    display: block; 
+    height: 100px; 
     width: 400px; 
-    margin-left: 3%; 
+    margin-top: 3%; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -52,13 +49,21 @@ select{
     margin-top: 10%; 
     border-radius: 8px !important;
     padding: 0px !important; 
-    /* padding-bottom: 1% !important; 
-    padding-top: 1% !important;  */
     width: 80px; 
     background-color: rgb(68, 167, 68); 
     color: white; 
     height: 15px;
-    margin-left: 3%; 
-    margin-top: 0px !important; 
     text-align: middle !important; 
+    margin-top: 2%; 
+    display: block; 
+}
+
+.taskIssueHeader{
+    margin-left: 5%; 
+    font-weight: bold; 
+}
+
+#completeIssueCol{
+    margin-left: 5% !important; 
+    font-weight: normal !important; 
 }

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 #nameStyling{
     font-size: 24px;
@@ -22,7 +21,7 @@
     height: 25px;
     width: 200px;
     font-size: 16px;
-    font-family: 'Muli', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin-top: 4px;
     margin-bottom: 4px;
     border-radius: 8px;
