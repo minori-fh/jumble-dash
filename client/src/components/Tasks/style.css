@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 #nameStyling{
     font-size: 24px;
@@ -21,10 +22,12 @@
     height: 25px;
     width: 200px;
     font-size: 16px;
-    font-family: sans-serif;
+    font-family: 'Muli', sans-serif;
     margin-top: 4px;
     margin-bottom: 4px;
     border-radius: 8px;
+    padding: 1%; 
+
 }
 
 #buttnStyling{
@@ -42,4 +45,13 @@
 
 #taskList{
     margin-bottom: 5%; 
+}
+
+#taskComplete{
+    border: none; 
+    background-color: white; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 7px; 
+    margin-top: 3%; 
+    padding: 3%; 
 }

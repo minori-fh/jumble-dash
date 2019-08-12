@@ -153,7 +153,7 @@ class Tasks extends Component {
                             <div key={task.id}>
                                 <Task task={task.task} assignee1={task.assignee1}
                                     assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
-                                <button key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
+                                <button id='taskComplete' key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
                             </div>
                         </Col>
                     ))}
