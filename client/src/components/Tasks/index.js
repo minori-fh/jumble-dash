@@ -26,13 +26,14 @@ class Tasks extends Component {
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+
             this.setState({
                 tasks: res.data,
                 tasksIncomplete: res.data.length
             })
+            console.log("this.state.tasks", res.data);
         })
             .catch(err => console.log(err.message));
-        console.log("this.state.tasks", this.state.tasks);
 
         TaskAPI.getTasks(this.props.projectID).then(res => {
 
@@ -41,6 +42,8 @@ class Tasks extends Component {
                 tasksComplete: res.data.length - this.state.tasksIncomplete,
                 counter: this.state.counter + 1
             })
+
+            console.log(res.data)
         })
             .catch(err => console.log(err.message));
     }
@@ -64,7 +67,6 @@ class Tasks extends Component {
                         tasksComplete: complete,
                         counter: this.state.counter + 1
                     })
-
                 })
                     .catch(err => console.log(err.message));
             })
@@ -121,6 +123,9 @@ class Tasks extends Component {
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
 
+            console.log(res.data)
+            console.log(res)
+
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);
@@ -149,7 +154,7 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row id='taskList'>
-                    {this.state.tasks.map((task, i) => (
+                    {this.state.tasks.map((task, i) => (    
                         <Col key={i} className='xl3'>
                             <div key={task.id}>
                                 <Task task={task.task} assignee1={task.assignee1}

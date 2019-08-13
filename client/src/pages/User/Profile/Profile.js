@@ -118,7 +118,7 @@ class Profile extends Component {
                     
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>
-                        <div>
+                        <div id='projectMenuContainer'>
                             <p id='menuHeader'>What can we help you manage today?</p>
                             <div id='projectMenuButtons'>
                                 {this.state.projects.map(project => (
