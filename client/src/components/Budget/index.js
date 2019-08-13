@@ -27,6 +27,7 @@ class Budget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
+            console.log(res)
             this.setState({
                 budgetTotal: res.data.total,
                 budgetDesign: res.data.Design,
@@ -43,7 +44,7 @@ class Budget extends Component {
 
     componentDidUpdate(prevProps) {
 
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.projectID !== prevProps.projectID || this.props.budgetChange !== prevProps.budgetChange) {
             BudgetAPI.getBudget(this.props.projectID).then(res => {
                 console.log(res.data)
                 var arr = Object.keys(res.data);
@@ -51,7 +52,6 @@ class Budget extends Component {
                 for (var i = 2; i < arr.length; i++) {
                     deptNames.push(arr[i]);
                 }
-                console.log(deptNames);
                 this.setState({
                     budgetTotal: res.data.total,
                     budgetDesign: res.data.Design,
@@ -91,6 +91,8 @@ class Budget extends Component {
                 <hr width="80%"/>
                 {!this.state.chartSwitch ?
                     <Chart1
+                        budgetChange={this.props.budgetChange}
+                        projectID={this.props.projectID}
                         total={this.state.budgetTotal}
                         depts={this.state.budgetDept}
                         marketing={this.state.budgetMarketing}
@@ -102,6 +104,8 @@ class Budget extends Component {
                         security={this.state.budgetSecurity}
                     /> :
                     <Chart4
+                        budgetChange={this.props.budgetChange}
+                        projectID={this.props.projectID}
                         total={this.state.budgetTotal}
                         depts={this.state.budgetDept}
                         marketing={this.state.budgetMarketing}
@@ -115,6 +119,8 @@ class Budget extends Component {
                 <button id='switchDoughnut' onClick={this.handleChartSwitch}>Switch</button>
               
                 <EditBudget
+                    budgetChange={this.props.budgetChange}
+                    updateBudget={this.props.updateBudget}
                     projectID={this.props.projectID}
                     total={this.state.budgetTotal}
                     marketing={this.state.budgetMarketing}

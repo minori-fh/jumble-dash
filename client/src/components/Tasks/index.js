@@ -26,6 +26,7 @@ class Tasks extends Component {
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+            console.log(res)
 
             this.setState({
                 tasks: res.data,

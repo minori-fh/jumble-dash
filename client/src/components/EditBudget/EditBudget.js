@@ -24,7 +24,7 @@ class EditBudget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-            console.log(res.data)
+            console.log(res)
 
             this.setState({
                 id: res.data.id,
@@ -42,7 +42,12 @@ class EditBudget extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.projectID !== prevProps.projectID || this.props.budgetChange !== prevProps.budgetChange
+            ) {
+
+            console.log(this.props.budgetChange)
+            console.log(prevProps.budgetChange)
+
             BudgetAPI.getBudget(this.props.projectID).then(res => {
 
                 console.log(res.data)
@@ -87,6 +92,8 @@ class EditBudget extends Component {
             ProjectId: this.props.projectID
         }
 
+        console.log(body)
+
         const id = this.state.id
 
         BudgetAPI.updateBudget(id, body).then(res => {
@@ -95,6 +102,7 @@ class EditBudget extends Component {
         .catch(err => console.log(err.message));
 
         BudgetAPI.getBudget(this.props.projectID).then(res => {
+            console.log(res)
             this.setState({
                 id: res.data.id,
                 newBudgetTotal: res.data.total,
@@ -108,6 +116,8 @@ class EditBudget extends Component {
             });
         })
             .catch(err => console.log(err.message));
+
+        this.componentDidMount()
     }
 
     render(){
@@ -194,7 +204,7 @@ class EditBudget extends Component {
                             className="editBudgetLabel"
                             name="newSecurityBudget"
                         />   
-                        <button id="submitBtn" onClick={this.updateBudget}> Submit </button>
+                        <button id="submitBtn" onClick={(event) => {this.updateBudget(event); this.props.updateBudget(event)}}> Submit </button>
                     </Col>
                 </Row>
             </div>

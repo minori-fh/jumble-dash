@@ -115,6 +115,23 @@ class NewProjectForm extends Component {
 
     }
 
+    dashboard = (props) => {
+        (props.edit())
+        // // window.location.reload(false);
+        // API.getProject(this.state.projectID)
+        //     .then(result => {
+        //         console.log("this is the result on the of pulling the saved project", result)
+        //     })
+        // APIBudget.getBudget(this.state.projectID)
+        //     .then(result => {
+        //         console.log("this is the result on the of pulling the saved Budget", result)
+        //     })
+        // APITask.getTasks(this.state.projectID)
+        //     .then(result => {
+        //         console.log("this is the result on the of pulling the saved Task", result)
+        //     })
+    }
+
     formRender() {
         if(!this.state.showBudget){
             return (

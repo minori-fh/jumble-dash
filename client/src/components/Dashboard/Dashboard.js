@@ -13,7 +13,8 @@ class Dashboard extends Component {
         super(props)
         this.chart2Ref = React.createRef();
         this.state = {
-            tasksAdded: 0
+            tasksAdded: 0,
+            budgetEdited: 0
         }
     }
 
@@ -25,6 +26,13 @@ class Dashboard extends Component {
         })
     }
 
+    handleUpdateBudget = event => {
+        event.preventDefault();
+        this.setState({
+            budgetEdited: this.state.budgetEdited + 1
+        })
+    }
+
     render() {
         return (
             <div>
@@ -33,7 +41,7 @@ class Dashboard extends Component {
                         <div>
                             <Row>
                                 <Col className="xl6 l6">
-                                    <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} />
+                                    <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} updateBudget={this.handleUpdateBudget} budgetChange={this.state.budgetEdited}/>
                                 </Col>
 
                                 <Col className="xl6 l6">
