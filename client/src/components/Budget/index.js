@@ -116,6 +116,7 @@ class Budget extends Component {
               
                 <EditBudget
                     projectID={this.props.projectID}
+                    total={this.state.budgetTotal}
                     marketing={this.state.budgetMarketing}
                     hr={this.state.budgetHR}
                     design={this.state.budgetDesign}

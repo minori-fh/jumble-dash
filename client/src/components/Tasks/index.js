@@ -121,6 +121,9 @@ class Tasks extends Component {
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
 
+            console.log(res.data)
+            console.log(res)
+
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);

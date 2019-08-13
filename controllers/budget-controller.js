@@ -26,10 +26,20 @@ module.exports = {
         })
     },
     update: function (req, res) {
-        db.Budget.update(req.body, {
+        db.Budget.update({
+            total: req.body.total,
+            Marketing: req.body.Marketing,
+            HR: req.body.HR,
+            Design: req.body.Design,
+            Engineering: req.body.Engineering,
+            Sales: req.body.Sales,
+            Finance: req.body.Finance,
+            Security: req.body.Security,
+        }, {
             where: {
                 id: req.params.id
-            }
+            },
+            returning: true
         }).then(function (dbBudget) {
             res.json(dbBudget);
         });

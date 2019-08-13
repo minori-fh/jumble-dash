@@ -7,6 +7,8 @@ class EditBudget extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: 0,
+            newBudgetTotal: this.props.total,
             newMarketingBudget: this.props.marketing,
             newHRBudget: this.props.hr,
             newDesignBudget: this.props.design,
@@ -22,8 +24,11 @@ class EditBudget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
+            console.log(res.data)
 
             this.setState({
+                id: res.data.id,
+                newBudgetTotal: res.data.total,
                 newMarketingBudget: res.data.Marketing,
                 newHRBudget: res.data.HR,
                 newDesignBudget: res.data.Design,
@@ -40,7 +45,11 @@ class EditBudget extends Component {
         if (this.props.projectID !== prevProps.projectID) {
             BudgetAPI.getBudget(this.props.projectID).then(res => {
 
+                console.log(res.data)
+
                 this.setState({
+                    id: res.data.id,
+                    newBudgetTotal: res.data.total,
                     newMarketingBudget: res.data.Marketing,
                     newHRBudget: res.data.HR,
                     newDesignBudget: res.data.Design,
@@ -51,8 +60,8 @@ class EditBudget extends Component {
                 });
             })
                 .catch(err => console.log(err.message));
-        }
-    }
+        };
+    };
 
     handleInputChange = event => {
 
@@ -66,35 +75,39 @@ class EditBudget extends Component {
     updateBudget = event => {
         event.preventDefault();
 
-        const budget = {
-            newMarketingBudget: this.state.newMarketingBudget,
-            newHRBudget: this.state.newHRBudget,
-            newDesignBudget: this.state.newDesignBudget,
-            newEngBudget: this.state.newEngBudget,
-            newSalesBudget: this.state.newSalesBudget,
-            newFinanceBudget: this.state.newFinanceBudget, 
-            newSecurityBudget: this.state.newSecurityBudget
+        const body = {
+            total: parseInt(this.state.newBudgetTotal),
+            Marketing: parseInt(this.state.newMarketingBudget),
+            HR: parseInt(this.state.newHRBudget),
+            Design: parseInt(this.state.newDesignBudget),
+            Engineering: parseInt(this.state.newEngBudget),
+            Sales: parseInt(this.state.newSalesBudget),
+            Finance: parseInt(this.state.newFinanceBudget),
+            Security: parseInt(this.state.newSecurityBudget),
+            ProjectId: this.props.projectID
         }
 
-        // TaskAPI.updateBudget(budget).then(res => {
+        const id = this.state.id
 
-        // });
+        BudgetAPI.updateBudget(id, body).then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err.message));
 
-        // TaskAPI.createTask(task).then(res => {
-        //     let tasksList = this.state.tasks;
-        //     tasksList.push(res.data);
-        //     this.setState({
-        //         tasks: tasksList,
-        //         newTask: "",
-        //         newAssignee1: "",
-        //         newAssignee2: "",
-        //         newAssignee3: "",
-        //         newAssignee4: "",
-        //         tasksIncomplete: this.state.tasksIncomplete + 1,
-        //         counter: this.state.counter + 1
-        //     })
-        // })
-        //     .catch(err => console.log(err.message));
+        BudgetAPI.getBudget(this.props.projectID).then(res => {
+            this.setState({
+                id: res.data.id,
+                newBudgetTotal: res.data.total,
+                newMarketingBudget: res.data.Marketing,
+                newHRBudget: res.data.HR,
+                newDesignBudget: res.data.Design,
+                newEngBudget: res.data.Engineering,
+                newSalesBudget: res.data.Sales,
+                newFinanceBudget: res.data.Finance, 
+                newSecurityBudget: res.data.Security,
+            });
+        })
+            .catch(err => console.log(err.message));
     }
 
     render(){
@@ -111,74 +124,74 @@ class EditBudget extends Component {
                         <p className='editBudgetLabel'>Total Budget</p>
                         <input required
                             id="inputBudget"
-                            type="text"
+                            type="number"
                             value={this.state.budget}
                             placeholder="Total Budget"
                             onChange={this.handleInputChange}
-                            className='budget'
-                            name="budget"
+                            className='newBudgetTotal'
+                            name="newBudgetTotal"
                         /><br/>
                         <p className='editBudgetLabel'>Design</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newDesignBudget}
                             placeholder="Design"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newDesignBudget"
                             name="newDesignBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Engineering</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newEngBudget}
                             placeholder="Engineering"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newEngBudget"
                             name="newEngBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Finance</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newFinanceBudget}
                             placeholder="Finance"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newFinanceBudget"
                             name="newFinanceBudget"
                         /><br/>
                         <p className='editBudgetLabel'>HR</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newHRBudget}
                             placeholder="HR"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newHRBudget"
                             name="newHRBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Marketing</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newMarketingBudget}
                             placeholder="Marketing"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newMarketingBudget"
                             name="newMarketingBudget"
                         /><br/> 
                         <p className='editBudgetLabel'>Sales</p> 
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newSalesBudget}
                             placeholder="Sales"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newSalesBudget"
                             name="newSalesBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Security</p>
                         <input
-                            type="text"
+                            type="number"
                             value={this.state.newSecurityBudget}
                             placeholder="Security"
                             onChange={this.handleInputChange}
-                            className='budget'
+                            className="newSecurityBudget"
                             name="newSecurityBudget"
                         />   
                     </Col>
