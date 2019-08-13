@@ -120,7 +120,7 @@ class EditBudget extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col className="xl12">
+                    <Col id = 'editBudgetFormCol' className="xl12">
                         <p className='editBudgetLabel'>Total Budget</p>
                         <input required
                             id="inputBudget"
@@ -128,7 +128,7 @@ class EditBudget extends Component {
                             value={this.state.budget}
                             placeholder="Total Budget"
                             onChange={this.handleInputChange}
-                            className='newBudgetTotal'
+                            className='editBudgetLabel'
                             name="newBudgetTotal"
                         /><br/>
                         <p className='editBudgetLabel'>Design</p>
@@ -137,7 +137,7 @@ class EditBudget extends Component {
                             value={this.state.newDesignBudget}
                             placeholder="Design"
                             onChange={this.handleInputChange}
-                            className="newDesignBudget"
+                            className="editBudgetLabel"
                             name="newDesignBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Engineering</p>
@@ -146,7 +146,7 @@ class EditBudget extends Component {
                             value={this.state.newEngBudget}
                             placeholder="Engineering"
                             onChange={this.handleInputChange}
-                            className="newEngBudget"
+                            className="editBudgetLabel"
                             name="newEngBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Finance</p>
@@ -155,7 +155,7 @@ class EditBudget extends Component {
                             value={this.state.newFinanceBudget}
                             placeholder="Finance"
                             onChange={this.handleInputChange}
-                            className="newFinanceBudget"
+                            className="editBudgetLabel"
                             name="newFinanceBudget"
                         /><br/>
                         <p className='editBudgetLabel'>HR</p>
@@ -164,7 +164,7 @@ class EditBudget extends Component {
                             value={this.state.newHRBudget}
                             placeholder="HR"
                             onChange={this.handleInputChange}
-                            className="newHRBudget"
+                            className="editBudgetLabel"
                             name="newHRBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Marketing</p>
@@ -173,7 +173,7 @@ class EditBudget extends Component {
                             value={this.state.newMarketingBudget}
                             placeholder="Marketing"
                             onChange={this.handleInputChange}
-                            className="newMarketingBudget"
+                            className="editBudgetLabel"
                             name="newMarketingBudget"
                         /><br/> 
                         <p className='editBudgetLabel'>Sales</p> 
@@ -182,7 +182,7 @@ class EditBudget extends Component {
                             value={this.state.newSalesBudget}
                             placeholder="Sales"
                             onChange={this.handleInputChange}
-                            className="newSalesBudget"
+                            className="editBudgetLabel"
                             name="newSalesBudget"
                         /><br/>
                         <p className='editBudgetLabel'>Security</p>
@@ -191,12 +191,12 @@ class EditBudget extends Component {
                             value={this.state.newSecurityBudget}
                             placeholder="Security"
                             onChange={this.handleInputChange}
-                            className="newSecurityBudget"
+                            className="editBudgetLabel"
                             name="newSecurityBudget"
                         />   
+                        <button id="submitBtn" onClick={this.updateBudget}> Submit </button>
                     </Col>
                 </Row>
-                <button id="buttnStyling" onClick={this.updateBudget}> Submit </button>
             </div>
         );
     };
