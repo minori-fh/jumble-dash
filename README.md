@@ -61,17 +61,23 @@ componentDidMount() {
 ## Pictures of Site
 [Click here to visit site](https://jumble-dash.herokuapp.com/)
 
-**Initial home page:**
-![Home page](public/style/images/site-images/site1.png)
+**Initial Login Page:**
+The initial login page goes to a menu page if the user is sucessfully authenticated.
+![Login Page](./siteImages/site1.gif)
 
-**Seeing dogs by adoption agency or by breed:**
-![By agency](public/style/images/site-images/site2.gif)
+**Budget Chart:**
+The dashboard represents user data from the project that the user selected on the menu page. The switch button allows for a different representation of the budget data. 
+![Budget Chart](./siteImages/site2.gif)
 
-**Reading, creating, and deleting comments on dogs:** 
-![By breed](public/style/images/site-images/site3.gif)
+**Task Chart:** 
+![Task Chart](./siteImages/site5.gif)
 
-**Form validation to ensure that comments are not empty:** 
-![Comments](public/style/images/site-images/site4.gif)
+**Task Issue Chart:** 
+This chart displays issues that may occur for specific tasks. The user can view/ create/ close issues.  
+![Issues](./siteImages/site3.gif)
+
+**New Project:**  
+![Issues](./siteImages/site6.gif)
 
 ## Improvements for the Future
 Some improvements that I would like to make to this application provided more time: 
