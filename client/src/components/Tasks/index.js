@@ -62,13 +62,11 @@ class Tasks extends Component {
                     console.log("incomplete", incomplete)
 
                     this.setState({
-                        tasks: res.data.tasks,
                         total: res.data.length,
                         tasksIncomplete: incomplete,
                         tasksComplete: complete,
                         counter: this.state.counter + 1
                     })
-
                 })
                     .catch(err => console.log(err.message));
             })

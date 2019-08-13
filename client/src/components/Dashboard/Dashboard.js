@@ -3,6 +3,8 @@ import { Col, Row } from "../Grid";
 import Tasks from "../Tasks";
 import Budget from "../Budget";
 import Problems from "../Problems";
+import "./style.css";
+
 
 
 class Dashboard extends Component {
@@ -44,7 +46,12 @@ class Dashboard extends Component {
                                 </Col>
                             </Row>
                         </div>
-                        : <Row>Ok</Row>
+                        : 
+                        <Row>
+                            <Col id = 'noCurrentProjects' className='xl12'>
+                                You currently have no open projects. Hit + on the side-nav to start!
+                            </Col>
+                        </Row>
                 }
             </div>
         );

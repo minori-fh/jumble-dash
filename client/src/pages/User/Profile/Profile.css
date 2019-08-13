@@ -75,3 +75,20 @@
     font-size: 20px; 
     font-weight: bold; 
 }
+
+#projectMenuButtons{
+    height: 40%; 
+    max-height: 40%; 
+    overflow: scroll; 
+    text-align: center; 
+    align-items: center; 
+}
+
+#projectMenuButtons::-webkit-scrollbar{
+    display: none; 
+    background: transparent; 
+}
+
+#projectMenuContainer{
+    height: 110%; 
+}
