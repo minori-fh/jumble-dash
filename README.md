@@ -61,18 +61,18 @@ componentDidMount() {
 ## Pictures of Site
 [Click here to visit site](https://jumble-dash.herokuapp.com/)
 
-**Initial Login Page:**
+**Initial Login Page:** <br/>
 The initial login page goes to a menu page if the user is sucessfully authenticated.
 ![Login Page](./siteImages/site1.gif)
 
-**Budget Chart:**
+**Budget Chart:** <br/>
 The dashboard represents user data from the project that the user selected on the menu page. The switch button allows for a different representation of the budget data. 
 ![Budget Chart](./siteImages/site2.gif)
 
 **Task Chart:** 
 ![Task Chart](./siteImages/site5.gif)
 
-**Task Issue Chart:** 
+**Task Issue Chart:** <br/>
 This chart displays issues that may occur for specific tasks. The user can view/ create/ close issues.  
 ![Issues](./siteImages/site3.gif)
 
