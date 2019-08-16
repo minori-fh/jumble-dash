@@ -2,10 +2,9 @@ import React from 'react';
 import "./style.css";
 
 function MenuButton(props) {
-    console.log(props.id)
 
     return (
-        <button onClick={() => props.click(props.id)} id={props.id} className="menuBtn">{props.name}</button>
+        <button onClick={() => props.click(props.id)} id={props.id} name={props.name} className="menuBtn">{props.name}</button>
     );
 
 } 

@@ -22,6 +22,7 @@ class Profile extends Component {
             userAccount: false,
             edit: false,
             selectedProject: -1,
+            name: "",
             projects: [],
             loggedIn: true,
             showDash: false
@@ -92,12 +93,13 @@ class Profile extends Component {
         }
         else {
             ProjectAPI.findProjects().then((res) => {
+                console.log(res.data)
                 this.setState({ projects: res.data, edit: false })
             });
         }
     }
 
-    loadDash = id => {
+    loadDash = (id) => {
 
         this.setState({
             selectedProject: id,

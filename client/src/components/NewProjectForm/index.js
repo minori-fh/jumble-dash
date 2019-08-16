@@ -156,19 +156,6 @@ class NewProjectForm extends Component {
                             <p><b>Department Budgets</b></p>
                             <Row>
                                 <Col className='xl12'>
-                                    <input required
-                                        id="inputBudget"
-                                        type="text"
-                                        value={this.state.budget}
-                                        placeholder="Total Budget"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budget"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
                                     <input
                                         type="text"
                                         value={this.state.budgetDesign}

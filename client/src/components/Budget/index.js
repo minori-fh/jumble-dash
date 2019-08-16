@@ -28,8 +28,9 @@ class Budget extends Component {
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
             console.log(res)
+            let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
             this.setState({
-                budgetTotal: res.data.total,
+                budgetTotal: budgetTotal, 
                 budgetDesign: res.data.Design,
                 budgetEngineering: res.data.Engineering,
                 budgetFinance: res.data.Finance,
@@ -52,8 +53,10 @@ class Budget extends Component {
                 for (var i = 2; i < arr.length; i++) {
                     deptNames.push(arr[i]);
                 }
+
+                let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
                 this.setState({
-                    budgetTotal: res.data.total,
+                    budgetTotal: budgetTotal, 
                     budgetDesign: res.data.Design,
                     budgetEngineering: res.data.Engineering,
                     budgetFinance: res.data.Finance,

@@ -25,10 +25,11 @@ class EditBudget extends Component {
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
             console.log(res)
+            let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
 
             this.setState({
                 id: res.data.id,
-                newBudgetTotal: res.data.total,
+                newBudgetTotal: budgetTotal,
                 newMarketingBudget: res.data.Marketing,
                 newHRBudget: res.data.HR,
                 newDesignBudget: res.data.Design,
@@ -42,8 +43,8 @@ class EditBudget extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        if (this.props.projectID !== prevProps.projectID || this.props.budgetChange !== prevProps.budgetChange
-            ) {
+        // this.props.projectID !== prevProps.projectID 
+        if (this.props.total !== prevProps.total || this.props.budgetChange !== prevProps.budgetChange) {
 
             console.log(this.props.budgetChange)
             console.log(prevProps.budgetChange)
@@ -51,10 +52,11 @@ class EditBudget extends Component {
             BudgetAPI.getBudget(this.props.projectID).then(res => {
 
                 console.log(res.data)
+                let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
 
                 this.setState({
                     id: res.data.id,
-                    newBudgetTotal: res.data.total,
+                    newBudgetTotal: budgetTotal,
                     newMarketingBudget: res.data.Marketing,
                     newHRBudget: res.data.HR,
                     newDesignBudget: res.data.Design,
@@ -103,9 +105,10 @@ class EditBudget extends Component {
 
         BudgetAPI.getBudget(this.props.projectID).then(res => {
             console.log(res)
+            let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
             this.setState({
                 id: res.data.id,
-                newBudgetTotal: res.data.total,
+                newBudgetTotal: budgetTotal,
                 newMarketingBudget: res.data.Marketing,
                 newHRBudget: res.data.HR,
                 newDesignBudget: res.data.Design,
@@ -131,16 +134,6 @@ class EditBudget extends Component {
                 </Row>
                 <Row>
                     <Col id = 'editBudgetFormCol' className="xl12">
-                        <p className='editBudgetLabel'>Total Budget</p>
-                        <input required
-                            id="inputBudget"
-                            type="number"
-                            value={this.state.budget}
-                            placeholder="Total Budget"
-                            onChange={this.handleInputChange}
-                            className='editBudgetLabel'
-                            name="newBudgetTotal"
-                        /><br/>
                         <p className='editBudgetLabel'>Design</p>
                         <input
                             type="number"

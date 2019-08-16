@@ -36,7 +36,10 @@ class Chart1 extends Component {
     console.log("DidUpdateChart1")
     console.log(this.props.projectID)
     console.log(prevProps.projectID)
-    if (this.props.projectID !== prevProps.projectID || this.props.total !== prevProps.total || this.props.budgetChange !== prevProps.budgetChange) {
+    // this.props.total !== prevProps.total
+
+
+    if (this.props.total !== prevProps.total || this.props.budgetEdited > 0) {
       
       BudgetAPI.getBudget(this.props.projectID).then(res => {
 
