@@ -41,6 +41,7 @@ render() {
 
 The data used on this site is gathered from user input (ex: project budgets and tasks). The data is managed by [MySQL](https://dev.mysql.com/doc/) and is brought to life by using [Chart.js](https://www.chartjs.org/) and visualizing the user input in a useful format.
 
+
 Below is an example of how we pass in budget information using props to populate a doughnut chart. 
 
 ```
