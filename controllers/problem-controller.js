@@ -23,10 +23,10 @@ module.exports = {
     },
     create: function (req, res) {
         console.log(req);
-        // heroku logs --tail
         db.Problem.create({
             problem: req.body.problem,
-            TaskId: req.body.TaskId
+            TaskId: req.body.TaskId,
+            ProjectId: req.body.ProjectId
         }).then(function (newProblem) {
             console.log(newProblem)
             res.json(newProblem);
