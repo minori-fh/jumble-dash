@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
 
         Problem.belongsTo(models.Project, {
             foreignKey: {
-                allowNull: false,
-                onDelete: 'cascade'
-            }
+                allowNull: false
+            },
+            onDelete: 'cascade'
         });
     };
 
