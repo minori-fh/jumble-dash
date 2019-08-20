@@ -64,7 +64,8 @@ class Problems extends Component {
 
         const problem = {
             problem: this.state.newProblem,
-            TaskId: this.state.selectedTask
+            TaskId: this.state.selectedTask,
+            ProjectId: this.props.projectID
         }
 
         ProblemAPI.createProblem(problem).then(res => {
