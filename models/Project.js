@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
         Project.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: false,
             }
         });
     };

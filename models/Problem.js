@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+
+        Problem.belongsTo(models.Project, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
 
     return Problem;

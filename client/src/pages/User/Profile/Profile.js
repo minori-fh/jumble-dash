@@ -110,6 +110,16 @@ class Profile extends Component {
         menu.classList.toggle("hide")
     }
 
+    deleteProject = (id) => {
+        console.log("hello??")
+        console.log(id)
+
+        ProjectAPI.deleteProject(id).then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err.message));
+    }
+
     render() {
         return (
             <div id='profileSection'>
@@ -139,7 +149,7 @@ class Profile extends Component {
                             <div className="centerButtons">
                                 <img src={Logo} className="Side-logo" alt="logo" />
                                 {this.state.projects.map(project => (
-                                    <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
+                                    <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} delete={this.deleteProject} />
                                 ))}
                                 
                                     <CreateProject edit={this.handleEdit} />
