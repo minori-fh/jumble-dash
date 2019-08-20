@@ -32,7 +32,7 @@ module.exports = {
     },
     remove: function (req, res) {
         console.log(req)
-        db.Project.delete({
+        db.Project.destroy({
             where: {
                 id: req.params.id
             }
