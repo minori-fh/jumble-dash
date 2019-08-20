@@ -31,12 +31,14 @@ module.exports = {
         })
     },
     remove: function (req, res) {
-        db.Project.destroy({
+        console.log(req)
+        db.Project.delete({
             where: {
                 id: req.params.id
             }
         }).then(function (dbProject) {
             res.json(dbProject);
+            console.log(res)
         });
     },
     update: function (req, res) {
