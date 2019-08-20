@@ -22,16 +22,17 @@ class Profile extends Component {
             userAccount: false,
             edit: false,
             selectedProject: -1,
+            name: "",
             projects: [],
             loggedIn: true,
-            showDash: false,
+            showDash: false
         }
     }
 
     animation(){
         let left = document.getElementById("menu-left-col")
         left.classList.toggle("animation")
-        setTimeout(this.handleRightAnimation(), 800)
+        setTimeout(this.handleRightAnimation(), 200)
     }
 
     handleRightAnimation(){
@@ -50,7 +51,9 @@ class Profile extends Component {
             console.log("length", this.state.projects.length)
         });
 
-        requestAnimationFrame(()=> {this.animation()})
+        requestAnimationFrame(() => {
+            requestAnimationFrame(()=> {this.animation()})
+        });
     }
 
     handlelogout() {
@@ -90,12 +93,13 @@ class Profile extends Component {
         }
         else {
             ProjectAPI.findProjects().then((res) => {
+                console.log(res.data)
                 this.setState({ projects: res.data, edit: false })
             });
         }
     }
 
-    loadDash = id => {
+    loadDash = (id) => {
 
         this.setState({
             selectedProject: id,
@@ -108,14 +112,15 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div id='profileSection'>
                 {!this.state.showDash ?
                 <Row id='home-form-grid'>
                     <Col className='xl6 xl6menu menu-left-col' id='menu-left-col'>
                     
+                    
                     </Col>
                     <Col className='xl6 menu-right-col' id='menu-right-col'>
-                        <div>
+                        <div id='projectMenuContainer'>
                             <p id='menuHeader'>What can we help you manage today?</p>
                             <div id='projectMenuButtons'>
                                 {this.state.projects.map(project => (
@@ -154,31 +159,6 @@ class Profile extends Component {
                 </Row>
                 }
             </div>
-            
-                // <Row>
-                //     <Navbar />
-                // </Row>
-                // <Row>
-                //     <Col className="xl2 l3">
-                //         <Sidenav>
-                //             <div className="centerButtons">
-                //                 {this.state.projects.map(project => (
-                //                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} />
-                //                 ))}
-                //                 <CreateProject edit={this.handleEdit} />
-                //                 <LogoutButton logout={this.handlelogout.bind(this)} />
-                //             </div>
-                //         </Sidenav>
-                //     </Col>
-                //     <Col className="xl10 l9">
-                //         {
-                //             !this.state.edit ?
-                //                 <Dashboard projectID={this.state.selectedProject}>
-                //                 </Dashboard>
-                //                 : <NewProjectForm edit={this.handleEdit} />
-                //         }
-                //     </Col>
-                // </Row >
         )
     }
 }

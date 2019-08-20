@@ -8,12 +8,7 @@
 
 #newIssue{
     display: block;
-
-}
-
-#viewIssue{
-    display: block; 
-
+    margin-left: 5%; 
 }
 
 #selectedTask{
@@ -23,7 +18,7 @@
 
 #viewTaskProblem{
     height: 5%; 
-
+    margin-right: 1%; 
 }
 
 .newIssue{
@@ -42,18 +37,70 @@ select{
 }
 
 .newProblem{
-    height: 40px; 
+    display: block; 
+    height: 100px; 
     width: 400px; 
-    margin-left: 3%; 
+    margin-top: 3%; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
-#taskIssuebtn1, #taskIssuebtn2{
-    border-radius: 8px !important;
-    padding: 5px !important; 
+#taskIssuebtn1 {
+    margin-top: 10%; 
+    border-radius: 5px !important;
+    padding: 0px !important; 
     width: 80px; 
     background-color: rgb(68, 167, 68); 
     color: white; 
-    margin-left: 3%;
-    text-align: center !important; 
+    height: 30px;
+    text-align: middle !important; 
+    margin-top: 2%; 
+    display: block; 
+}
+
+#taskIssuebtn2{
+    border-radius: 5px !important;
+    height: 30px !important; 
+    width: 80px; 
+    background-color: rgb(5, 5, 41);
+    color: white; 
+    margin-left: 1%; 
+}
+
+.taskIssueHeader{
+    margin-left: 5%; 
+    font-weight: bold; 
+}
+
+#completeIssueCol{
+    margin-left: 5% !important; 
+    font-weight: normal !important; 
+}
+
+#viewIssueRow{
+    margin-bottom: 2%; 
+}
+
+#taskIssuebtn3{
+    border: none; 
+}
+
+#taskIssueImg{
+    width: 20px; 
+    vertical-align: middle; 
+    margin-top: -2px; 
+}
+
+select{
+    font-family: 'Raleway', sans-serif;
+}
+
+option{
+    font-family: 'Raleway', sans-serif;
+}
+
+textarea {
+    border: none; 
+    border-radius: 5px; 
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px; 
 }

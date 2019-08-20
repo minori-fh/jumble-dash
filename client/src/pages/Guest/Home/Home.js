@@ -152,24 +152,6 @@ class Home extends Component {
         )
     }
 
-    // renderMenu = () => {
-    //     <Menu/>
-    //     // if(this.state.new) {
-    //     //     return(
-    //     //         <div>
-    //     //             <h2>Creating your shiney new account!</h2>
-    //     //             <p>Please wait...</p>
-    //     //         </div>
-    //     //     ) 
-            
-    //     // } else {
-    //     //    return( <div>
-    //     //         <h2>Loading your Profile!</h2>
-    //     //         <p>Please wait...</p>
-    //     //     </div>)
-    //     // }
-    // }
-
     render(){
         return(
             <Panel>

@@ -19,6 +19,7 @@ class Chart1 extends Component {
   }
 
   componentDidMount() {
+    console.log("DidMountChart1")
     this.chart1 = new Chart(this.chart1Ref.current, {
       type: 'doughnut',
       data: {
@@ -32,18 +33,31 @@ class Chart1 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.total !== prevProps.total || this.props.counter !== prevProps.counter) {
-      this.chart1.destroy();
-      this.chart1 = new Chart(this.chart1Ref.current, {
-        type: 'doughnut',
-        data: {
-          labels: this.props.depts,
-          datasets: [{
-            data: [this.props.marketing, this.props.hr, this.props.design, this.props.engineering, this.props.sales, this.props.finance, this.props.security],
-            backgroundColor: ['#e47676', '#ffb01d', '#b0fff4', '#6ec56e', '#9e9e9e', '#47b4b4', '#ffff89']
-          }]
-        }
-      });
+    console.log("DidUpdateChart1")
+    console.log(this.props.projectID)
+    console.log(prevProps.projectID)
+    // this.props.total !== prevProps.total
+
+
+    if (this.props.total !== prevProps.total || this.props.budgetEdited > 0) {
+      
+      BudgetAPI.getBudget(this.props.projectID).then(res => {
+
+        this.chart1.destroy();
+        console.log("DestroyChartforNew")
+
+        this.chart1 = new Chart(this.chart1Ref.current, {
+          type: 'doughnut',
+          data: {
+            labels: this.props.depts,
+            datasets: [{
+              data: [res.data.Marketing, res.data.HR, res.data.Design, res.data.Engineering, res.data.Sales, res.data.Finance, res.data.Security],
+              backgroundColor: ['#e47676', '#ffb01d', '#b0fff4', '#6ec56e', '#9e9e9e', '#47b4b4', '#ffff89']
+            }]
+          }
+        });
+      })
+        .catch(err => console.log(err.message));
     }
   }
 

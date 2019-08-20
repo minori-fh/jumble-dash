@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
 .menuLogout {
     color: black; 
     position: fixed; 
@@ -6,4 +8,5 @@
     font-size: 14px; 
     border: none; 
     background-color: transparent !important; 
+    font-family: 'Muli', sans-serif;
 }

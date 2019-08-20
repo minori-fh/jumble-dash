@@ -3,6 +3,8 @@ import { Col, Row } from "../Grid";
 import Tasks from "../Tasks";
 import Budget from "../Budget";
 import Problems from "../Problems";
+import "./style.css";
+
 
 
 class Dashboard extends Component {
@@ -11,7 +13,8 @@ class Dashboard extends Component {
         super(props)
         this.chart2Ref = React.createRef();
         this.state = {
-            tasksAdded: 0
+            tasksAdded: 0,
+            budgetEdited: 0
         }
     }
 
@@ -23,6 +26,13 @@ class Dashboard extends Component {
         })
     }
 
+    handleUpdateBudget = event => {
+        event.preventDefault();
+        this.setState({
+            budgetEdited: this.state.budgetEdited + 1
+        })
+    }
+
     render() {
         return (
             <div>
@@ -31,7 +41,7 @@ class Dashboard extends Component {
                         <div>
                             <Row>
                                 <Col className="xl6 l6">
-                                    <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} />
+                                    <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} updateBudget={this.handleUpdateBudget} budgetChange={this.state.budgetEdited}/>
                                 </Col>
 
                                 <Col className="xl6 l6">
@@ -44,7 +54,12 @@ class Dashboard extends Component {
                                 </Col>
                             </Row>
                         </div>
-                        : <Row>Ok</Row>
+                        : 
+                        <Row>
+                            <Col id = 'noCurrentProjects' className='xl12'>
+                                You currently have no open projects. Hit + on the side-nav to start!
+                            </Col>
+                        </Row>
                 }
             </div>
         );

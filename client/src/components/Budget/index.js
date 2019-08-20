@@ -3,6 +3,7 @@ import BudgetAPI from '../../utils/API-budget';
 import { Col, Row } from "../Grid";
 import Chart1 from '../chart1';
 import Chart4 from '../chart4';
+import EditBudget from '../EditBudget/EditBudget'
 import "./style.css"
 
 class Budget extends Component {
@@ -35,8 +36,10 @@ class Budget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
+            console.log(res)
+            let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
             this.setState({
-                budgetTotal: res.data.total,
+                budgetTotal: budgetTotal, 
                 budgetDesign: res.data.Design,
                 budgetEngineering: res.data.Engineering,
                 budgetFinance: res.data.Finance,
@@ -52,7 +55,7 @@ class Budget extends Component {
 
     componentDidUpdate(prevProps) {
 
-        if (this.props.projectID !== prevProps.projectID) {
+        if (this.props.projectID !== prevProps.projectID || this.props.budgetChange !== prevProps.budgetChange) {
             BudgetAPI.getBudget(this.props.projectID).then(res => {
                 console.log(res.data)
                 var arr = Object.keys(res.data);
@@ -60,9 +63,10 @@ class Budget extends Component {
                 for (var i = 2; i < arr.length; i++) {
                     deptNames.push(arr[i]);
                 }
-                console.log(deptNames);
+
+                let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
                 this.setState({
-                    budgetTotal: res.data.total,
+                    budgetTotal: budgetTotal, 
                     budgetDesign: res.data.Design,
                     budgetEngineering: res.data.Engineering,
                     budgetFinance: res.data.Finance,
@@ -159,7 +163,8 @@ class Budget extends Component {
                 <hr width="80%"/>
                 {!this.state.chartSwitch ?
                     <Chart1
-                        counter={this.state.counter}
+                        budgetChange={this.props.budgetChange}
+                        projectID={this.props.projectID}
                         total={this.state.budgetTotal}
                         depts={this.state.budgetDept}
                         marketing={this.state.budgetMarketing}
@@ -171,7 +176,8 @@ class Budget extends Component {
                         security={this.state.budgetSecurity}
                     /> :
                     <Chart4
-                        counter={this.state.counter}
+                        budgetChange={this.props.budgetChange}
+                        projectID={this.props.projectID}
                         total={this.state.budgetTotal}
                         depts={this.state.budgetDept}
                         marketing={this.state.budgetMarketing}
@@ -182,110 +188,21 @@ class Budget extends Component {
                         finance={this.state.budgetFinance}
                         security={this.state.budgetSecurity}
                     />}
-                <button onClick={this.handleChartSwitch}>Switch</button>
-
-                    <Row>
-                        <Col className='xl12 newProjectHalfCol'>
-                            <p>Department Budgets</p>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input required
-                                        type="text"
-                                        value={this.state.newBudgetTotal}
-                                        placeholder="Total Budget"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetTotal"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetDesign}
-                                        placeholder="Design"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetDesign"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetEngineering}
-                                        placeholder="Engineering"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetEngineering"
-                                    /> 
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetFinance}
-                                        placeholder="Finance"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetFinance"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetHR}
-                                        placeholder="HR"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetHR"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetMarketing}
-                                        placeholder="Marketing"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetMarketing"
-                                    />  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetSales}
-                                        placeholder="Sales"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetSales"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.newBudgetSecurity}
-                                        placeholder="Security"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="newBudgetSecurity"
-                                    />
-                                </Col>
-                            </Row>
-                            <button id="submit" onClick={this.updateBudget} >Submit New Budget</button>
-                        </Col>
-                </Row>
+                <button id='switchDoughnut' onClick={this.handleChartSwitch}>Switch</button>
+              
+                <EditBudget
+                    budgetChange={this.props.budgetChange}
+                    updateBudget={this.props.updateBudget}
+                    projectID={this.props.projectID}
+                    total={this.state.budgetTotal}
+                    marketing={this.state.budgetMarketing}
+                    hr={this.state.budgetHR}
+                    design={this.state.budgetDesign}
+                    engineering={this.state.budgetEngineering}
+                    sales={this.state.budgetSales}
+                    finance={this.state.budgetFinance}
+                    security={this.state.budgetSecurity}
+                />
             </div>
         );
     }

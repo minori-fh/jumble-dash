@@ -1,15 +1,16 @@
 #inputName{
-    height:30px;
+    height:25px;
     width:200px;
-    font-size: 18px;
-    margin-right:30px;
+    font-size: 14px;
+    margin-right:20px;
+    padding: 1%; 
+    font-family: 'Raleway', sans-serif;
 }
 
 #submitNewProject{
-    margin-left:5px;
     margin-bottom: -1%; 
     height:30px;
-    width: 30px;
+    width: 25px;
     font-size: 18px
 }
 
@@ -27,7 +28,7 @@
 }
 
 input{
-    border-radius: 8px; 
+    border-radius: 5px; 
     border: none; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
 }
@@ -40,7 +41,7 @@ input{
 }
 
 #newBudgetFormDiv{
-    margin-top: 11%; 
+    margin-top: 7%; 
     text-align: center; 
     display: none; 
 }
@@ -63,12 +64,20 @@ input{
 
 #submit {
     margin-top: 10%; 
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 1%; 
     background-color: rgb(68, 167, 68); 
     color: white; 
-
-
+    padding: 1%;
+    height: 30px;
+    width: 100px;
 }
 
+#inputBudget, .budget, .task{
+    height: 25px;
+    border-radius: 5px; 
+    font-size: 14px; 
+    font-family: 'Raleway', sans-serif;
+    padding: 1%; 
+}
 

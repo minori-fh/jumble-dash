@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import ProblemAPI from '../../utils/API-problem';
 import Chart2 from '../chart2';
 import { Col, Row } from "../Grid";
+import Complete from './complete.png';
 import "./style.css";
 
 class Problems extends Component {
@@ -128,45 +129,53 @@ class Problems extends Component {
                 <div>
                     <h1 id='name-styling'>Task Issues</h1>
                     <hr width="80%"/>
-                    <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
-                        <Col className='xl3 newIssue'>
-                            <form id='newIssue'>
-                                <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
-                                    <option id='selectedTask'>Please Select a Task to submit Problems</option>
+                    <Row id='viewIssueRow'>
+                        <Col className='xl12'>
+                            <form id='viewIssue'>
+                                <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
+                                    <option id='viewTaskProblem' >Select a Task to View</option>
                                     {this.state.tasks.map((task, i) => (
                                         <option value={task.id} key={i}>{task.task}</option>
                                     ))}
                                 </select>
-                                <input
-                                    type="text"
-                                    value={this.state.newProblem}
-                                    placeholder="What seems to be the problem?"
-                                    onChange={this.handleInputChange}
-                                    name="newProblem"
-                                    className='newProblem'
-                                />
-                                <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
+                                <button id='taskIssuebtn2' onClick={this.viewProblem}> View </button>
                             </form>
                         </Col>
-                        <Col className='xl3 viewIssue'>
-                        <form id='viewIssue'>
-                            <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
-                                <option id='viewTaskProblem' >Please Select a Task to View</option>
-                                {this.state.tasks.map((task, i) => (
-                                    <option value={task.id} key={i}>{task.task}</option>
-                                ))}
-                            </select>
-                            <button id='taskIssuebtn2' onClick={this.viewProblem}> Submit </button>
-                        </form>
-                        </Col>
-                        
-                        <div>{this.state.problemsList.map((problem) => (
-                            <Row key={problem.id}>
-                                {problem.problem}
-                                <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}>Complete</button>
-                            </Row>
-                        ))}</div>
-                    
+                    </Row>
+                    <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
+                        <Row>
+                            <Col className='xl6 newIssue'>
+                                <p className='taskIssueHeader'>Submit a New Issue:</p>
+                                <form id='newIssue'>
+                                    <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
+                                        <option id='selectedTask'>Please Select a Task</option>
+                                        {this.state.tasks.map((task, i) => (
+                                            <option value={task.id} key={i}>{task.task}</option>
+                                        ))}
+                                    </select>
+                                    <textarea
+                                        type="text"
+                                        value={this.state.newProblem}
+                                        placeholder="What seems to be the problem?"
+                                        onChange={this.handleInputChange}
+                                        name="newProblem"
+                                        className='newProblem'
+                                    />
+                                    <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
+                                </form>
+                            </Col>
+                            <Col className='xl6 viewIssue'>
+                                <div className='taskIssueHeader'>{this.state.problemsList.map((problem) => (
+                                    <Row key={problem.id}>
+                                        <p>Issues:</p>
+                                        <Col id='completeIssueCol' className='xl12'> 
+                                            {problem.problem}
+                                            <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}><img id='taskIssueImg' src={Complete}/></button>
+                                        </Col>
+                                    </Row>
+                                ))}</div>
+                            </Col>
+                        </Row>
                 </div>
             </div>
         );

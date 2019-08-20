@@ -3,6 +3,7 @@ import TaskAPI from '../../utils/API-task';
 import { Col, Row } from "../Grid";
 import Task from '../Task';
 import Chart3 from "../chart3";
+import Complete from "./complete.png"
 import "./style.css"
 
 class Tasks extends Component {
@@ -25,13 +26,15 @@ class Tasks extends Component {
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+            console.log(res)
+
             this.setState({
                 tasks: res.data,
                 tasksIncomplete: res.data.length
             })
+            console.log("this.state.tasks", res.data);
         })
             .catch(err => console.log(err.message));
-        console.log("this.state.tasks", this.state.tasks);
 
         TaskAPI.getTasks(this.props.projectID).then(res => {
 
@@ -40,6 +43,8 @@ class Tasks extends Component {
                 tasksComplete: res.data.length - this.state.tasksIncomplete,
                 counter: this.state.counter + 1
             })
+
+            console.log(res.data)
         })
             .catch(err => console.log(err.message));
     }
@@ -63,7 +68,6 @@ class Tasks extends Component {
                         tasksComplete: complete,
                         counter: this.state.counter + 1
                     })
-
                 })
                     .catch(err => console.log(err.message));
             })
@@ -120,6 +124,9 @@ class Tasks extends Component {
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
 
+            console.log(res.data)
+            console.log(res)
+
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);
@@ -148,12 +155,12 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row id='taskList'>
-                    {this.state.tasks.map((task, i) => (
+                    {this.state.tasks.map((task, i) => (    
                         <Col key={i} className='xl3'>
                             <div key={task.id}>
                                 <Task task={task.task} assignee1={task.assignee1}
                                     assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
-                                <button key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}>Complete</button>
+                                <button id='taskComplete' key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}><img id='completeImg' src={Complete}/></button>
                             </div>
                         </Col>
                     ))}
