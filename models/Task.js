@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
 
         Task.belongsTo(models.Project, {
             foreignKey: {
-                allowNull: false
+                allowNull: false,
+                onDelete: 'cascade'
             }
         });
     };
