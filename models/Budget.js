@@ -42,7 +42,8 @@ module.exports = (sequelize, DataTypes) => {
 
         Budget.belongsTo(models.Project, {
             foreignKey: {
-                allowNull: false
+                allowNull: false,
+                onDelete: 'cascade'
             }
         });
     };
