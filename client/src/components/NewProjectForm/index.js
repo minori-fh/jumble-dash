@@ -4,7 +4,6 @@ import { Col, Row } from "../Grid";
 import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
-import Dashboard from '../Dashboard';
 import Arrow from './arrow.png';
 
 class NewProjectForm extends Component {

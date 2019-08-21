@@ -12,7 +12,7 @@ class Problems extends Component {
         this.chart2Ref = React.createRef();
         this.state = {
             tasks: [],
-            viewUnsolvedProblems: [],
+            unsolvedProblems: [],
             selectedTask: "",
             selectedProblem: "",
             newProblem: "",
