@@ -19,7 +19,7 @@ class Chart2 extends Component {
           {
             label: "Unsolved Problems",
             backgroundColor: "#df4343",
-            data: [this.props.unsolved]
+            data: [(this.props.unsolved)]
           },
           {
             label: "Solved Problems",
@@ -34,7 +34,7 @@ class Chart2 extends Component {
             {
               ticks: {
                 min: 0,
-                max: 10
+                max: 100
               }
             }
           ]
@@ -55,12 +55,12 @@ class Chart2 extends Component {
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: [this.props.unsolved]
+              data: [(this.props.unsolved/ (this.props.solved + this.props.unsolved))*100 ]
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data: [this.props.solved]
+              data: [(this.props.solved/(this.props.unsolved + this.props.solved))*100]
             }
           ]
         },
@@ -70,7 +70,7 @@ class Chart2 extends Component {
               {
                 ticks: {
                   min: 0,
-                  max: this.props.unsolved + this.props.solved
+                  max: ((this.props.unsolved + this.props.solved )/(this.props.unsolved + this.props.solved))*100
                 }
               }
             ]
