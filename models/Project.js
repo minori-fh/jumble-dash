@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        deadline: {
+            type: DataTypes.DATE,
+            allowNull: true
         }
     });
 

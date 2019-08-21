@@ -4,7 +4,6 @@ import { Col, Row } from "../Grid";
 import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
-import Dashboard from '../Dashboard';
 import Arrow from './arrow.png';
 
 class NewProjectForm extends Component {
@@ -26,6 +25,7 @@ class NewProjectForm extends Component {
         assignee2: "",
         assignee3: "",
         assignee4: "",
+        deadline: "",
     }
 
     handleInputChange = event => {
@@ -302,6 +302,20 @@ class NewProjectForm extends Component {
                                     />
                                 </Col>
                             </Row>
+                            {/* <p><b>Add a Project Deadline</b></p>
+                            <Row>
+                                <Col className='xl12'>
+                                    <input
+                                        type="text"
+                                        value={this.state.deadline}
+                                        placeholder="Project Deadline"
+                                        onChange={this.handleInputChange}
+                                        name="deadline"
+                                        className='deadline'
+                                    />
+                                </Col>
+                            </Row> */}
+
                             <button id="submit" onClick={this.saveBudgetTask} >Submit Project</button>
                         </Col>
                     </Row>
