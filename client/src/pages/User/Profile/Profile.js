@@ -25,7 +25,8 @@ class Profile extends Component {
             name: "",
             projects: [],
             loggedIn: true,
-            showDash: false
+            showDash: false,
+            projectName: ""
         }
     }
 
@@ -72,10 +73,20 @@ class Profile extends Component {
     }
 
     loadProject = id => {
+        console.log("hello my id is: ", id)
 
         this.setState({
             selectedProject: id
         });
+
+        ProjectAPI.getProject(id).then((res) => {
+            console.log("hello this is the project name", res.data.name)
+
+            this.setState({
+                projectName: res.data.name
+            });
+        });
+
     }
 
     handleEdit = () => {
@@ -101,6 +112,8 @@ class Profile extends Component {
 
     loadDash = (id) => {
 
+        console.log("hello this is my id too", id)
+
         this.setState({
             selectedProject: id,
             showDash: true
@@ -108,6 +121,14 @@ class Profile extends Component {
 
         let menu = document.getElementById("home-form-grid")
         menu.classList.toggle("hide")
+
+        ProjectAPI.getProject(id).then((res) => {
+            console.log("hello this is the project name", res.data.name)
+
+            this.setState({
+                projectName: res.data.name
+            });
+        });
     }
 
     deleteProject = (id) => {
@@ -161,7 +182,7 @@ class Profile extends Component {
                     <Col className="newProjectCol xl10 l9">
                         {
                             !this.state.edit ?
-                                <Dashboard projectID={this.state.selectedProject}>
+                                <Dashboard projectName={this.state.projectName} projectID={this.state.selectedProject}>
                                 </Dashboard>
                                 : <NewProjectForm  edit={this.handleEdit} projectID={this.state.selectedProject} />
                         }

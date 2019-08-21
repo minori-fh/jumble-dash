@@ -39,6 +39,9 @@ class Dashboard extends Component {
                 {
                     this.props.projectID !== -1 ?
                         <div>
+                            <Row className='xl12' id="projectName">
+                                {this.props.projectName}
+                            </Row>
                             <Row>
                                 <Col className="xl6 l6">
                                     <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} updateBudget={this.handleUpdateBudget} budgetChange={this.state.budgetEdited}/>
