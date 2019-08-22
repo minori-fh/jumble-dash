@@ -5,6 +5,7 @@ import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
 import Arrow from './arrow.png';
+import Calendar from 'react-calendar';
 
 class NewProjectForm extends Component {
 
@@ -21,10 +22,19 @@ class NewProjectForm extends Component {
         budgetSales: "",
         projectID: 0,
         task: "",
+        date: new Date(),
         assignee1: "",
         assignee2: "",
         assignee3: "",
         assignee4: "",
+    }
+
+    onChange = date =>
+    {
+ 
+
+     this.setState({ date })     
+     console.log(date)
     }
 
     handleInputChange = event => {
@@ -61,7 +71,7 @@ class NewProjectForm extends Component {
             })
             .catch(err => console.log(err.message));
 
-        
+
     }
 
     addTask = event => {
@@ -94,6 +104,7 @@ class NewProjectForm extends Component {
 
         let info = {
             task: this.state.task,
+            deadline: this.date,
             assignee1: this.state.assignee1,
             assignee2: this.state.assignee2,
             assignee3: this.state.assignee3,
@@ -116,23 +127,10 @@ class NewProjectForm extends Component {
 
     dashboard = (props) => {
         (props.edit())
-        // // window.location.reload(false);
-        // API.getProject(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved project", result)
-        //     })
-        // APIBudget.getBudget(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved Budget", result)
-        //     })
-        // APITask.getTasks(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved Task", result)
-        //     })
     }
 
     formRender() {
-        if(!this.state.showBudget){
+        if (!this.state.showBudget) {
             return (
                 <div id="body">
                     <form id="styling">
@@ -146,169 +144,175 @@ class NewProjectForm extends Component {
                         />
                     </form>
                     <img src={Arrow} id="submitNewProject" onClick={this.saveProject} className="Next-logo" alt="logo" />
-            
+
 
                     <div className='newBudgetFormDiv' id="newBudgetFormDiv">
-    
-                    <Row>
-                        <Col className='xl6 newProjectHalfCol'>
-                            <p><b>Department Budgets</b></p>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetDesign}
-                                        placeholder="Design"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetDesign"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetEngineering}
-                                        placeholder="Engineering"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetEngineering"
-                                    /> 
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetFinance}
-                                        placeholder="Finance"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetFinance"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetHR}
-                                        placeholder="HR"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetHR"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetMarketing}
-                                        placeholder="Marketing"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetMarketing"
-                                    />  
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetSales}
-                                        placeholder="Sales"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetSales"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.budgetSecurity}
-                                        placeholder="Security"
-                                        onChange={this.handleInputChange}
-                                        className='budget'
-                                        name="budgetSecurity"
-                                    />
-                                </Col>
-                            </Row>
-                        </Col>
 
-                        <Col className='newProjectHalfCol xl6'>
-                            <p><b>Add an Initial Task</b></p>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input required
-                                        type="text"
-                                        value={this.state.task}
-                                        placeholder="Task"
-                                        onChange={this.handleInputChange}
-                                        name="task"
-                                        className='task'
+                        <Row>
+                            <Col className='xl6 newProjectHalfCol'>
+                                <p><b>Department Budgets</b></p>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetDesign}
+                                            placeholder="Design"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetDesign"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetEngineering}
+                                            placeholder="Engineering"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetEngineering"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetFinance}
+                                            placeholder="Finance"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetFinance"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetHR}
+                                            placeholder="HR"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetHR"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetMarketing}
+                                            placeholder="Marketing"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetMarketing"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetSales}
+                                            placeholder="Sales"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetSales"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.budgetSecurity}
+                                            placeholder="Security"
+                                            onChange={this.handleInputChange}
+                                            className='budget'
+                                            name="budgetSecurity"
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
+
+                            <Col className='newProjectHalfCol xl6'>
+                                <p><b>Add an Initial Task</b></p>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input required
+                                            type="text"
+                                            value={this.state.task}
+                                            placeholder="Task"
+                                            onChange={this.handleInputChange}
+                                            name="task"
+                                            className='task'
+                                        />
+                                        <h3> Deadline </h3>
+                                        <Calendar
+                                        className="calendar"
+                                        onChange={this.onChange}
+                                        date={this.state.date}
                                     />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input required
-                                        type="text"
-                                        value={this.state.assignee1}
-                                        placeholder="Assignee #1 (Required)"
-                                        onChange={this.handleInputChange}
-                                        name="assignee1"
-                                        className='task'
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.assignee2}
-                                        placeholder="Assignee #2 (Optional)"
-                                        onChange={this.handleInputChange}
-                                        name="assignee2"
-                                        className='task'
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.assignee3}
-                                        placeholder="Assignee #3 (Optional)"
-                                        onChange={this.handleInputChange}
-                                        name="assignee3"
-                                        className='task'
-                                    /> 
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className='xl12'>
-                                    <input
-                                        type="text"
-                                        value={this.state.assignee4}
-                                        placeholder="Assignee #4 (Optional)"
-                                        onChange={this.handleInputChange}
-                                        name="assignee4"
-                                        className='task'
-                                    />
-                                </Col>
-                            </Row>
-                            <button id="submit" onClick={this.saveBudgetTask} >Submit Project</button>
-                        </Col>
-                    </Row>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input required
+                                            type="text"
+                                            value={this.state.assignee1}
+                                            placeholder="Assignee #1 (Required)"
+                                            onChange={this.handleInputChange}
+                                            name="assignee1"
+                                            className='task'
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.assignee2}
+                                            placeholder="Assignee #2 (Optional)"
+                                            onChange={this.handleInputChange}
+                                            name="assignee2"
+                                            className='task'
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.assignee3}
+                                            placeholder="Assignee #3 (Optional)"
+                                            onChange={this.handleInputChange}
+                                            name="assignee3"
+                                            className='task'
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className='xl12'>
+                                        <input
+                                            type="text"
+                                            value={this.state.assignee4}
+                                            placeholder="Assignee #4 (Optional)"
+                                            onChange={this.handleInputChange}
+                                            name="assignee4"
+                                            className='task'
+                                        />
+                                    </Col>
+                                </Row>
+                                <button id="submit" onClick={this.saveBudgetTask} >Submit Project</button>
+                            </Col>
+                        </Row>
 
                     </div>
                 </div>
             );
-        }; 
+        };
     };
 
     render() {

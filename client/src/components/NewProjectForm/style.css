@@ -81,3 +81,10 @@ input{
     padding: 1%; 
 }
 
+    .calendar {
+        border: 1px solid white !important;
+        margin-left:130px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+
+}
+
