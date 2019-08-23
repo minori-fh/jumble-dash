@@ -28,7 +28,7 @@
  
  .xl0 {
     grid-column: span 0;
-    max-width: span 0; 
+    display: none;
  }
  .xl1 {
     grid-column: span 1;
@@ -47,7 +47,6 @@
  }
  .xl6 {
     grid-column: span 6;
-    max-width: span 6;
  }
  .xl7 {
     grid-column: span 7;
@@ -66,12 +65,12 @@
  }
  .xl12 {
     grid-column: span 12;
-    max-width: span 12;
  }
  
  @media screen and (max-width: 992px) {
     .l0 {
        grid-column: span 0;
+       display: none;
     }
     .l1 {
        grid-column: span 1;
@@ -114,6 +113,7 @@
  @media screen and (max-width: 768px) {
     .m0 {
        grid-column: span 0;
+       display: none;
     }
     .m1 {
        grid-column: span 1;
@@ -156,6 +156,7 @@
  @media screen and (max-width: 576px) {
     .s0 {
        grid-column: span 0;
+       display: none;
     }
     .s1 {
        grid-column: span 1;
@@ -198,6 +199,7 @@
  @media screen and (max-width: 480px) {
     .xs0 {
        grid-column: span 0;
+       display: none;
     }
     .xs1 {
        grid-column: span 1;

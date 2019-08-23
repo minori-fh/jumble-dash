@@ -35,7 +35,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div>
+            <div id="dashboard">
                 {
                     this.props.projectID !== -1 ?
                         <div>
@@ -43,11 +43,11 @@ class Dashboard extends Component {
                                 {this.props.projectName}
                             </Row>
                             <Row>
-                                <Col className="xl6 l6">
+                                <Col className="xl6 l6 m12">
                                     <Budget projectID={this.props.projectID} status={this.props.status} chartSwitch={this.props.chartSwitch} updateBudget={this.handleUpdateBudget} budgetChange={this.state.budgetEdited}/>
                                 </Col>
 
-                                <Col className="xl6 l6">
+                                <Col className="xl6 l6 m12">
                                     <Tasks projectID={this.props.projectID} updateTasks={this.handleUpdateTasks} />
                                 </Col>
                             </Row>
