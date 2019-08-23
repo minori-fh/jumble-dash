@@ -7,9 +7,7 @@
     padding-right: 5px; 
     color: white; 
     border: none;
-    position: absolute; 
-    bottom: 2%; 
-    left: 0; 
+    position: relative;
     font-size: 14px; 
-    margin-left: 0px !important; 
+    margin-top: 10px;
 }

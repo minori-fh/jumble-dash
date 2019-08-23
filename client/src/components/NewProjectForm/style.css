@@ -15,7 +15,8 @@
 }
 
 #body {
-    margin-top: 25%; 
+    padding-top: 25vh;
+    height: 75vh;
 }
 
 #body.animate{
@@ -59,7 +60,7 @@ input{
 }
 
 #styling{
-    display: inline !important; 
+    display: inline; 
 }
 
 #submit {
