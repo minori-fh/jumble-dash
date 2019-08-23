@@ -5,24 +5,9 @@
   background-color: white;
   overflow: hidden;
   overflow-y: visible;  
-  /* background-image: url("bkgrnd.jpg"); */
   background-repeat: none;
   background-size: 100vw 100vh; 
 }
-
-/* .App-skew {
-  min-height: 50vh;
-  width: 100%;
-  -ms-transform: rotate(-16deg) skew(-16deg); 
-  -webkit-transform: rotate(-16deg) skew(-16deg); 
-  transform: rotate(-16deg) skew(-16deg); 
-  overflow: hidden;
-  position: relative;
-  height: 650px;
-  width: 2000px;
-  top: -222px;
-  left: -200px;
-} */
 
 header {
   z-index: 999;
@@ -32,10 +17,11 @@ header {
   color: #fff;
   text-transform: uppercase;
 }
+
 .App-logo {
   width: 145px;
-  /*animation: App-logo-spin infinite 20s linear;*/
 }
+
 .error {
   color: rgb(222, 62, 62);
   font-size: 18px;
@@ -43,15 +29,4 @@ header {
   padding: 10px;
   border-radius: 35px;
 }
-.App-logo-glit {
-  animation: App-logo-spin infinite 20s linear;
-}
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-/* @media only screen and (max-width: 40em) {
-  .App-skew {
-    height: 450px;
-  }
-} */
+

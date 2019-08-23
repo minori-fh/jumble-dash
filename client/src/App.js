@@ -4,9 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserRoutes from './routes/UserRoutes'
 import GuestRoutes from './routes/GuestRoutes'
 import Actions from "./utils/API";
+import 'normalize.css';
 
-
-// import logo from './jumble.gif';
 import './App.css';
 
 class App extends Component {
