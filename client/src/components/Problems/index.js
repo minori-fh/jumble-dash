@@ -62,6 +62,8 @@ class Problems extends Component {
     addProblem = event => {
         event.preventDefault();
 
+        document.getElementById("issuetxt").value = "";
+
         const problem = {
             problem: this.state.newProblem,
             TaskId: this.state.selectedTask,
@@ -161,6 +163,7 @@ class Problems extends Component {
                                         onChange={this.handleInputChange}
                                         name="newProblem"
                                         className='newProblem'
+                                        id='issuetxt'
                                     />
                                     <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
                                 </form>

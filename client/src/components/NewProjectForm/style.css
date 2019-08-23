@@ -71,7 +71,8 @@ input{
     color: white; 
     padding: 1%;
     height: 30px;
-    width: 100px;
+    width: 120px;
+    font-size: 12px; 
 }
 
 #inputBudget, .budget, .task{
