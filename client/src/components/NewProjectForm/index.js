@@ -31,8 +31,6 @@ class NewProjectForm extends Component {
 
     onChange = date =>
     {
- 
-
      this.setState({ date })     
      console.log(date)
     }
@@ -104,7 +102,7 @@ class NewProjectForm extends Component {
 
         let info = {
             task: this.state.task,
-            deadline: this.date,
+            deadline: this.state.date,
             assignee1: this.state.assignee1,
             assignee2: this.state.assignee2,
             assignee3: this.state.assignee3,
@@ -112,12 +110,9 @@ class NewProjectForm extends Component {
             ProjectId: this.state.projectID
         }
 
-        console.log("---------------------------------------------------------------")
-        console.log(info);
-
         APITask.createTask(info)
             .then(res => {
-                console.log(res)
+                console.log("this is the result of task created",res)
             })
             .catch(err => console.log(err.message));
 

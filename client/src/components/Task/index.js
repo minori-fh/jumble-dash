@@ -3,10 +3,13 @@ import { Col, Row } from "../Grid";
 import "./style.css"
 
 function Task(props) {
+    console.log("props in task not TASKS",props)
     return (
+        
         // <Col className="xl3">
         <div id='newTaskList'>
             <p id='newTask'>{props.task}</p>
+            <p> Deadline {props.deadline} </p>
             <p id='assignees'>Assigned to: </p>
             <div className = 'assignees'>{props.assignee1}</div>
             <div className = 'assignees'>{props.assignee2}</div>

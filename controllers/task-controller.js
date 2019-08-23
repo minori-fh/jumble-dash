@@ -21,6 +21,7 @@ module.exports = {
         });
     },
     create: function (req, res) {
+        
         db.Task.create({
             task: req.body.task,
             deadline: req.body.deadline,
