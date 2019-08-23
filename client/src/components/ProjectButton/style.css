@@ -1,17 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 .sideBtn{
-    margin-left: 0px !important; 
-    height: auto; 
+    margin-left: 0px !important;
     width: 100%; 
     background-color: transparent; 
-    border-color: rgb(36, 36, 75); 
-    border-top: none; 
-    border-left: none; 
-    border-right: none; 
+    border: none;
     font-size: 16px; 
     position: relative;
-    top: 30px;
     padding: 2px; 
     color: white; 
     text-align: left; 
@@ -19,6 +14,7 @@
     padding-bottom: 10%; 
     padding-left: 1%; 
     font-family: 'Muli', sans-serif;
+    z-index: 10;
 }
 
 .sideBtn:active{
@@ -35,7 +31,9 @@
     background-color: transparent; 
     color: white; 
     border: none; 
-    font-size: 12px; 
+    font-size: 12px;
+    position: relative;
+    z-index: 10;
 }
 
 /* .sideBtn {

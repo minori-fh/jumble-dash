@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Actions from "../../../utils/API";
 import Dashboard from '../../../components/Dashboard';
 import { Col, Row } from "../../../components/Grid";
-// import Navbar from "../../../components/Navbar";
-import Sidenav from "../../../components/Sidenav";
 import CreateProject from '../../../components/CreateProject';
 import ProjectButton from '../../../components/ProjectButton';
 import NewProjectForm from '../../../components/NewProjectForm';
@@ -12,8 +10,9 @@ import LogoutButton from '../../../components/LogoutButton';
 import MenuLogoutButton from '../../../components/MenuLogoutButton';
 import MenuButton from '../../../components/MenuButtons/menuButtons';
 import MenuCreateProject from '../../../components/MenuCreateProject';
+import Navbar from '../../../components/Navbar';
 import "./Profile.css";
-import Logo from './whiteLogo.png'
+import Logo from './whiteLogo.png';
 
 class Profile extends Component {
     constructor(props) {
@@ -30,13 +29,13 @@ class Profile extends Component {
         }
     }
 
-    animation(){
+    animation() {
         let left = document.getElementById("menu-left-col")
         left.classList.toggle("animation")
         setTimeout(this.handleRightAnimation(), 200)
     }
 
-    handleRightAnimation(){
+    handleRightAnimation() {
         let right = document.getElementById("menu-right-col")
         right.classList.toggle("show")
     }
@@ -53,7 +52,7 @@ class Profile extends Component {
         });
 
         requestAnimationFrame(() => {
-            requestAnimationFrame(()=> {this.animation()})
+            requestAnimationFrame(() => { this.animation() })
         });
     }
 
@@ -90,8 +89,8 @@ class Profile extends Component {
     }
 
     handleEdit = () => {
-        
-        if(this.state.showDash === false){
+
+        if (this.state.showDash === false) {
             this.setState({
                 showDash: true
             });
@@ -138,56 +137,56 @@ class Profile extends Component {
         ProjectAPI.deleteProject(id).then(res => {
             console.log(res)
         })
-        .catch(err => console.log(err.message));
+            .catch(err => console.log(err.message));
     }
 
     render() {
         return (
             <div id='profileSection'>
                 {!this.state.showDash ?
-                <Row id='home-form-grid'>
-                    <Col className='xl6 xl6menu menu-left-col' id='menu-left-col'>
-                    
-                    
-                    </Col>
-                    <Col className='xl6 menu-right-col' id='menu-right-col'>
-                        <div id='projectMenuContainer'>
-                            <p id='menuHeader'>What can we help you manage today?</p>
-                            <div id='projectMenuButtons'>
-                                {this.state.projects.map(project => (
-                                    <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
-                                ))}
+                    <Row id='home-form-grid'>
+                        <Col className='xl6 xl6menu menu-left-col' id='menu-left-col'>
+
+                        </Col>
+                        <Col className='xl6 menu-right-col' id='menu-right-col'>
+                            <div id='projectMenuContainer'>
+                                <p id='menuHeader'>What can we help you manage today?</p>
+                                <div id='projectMenuButtons'>
+                                    {this.state.projects.map(project => (
+                                        <MenuButton click={this.loadDash} id={project.id} name={project.name} key={project.id} />
+                                    ))}
+                                </div>
+                                <MenuCreateProject edit={this.handleEdit} />
                             </div>
-                            <MenuCreateProject edit={this.handleEdit} />
-                        </div>
-                        <MenuLogoutButton logout={this.handlelogout.bind(this)} />
-                    </Col>
-                </Row>
-                :
-                <Row>
-                    <Col className="newProjectCol xl2 l3">
-                        <Sidenav>
-                            <div className="centerButtons">
+                            <MenuLogoutButton logout={this.handlelogout.bind(this)} />
+                        </Col>
+                    </Row>
+                    :
+                    <div>
+                        <Row>
+                            <Navbar projects={this.state.projects} loadProject={this.loadProject} deleteProject={this.deleteProject} />
+                        </Row>
+                        <Row>
+                            <Col className="newProjectCol xl2 l0">
                                 <img src={Logo} className="Side-logo" alt="logo" />
                                 {this.state.projects.map(project => (
                                     <ProjectButton click={this.loadProject} id={project.id} name={project.name} key={project.id} delete={this.deleteProject} />
                                 ))}
-                                
-                                    <CreateProject edit={this.handleEdit} />
-                                
+
+                                <CreateProject edit={this.handleEdit} />
+
                                 <LogoutButton logout={this.handlelogout.bind(this)} />
-                            </div>
-                        </Sidenav>
-                    </Col>
-                    <Col className="newProjectCol xl10 l9">
-                        {
-                            !this.state.edit ?
-                                <Dashboard projectName={this.state.projectName} projectID={this.state.selectedProject}>
-                                </Dashboard>
-                                : <NewProjectForm  edit={this.handleEdit} projectID={this.state.selectedProject} />
-                        }
-                    </Col>
-                </Row>
+                            </Col>
+                            <Col className="xl10 l12">
+                                {
+                                    !this.state.edit ?
+                                        <Dashboard projectName={this.state.projectName} projectID={this.state.selectedProject}>
+                                        </Dashboard>
+                                        : <NewProjectForm edit={this.handleEdit} projectID={this.state.selectedProject} />
+                                }
+                            </Col>
+                        </Row>
+                    </div>
                 }
             </div>
         )
