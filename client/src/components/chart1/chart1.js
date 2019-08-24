@@ -8,7 +8,6 @@ class Chart1 extends Component {
 
   constructor(props) {
     super(props);
-    console.log("shuahd", props);
     this.chart1Ref = React.createRef();
     this.state = {
       id: props.projectID,
@@ -19,7 +18,6 @@ class Chart1 extends Component {
   }
 
   componentDidMount() {
-    console.log("DidMountChart1")
     this.chart1 = new Chart(this.chart1Ref.current, {
       type: 'doughnut',
       data: {
@@ -33,18 +31,11 @@ class Chart1 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("DidUpdateChart1")
-    console.log(this.props.projectID)
-    console.log(prevProps.projectID)
-    // this.props.total !== prevProps.total
-
-
     if (this.props.total !== prevProps.total || this.props.budgetEdited > 0) {
       
       BudgetAPI.getBudget(this.props.projectID).then(res => {
 
         this.chart1.destroy();
-        console.log("DestroyChartforNew")
 
         this.chart1 = new Chart(this.chart1Ref.current, {
           type: 'doughnut',
