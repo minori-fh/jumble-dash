@@ -39,7 +39,7 @@ export default class Navbar extends Component {
                 <div id="navbar-menu" style={{ display: `${this.state.responsiveMenu ? "block" : "none"}` }}>
                     <Row>
                         {this.props.projects.map(project => (
-                            <Col className="l3">
+                            <Col key={project.id * 1000} className="l3">
                                 <ProjectButton click={this.props.loadProject} id={project.id} name={project.name} key={project.id} delete={this.props.deleteProject} />
                             </Col>
                         ))}

@@ -55,6 +55,7 @@ select{
     text-align: middle !important; 
     margin-top: 2%; 
     display: block; 
+    font-size: 12px; 
 }
 
 #taskIssuebtn2{
@@ -64,6 +65,7 @@ select{
     background-color: rgb(5, 5, 41);
     color: white; 
     margin-left: 1%; 
+    font-size: 12px;
 }
 
 .taskIssueHeader{

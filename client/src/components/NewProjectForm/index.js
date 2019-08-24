@@ -27,6 +27,7 @@ class NewProjectForm extends Component {
         assignee2: "",
         assignee3: "",
         assignee4: "",
+        deadline: "",
     }
 
     onChange = date =>

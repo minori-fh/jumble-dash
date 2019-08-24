@@ -3,6 +3,7 @@
 }
 
 .editBudgetLabel{
+    margin-bottom: 3%; 
     display: inline; 
     margin-right: 3%; 
     border-radius: 5px; 
@@ -31,4 +32,5 @@ input{
     color: white;
     margin-left: 15%; 
     display: block; 
+    font-size: 12px; 
 }
