@@ -27,16 +27,14 @@ class Tasks extends Component {
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-            let formatDeadline = res.data[0].deadline
-            let slicedDate =formatDeadline.slice(5,10)
-            console.log("this is the type of format deadline",slicedDate);
+            let formatDeadline = res.data[0].deadline;
+            let slicedDate =formatDeadline.slice(5,10);
 
             this.setState({
                 tasks: res.data,
                 deadline:slicedDate,
                 tasksIncomplete: res.data.length
-            })
-            console.log("arnold Swarzzzz", res.data[0].deadline);
+            });
         })
             .catch(err => console.log(err.message));
 
@@ -47,8 +45,6 @@ class Tasks extends Component {
                 tasksComplete: res.data.length - this.state.tasksIncomplete,
                 counter: this.state.counter + 1
             })
-
-            console.log(res.data)
         })
             .catch(err => console.log(err.message));
     }
@@ -57,9 +53,8 @@ class Tasks extends Component {
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
 
-                let formatDeadline = res.data[0].deadline
-                let slicedDate =formatDeadline.slice(5,10)
-                console.log("this is the type of format deadline",slicedDate);
+                let formatDeadline = res.data[0].deadline;
+                let slicedDate =formatDeadline.slice(5,10);
 
                 this.setState({
                     tasks: res.data,
@@ -69,8 +64,6 @@ class Tasks extends Component {
                 TaskAPI.getTasks(this.props.projectID).then(res => {
                     let complete = res.data.length - this.state.tasks.length
                     let incomplete = this.state.tasks.length
-                    console.log("complete", complete)
-                    console.log("incomplete", incomplete)
 
                     this.setState({
                         total: res.data.length,
@@ -82,8 +75,6 @@ class Tasks extends Component {
                     .catch(err => console.log(err.message));
             })
                 .catch(err => console.log(err.message));
-
-            console.log("this.state.tasks", this.state.tasks);
         }
     }
 
@@ -134,9 +125,6 @@ class Tasks extends Component {
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
 
-            console.log(res.data)
-            console.log(res)
-
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
                     tasksList.splice(i, 1);
@@ -165,7 +153,6 @@ class Tasks extends Component {
                     </Col>
                 </Row>
                 <Row id='taskList'>
-                    {/* <p> Deadline {this.state.deadline} </p> */}
                     {this.state.tasks.map((task, i) => (    
                         <Col key={i} className='xl3'>
                             <div key={task.id}>

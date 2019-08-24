@@ -17,14 +17,10 @@ class EditBudget extends Component {
             newFinanceBudget: this.props.finance, 
             newSecurityBudget: this.props.security
         };
-
-        console.log(this.props.children)
-        console.log('this should be projectID', this.props.projectID)
     };
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-            console.log(res)
             let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
 
             this.setState({
@@ -43,15 +39,10 @@ class EditBudget extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        // this.props.projectID !== prevProps.projectID 
         if (this.props.total !== prevProps.total || this.props.budgetChange !== prevProps.budgetChange) {
-
-            console.log(this.props.budgetChange)
-            console.log(prevProps.budgetChange)
 
             BudgetAPI.getBudget(this.props.projectID).then(res => {
 
-                console.log(res.data)
                 let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
 
                 this.setState({
@@ -93,18 +84,13 @@ class EditBudget extends Component {
             Security: parseInt(this.state.newSecurityBudget),
             ProjectId: this.props.projectID
         }
-
-        console.log(body)
-
         const id = this.state.id
 
         BudgetAPI.updateBudget(id, body).then(res => {
-            console.log(res)
         })
         .catch(err => console.log(err.message));
 
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-            console.log(res)
             let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
             this.setState({
                 id: res.data.id,

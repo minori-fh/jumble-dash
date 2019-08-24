@@ -9,7 +9,6 @@ import "./style.css"
 class Budget extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props);
         this.chart1Ref = React.createRef();
         this.state = {
             budgetTotal: "",
@@ -36,7 +35,7 @@ class Budget extends Component {
 
     componentDidMount() {
         BudgetAPI.getBudget(this.props.projectID).then(res => {
-            console.log(res)
+            console.log(res);
             let budgetTotal = (res.data.Design + res.data.Engineering + res.data.Finance + res.data.HR + res.data.Marketing + res.data.Sales + res.data.Security)
             this.setState({
                 budgetTotal: budgetTotal, 
@@ -57,7 +56,6 @@ class Budget extends Component {
 
         if (this.props.projectID !== prevProps.projectID || this.props.budgetChange !== prevProps.budgetChange) {
             BudgetAPI.getBudget(this.props.projectID).then(res => {
-                console.log(res.data)
                 var arr = Object.keys(res.data);
                 var deptNames = [];
                 for (var i = 2; i < arr.length; i++) {

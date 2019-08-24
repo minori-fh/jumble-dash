@@ -25,12 +25,12 @@ class Problems extends Component {
 
     componentDidMount() {
 
-        TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-            console.log(res)
-            this.setState({
-                tasks: res.data,
-                counter: this.state.counter + 1
-            })
+        TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+            console.log(res);
+            // this.setState({
+            //     tasks: res.data,
+            //     counter: this.state.counter + 1
+            // })
         })
             .catch(err => console.log(err.message));
     }
@@ -38,13 +38,14 @@ class Problems extends Component {
     componentDidUpdate(prevProps) {
 
         if (this.props.projectID !== prevProps.projectID || this.props.tasksAdded !== prevProps.tasksAdded) {
-            TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-                this.setState({
-                    tasks: res.data,
-                    selectedTask: "",
-                    newProblem: "",
-                    counter: this.state.counter + 1
-                });
+            TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+                console.log(res);
+                // this.setState({
+                //     tasks: res.data,
+                //     selectedTask: "",
+                //     newProblem: "",
+                //     counter: this.state.counter + 1
+                // });
             })
                 .catch(err => console.log(err.message));
         }
