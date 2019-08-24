@@ -31,8 +31,7 @@ class NewProjectForm extends Component {
 
     onChange = date =>
     {
-     this.setState({ date })     
-     console.log(date)
+     this.setState({ date })
     }
 
     handleInputChange = event => {
