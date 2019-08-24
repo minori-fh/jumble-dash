@@ -29,6 +29,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    
     return Problem;
 }
