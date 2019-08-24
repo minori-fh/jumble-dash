@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import UserRoutes from './routes/UserRoutes'
 import GuestRoutes from './routes/GuestRoutes'
 import Actions from "./utils/API";

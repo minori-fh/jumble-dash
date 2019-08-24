@@ -20,8 +20,39 @@ module.exports = {
             res.json(dbTask);
         });
     },
+    findAllUnsolvedTaskProblems: function (req, res) {
+        db.Task.findAll({
+            where: {
+                ProjectId: req.params.id,
+                complete: false
+            },
+            include: [{
+                model: Problem,
+                where : {
+                    solved: false
+                }
+            }]
+        }).then(function (dbTask) {
+            res.json(dbTask)
+        });
+    },
+    findAllSolvedTaskProblems: function (req, res) {
+        db.Task.findAll({
+            where: {
+                ProjectId: req.params.id,
+                complete: false
+            },
+            include: [{
+                model: Problem,
+                where : {
+                    solved: true
+                }
+            }]
+        }).then(function (dbTask) {
+            res.json(dbTask)
+        });
+    },
     create: function (req, res) {
-        
         db.Task.create({
             task: req.body.task,
             deadline: req.body.deadline,

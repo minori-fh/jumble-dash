@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
             },
             onDelete: 'cascade'
         });
+
+        Task.hasMany(models.Problem, {
+            foreignKey: "TaskId"
+        });
     };
 
     return Task;

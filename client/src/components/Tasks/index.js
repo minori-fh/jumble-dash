@@ -219,6 +219,7 @@ class Tasks extends Component {
                                     onChange={this.handleInputChange}
                                     name="newAssignee4"
                                 />
+                                <br></br>
                                 <button id="buttnStyling" onClick={this.addTask}> Submit </button>
                             </form>
                         </div>

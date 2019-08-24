@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
+
+        Project.hasMany(models.Task, {
+            foreignKey: "ProjectId"
+        });
     };
 
     return Project;
