@@ -53,26 +53,12 @@ class Chart2 extends Component {
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: this.props.unsolved.map(task => {
-                if(task.Problems.length) {
-                  return task.Problems.length;
-                }
-                else {
-                  return 0;
-                }
-              })
+              data: this.props.unsolved.map(task => (task.Problems.length))
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data: this.props.solved.map(task => {
-                if(task.Problems.length) {
-                  return task.Problems.length;
-                }
-                else {
-                  return 0;
-                }
-              })
+              data: this.props.solved.map(task => (task.Problems.length))
             }
           ]
         },
