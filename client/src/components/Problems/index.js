@@ -135,8 +135,7 @@ class Problems extends Component {
             });
             ProblemAPI.getSolvedProblems(this.state.viewTaskProblem).then(res => {
                 this.setState({
-                    solved: res.data.length,
-                    counter: this.state.counter + 1
+                    solved: res.data.length
                 })
             })
                 .catch(err => console.log(err.message));

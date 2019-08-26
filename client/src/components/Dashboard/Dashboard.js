@@ -11,19 +11,16 @@ class Dashboard extends Component {
 
     constructor(props) {
         super(props)
-        this.chart2Ref = React.createRef();
         this.state = {
             tasksAdded: 0,
             budgetEdited: 0
         }
     }
 
-    handleUpdateTasks = event => {
-        event.preventDefault();
-        console.log("tasks added---------------",this.state.tasksAdded)
+    handleUpdateTasks = () => {
         this.setState({
             tasksAdded: this.state.tasksAdded + 1
-        })
+        });
     }
 
     handleUpdateBudget = event => {
