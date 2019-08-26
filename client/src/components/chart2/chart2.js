@@ -12,9 +12,7 @@ class Chart2 extends Component {
     this.chart2 = new Chart(this.chart2Ref.current, {
       type: 'bar',
       data: {
-        //labels are task names or ids
         labels: ["Task"],
-        //data needs to 
         datasets: [
           {
             label: "Unsolved Problems",
@@ -34,7 +32,7 @@ class Chart2 extends Component {
             {
               ticks: {
                 min: 0,
-                max: 100
+                max: 50
               }
             }
           ]
@@ -50,17 +48,31 @@ class Chart2 extends Component {
       this.chart2 = new Chart(this.chart2Ref.current, {
         type: 'bar',
         data: {
-          labels: ["Task"],
+          labels: this.props.tasks.map(task => (task.task)),
           datasets: [
             {
               label: "Incomplete",
               backgroundColor: "#df4343",
-              data: [(this.props.unsolved/ (this.props.solved + this.props.unsolved))*100 ]
+              data: this.props.unsolved.map(task => {
+                if(task.Problems.length) {
+                  return task.Problems.length;
+                }
+                else {
+                  return 0;
+                }
+              })
             },
             {
               label: "Complete",
               backgroundColor: "#379937",
-              data: [(this.props.solved/(this.props.unsolved + this.props.solved))*100]
+              data: this.props.solved.map(task => {
+                if(task.Problems.length) {
+                  return task.Problems.length;
+                }
+                else {
+                  return 0;
+                }
+              })
             }
           ]
         },
@@ -70,7 +82,7 @@ class Chart2 extends Component {
               {
                 ticks: {
                   min: 0,
-                  max: ((this.props.unsolved + this.props.solved )/(this.props.unsolved + this.props.solved))*100
+                  max: 25
                 }
               }
             ]
