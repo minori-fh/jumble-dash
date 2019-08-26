@@ -71,7 +71,8 @@ input{
     color: white; 
     padding: 1%;
     height: 30px;
-    width: 100px;
+    width: 120px;
+    font-size: 12px; 
 }
 
 #inputBudget, .budget, .task{
@@ -80,5 +81,12 @@ input{
     font-size: 14px; 
     font-family: 'Raleway', sans-serif;
     padding: 1%; 
+}
+
+    .calendar {
+        border: 1px solid white !important;
+        margin-left:130px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+
 }
 

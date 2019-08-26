@@ -12,6 +12,7 @@ class Tasks extends Component {
         this.chart3Ref = React.createRef();
         this.state = {
             newTask: "",
+            deadline:"",
             newAssignee1: "",
             newAssignee2: "",
             newAssignee3: "",
@@ -26,13 +27,11 @@ class Tasks extends Component {
 
     componentDidMount() {
         TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
-            console.log(res)
 
             this.setState({
                 tasks: res.data,
                 tasksIncomplete: res.data.length
-            })
-            console.log("this.state.tasks", res.data);
+            });
         })
             .catch(err => console.log(err.message));
 
@@ -43,8 +42,6 @@ class Tasks extends Component {
                 tasksComplete: res.data.length - this.state.tasksIncomplete,
                 counter: this.state.counter + 1
             })
-
-            console.log(res.data)
         })
             .catch(err => console.log(err.message));
     }
@@ -53,14 +50,13 @@ class Tasks extends Component {
         if (this.props.projectID !== prevProps.projectID) {
             TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
                 this.setState({
-                    tasks: res.data
+                    tasks: res.data,
+                 
                 })
 
                 TaskAPI.getTasks(this.props.projectID).then(res => {
                     let complete = res.data.length - this.state.tasks.length
                     let incomplete = this.state.tasks.length
-                    console.log("complete", complete)
-                    console.log("incomplete", incomplete)
 
                     this.setState({
                         total: res.data.length,
@@ -72,8 +68,6 @@ class Tasks extends Component {
                     .catch(err => console.log(err.message));
             })
                 .catch(err => console.log(err.message));
-
-            console.log("this.state.tasks", this.state.tasks);
         }
     }
 
@@ -89,8 +83,11 @@ class Tasks extends Component {
     addTask = event => {
         event.preventDefault();
 
+        let deadline = document.getElementById("calendarDate").value
+
         const task = {
             task: this.state.newTask,
+            deadline: deadline,
             assignee1: this.state.newAssignee1,
             assignee2: this.state.newAssignee2,
             assignee3: this.state.newAssignee3,
@@ -100,6 +97,7 @@ class Tasks extends Component {
 
         TaskAPI.createTask(task).then(res => {
             let tasksList = this.state.tasks;
+            console.log("",res)
             tasksList.push(res.data);
             this.setState({
                 tasks: tasksList,
@@ -123,9 +121,6 @@ class Tasks extends Component {
 
         TaskAPI.updateTask(id, com).then(res => {
             let tasksList = this.state.tasks;
-
-            console.log(res.data)
-            console.log(res)
 
             for (let i = 0; i < tasksList.length; i++) {
                 if (tasksList[i].id === id) {
@@ -158,7 +153,7 @@ class Tasks extends Component {
                     {this.state.tasks.map((task, i) => (    
                         <Col key={i} className='xl3'>
                             <div key={task.id}>
-                                <Task task={task.task} assignee1={task.assignee1}
+                                <Task task={task.task} deadline={task.deadline.slice(5,10)} assignee1={task.assignee1}
                                     assignee2={task.assignee2} assignee3={task.assignee3} assignee4={task.assignee4}></Task>
                                 <button id='taskComplete' key={i} onClick={(event) => {this.completeTask(task.id); this.props.updateTasks(event)}}><img id='completeImg' src={Complete}/></button>
                             </div>
@@ -179,6 +174,15 @@ class Tasks extends Component {
                                     placeholder="Task Name"
                                     onChange={this.handleInputChange}
                                     name="newTask"
+                                />
+                                <input required
+                                    className="formFix"
+                                    id="calendarDate"
+                                    type="text"
+                                    // value={this.state.deadline}
+                                    placeholder="Deadline: MM-DD"
+                                    onChange={this.handleInputChange}
+                                    name="name"
                                 />
                                 <input className="formFix"
                                     type="text"
@@ -208,6 +212,7 @@ class Tasks extends Component {
                                     onChange={this.handleInputChange}
                                     name="newAssignee4"
                                 />
+                                <br></br>
                                 <button id="buttnStyling" onClick={this.addTask}> Submit </button>
                             </form>
                         </div>

@@ -5,6 +5,7 @@ import API from "../../utils/API-project";
 import APIBudget from "../../utils/API-budget"
 import APITask from "../../utils/API-task";
 import Arrow from './arrow.png';
+import Calendar from 'react-calendar';
 
 class NewProjectForm extends Component {
 
@@ -21,10 +22,17 @@ class NewProjectForm extends Component {
         budgetSales: "",
         projectID: 0,
         task: "",
+        date: new Date(),
         assignee1: "",
         assignee2: "",
         assignee3: "",
         assignee4: "",
+        deadline: "",
+    }
+
+    onChange = date =>
+    {
+     this.setState({ date })
     }
 
     handleInputChange = event => {
@@ -94,6 +102,7 @@ class NewProjectForm extends Component {
 
         let info = {
             task: this.state.task,
+            deadline: this.state.date,
             assignee1: this.state.assignee1,
             assignee2: this.state.assignee2,
             assignee3: this.state.assignee3,
@@ -101,12 +110,9 @@ class NewProjectForm extends Component {
             ProjectId: this.state.projectID
         }
 
-        console.log("---------------------------------------------------------------")
-        console.log(info);
-
         APITask.createTask(info)
             .then(res => {
-                console.log(res)
+                console.log("this is the result of task created",res)
             })
             .catch(err => console.log(err.message));
 
@@ -116,19 +122,6 @@ class NewProjectForm extends Component {
 
     dashboard = (props) => {
         (props.edit())
-        // // window.location.reload(false);
-        // API.getProject(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved project", result)
-        //     })
-        // APIBudget.getBudget(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved Budget", result)
-        //     })
-        // APITask.getTasks(this.state.projectID)
-        //     .then(result => {
-        //         console.log("this is the result on the of pulling the saved Task", result)
-        //     })
     }
 
     formRender() {
@@ -251,6 +244,12 @@ class NewProjectForm extends Component {
                                             name="task"
                                             className='task'
                                         />
+                                        <h3> Deadline </h3>
+                                        <Calendar
+                                        className="calendar"
+                                        onChange={this.onChange}
+                                        date={this.state.date}
+                                    />
                                     </Col>
                                 </Row>
                                 <Row>

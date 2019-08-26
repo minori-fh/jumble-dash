@@ -10,6 +10,12 @@ export default {
   getIncompleteTasks: function(id) {
     return axios.get("/api/task/" + id + "/incomplete");
   },
+  getUnsovedTaskProblems: function(id) {
+    return axios.get("/api/task/" + id + "/unsolved");
+  },
+  getSovledTaskProblems: function(id) {
+    return axios.get("/api/task/" + id + "/solved");
+  },
   updateTask: function(id, body) {
     return axios.put("/api/task/" + id, body);
   },

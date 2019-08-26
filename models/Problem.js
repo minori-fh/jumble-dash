@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
         Problem.belongsTo(models.Task, {
             foreignKey: {
+                name: "TaskId",
                 allowNull: false
             }
         });
@@ -27,6 +28,5 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'cascade'
         });
     };
-    
     return Problem;
 }
