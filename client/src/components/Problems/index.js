@@ -19,18 +19,33 @@ class Problems extends Component {
             counter: 0,
             unsolved: 0,
             solved: 0,
+            taskSolvedProblems: [],
+            taskUnsolvedProblems: [],
             problemsList: []
         }
     }
 
     componentDidMount() {
 
-        TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
-            console.log(res);
-            // this.setState({
-            //     tasks: res.data,
-            //     counter: this.state.counter + 1
-            // })
+        TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+            this.setState({
+                tasks: res.data
+            });
+            TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+                console.log("THE UNSOLVED",res.data);
+                this.setState({
+                    taskUnsolvedProblems: res.data
+                });
+                TaskAPI.getSovledTaskProblems(this.props.projectID).then(res => {
+                    console.log("THE SOLVED",res.data);
+                    this.setState({
+                        taskSolvedProblems: res.data,
+                        counter: this.state.counter + 1
+                    });
+                })
+                    .catch(err => console.log(err.message));
+            })
+                .catch(err => console.log(err.message));
         })
             .catch(err => console.log(err.message));
     }
@@ -38,14 +53,25 @@ class Problems extends Component {
     componentDidUpdate(prevProps) {
 
         if (this.props.projectID !== prevProps.projectID || this.props.tasksAdded !== prevProps.tasksAdded) {
-            TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
-                console.log(res);
-                // this.setState({
-                //     tasks: res.data,
-                //     selectedTask: "",
-                //     newProblem: "",
-                //     counter: this.state.counter + 1
-                // });
+            TaskAPI.getIncompleteTasks(this.props.projectID).then(res => {
+                this.setState({
+                    tasks: res.data,
+                    selectedTask: "",
+                    newProblem: ""
+                });
+                TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+                    this.setState({
+                        taskUnsolvedProblems: res.data
+                    });
+                    TaskAPI.getSovledTaskProblems(this.props.projectID).then(res => {
+                        this.setState({
+                            taskSolvedProblems: res.data,
+                            counter: this.state.counter + 1
+                        });
+                    })
+                        .catch(err => console.log(err.message));
+                })
+                    .catch(err => console.log(err.message));
             })
                 .catch(err => console.log(err.message));
         }
@@ -80,7 +106,21 @@ class Problems extends Component {
                 newProblem: "",
                 selectedTask: "",
                 counter: this.state.counter + 1
+            });
+
+            TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+                this.setState({
+                    taskUnsolvedProblems: res.data
+                });
+                TaskAPI.getSovledTaskProblems(this.props.projectID).then(res => {
+                    this.setState({
+                        taskSolvedProblems: res.data,
+                        counter: this.state.counter + 1
+                    });
+                })
+                    .catch(err => console.log(err.message));
             })
+                .catch(err => console.log(err.message));
         })
             .catch(err => console.log(err.message));
     }
@@ -124,6 +164,20 @@ class Problems extends Component {
                 unsolved: this.state.unsolved - 1,
                 counter: this.state.counter + 1
             });
+
+            TaskAPI.getUnsovedTaskProblems(this.props.projectID).then(res => {
+                this.setState({
+                    taskUnsolvedProblems: res.data
+                });
+                TaskAPI.getSovledTaskProblems(this.props.projectID).then(res => {
+                    this.setState({
+                        taskSolvedProblems: res.data,
+                        counter: this.state.counter + 1
+                    });
+                })
+                    .catch(err => console.log(err.message));
+            })
+                .catch(err => console.log(err.message));
         })
     }
 
@@ -132,9 +186,31 @@ class Problems extends Component {
             <div>
                 <div>
                     <h1 id='name-styling'>Task Issues</h1>
-                    <hr width="80%"/>
-                    <Row id='viewIssueRow'>
-                        <Col className='xl12'>
+                    <hr width="80%" />
+                    <Chart2 counter={this.state.counter} tasks={this.state.tasks} unsolved={this.state.taskUnsolvedProblems} solved={this.state.taskSolvedProblems} />
+                    <Row>
+                        <Col className='xl6 newIssue'>
+                            <p className='taskIssueHeader'>Submit a New Issue:</p>
+                            <form id='newIssue'>
+                                <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
+                                    <option id='selectedTask'>Please Select a Task</option>
+                                    {this.state.tasks.map((task, i) => (
+                                        <option value={task.id} key={i}>{task.task}</option>
+                                    ))}
+                                </select>
+                                <textarea
+                                    type="text"
+                                    value={this.state.newProblem}
+                                    placeholder="What seems to be the problem?"
+                                    onChange={this.handleInputChange}
+                                    name="newProblem"
+                                    className='newProblem'
+                                    id='issuetxt'
+                                />
+                                <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
+                            </form>
+                        </Col>
+                        <Col className='xl6 viewIssue'>
                             <form id='viewIssue'>
                                 <select name="viewTaskProblem" value={this.state.viewTaskProblem} onChange={this.handleInputChange}>
                                     <option id='viewTaskProblem' >Select a Task to View</option>
@@ -144,43 +220,17 @@ class Problems extends Component {
                                 </select>
                                 <button id='taskIssuebtn2' onClick={this.viewProblem}> View </button>
                             </form>
+                            <p>Issues:</p>
+                            <div className='taskIssueHeader'>{this.state.problemsList.map((problem) => (
+                                <Row key={problem.id}>
+                                    <Col id='completeIssueCol' className='xl12'>
+                                        {problem.problem}
+                                        <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}><img id='taskIssueImg' src={Complete} /></button>
+                                    </Col>
+                                </Row>
+                            ))}</div>
                         </Col>
                     </Row>
-                    <Chart2 counter={this.state.counter} unsolved={this.state.unsolved} solved={this.state.solved} />
-                        <Row>
-                            <Col className='xl6 newIssue'>
-                                <p className='taskIssueHeader'>Submit a New Issue:</p>
-                                <form id='newIssue'>
-                                    <select name="selectedTask" value={this.state.selectedTask} onChange={this.handleInputChange}>
-                                        <option id='selectedTask'>Please Select a Task</option>
-                                        {this.state.tasks.map((task, i) => (
-                                            <option value={task.id} key={i}>{task.task}</option>
-                                        ))}
-                                    </select>
-                                    <textarea
-                                        type="text"
-                                        value={this.state.newProblem}
-                                        placeholder="What seems to be the problem?"
-                                        onChange={this.handleInputChange}
-                                        name="newProblem"
-                                        className='newProblem'
-                                        id='issuetxt'
-                                    />
-                                    <button id='taskIssuebtn1' onClick={this.addProblem}> Submit </button>
-                                </form>
-                            </Col>
-                            <Col className='xl6 viewIssue'>
-                                <div className='taskIssueHeader'>{this.state.problemsList.map((problem) => (
-                                    <Row key={problem.id}>
-                                        <p>Issues:</p>
-                                        <Col id='completeIssueCol' className='xl12'> 
-                                            {problem.problem}
-                                            <button id='taskIssuebtn3' key={problem.id} onClick={() => this.completeProblem(problem.id)}><img id='taskIssueImg' src={Complete}/></button>
-                                        </Col>
-                                    </Row>
-                                ))}</div>
-                            </Col>
-                        </Row>
                 </div>
             </div>
         );
