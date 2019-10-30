@@ -25,7 +25,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "react-calendar": "^2.19.1",
-    "sequelize": "^5.12.2"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
